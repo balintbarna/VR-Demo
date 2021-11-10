@@ -1,0 +1,9 @@
+{
+	"contains_albedo": false,
+	"resolution": 1024,
+	"src": {
+		"a": "res://textures/ground_cracked-4K/4K-ground_cracked-ao.jpg",
+		"normalmap_flip_y": true,
+		"rgb": "res://textures/ground_cracked-4K/4K-ground_cracked-normal.jpg"
+	}
+}

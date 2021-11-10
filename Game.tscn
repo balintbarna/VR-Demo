@@ -1,13 +1,30 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://terrain-data/data.hterrain" type="Resource" id=1]
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=2]
 [ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=3]
+[ext_resource path="res://Game_slot1_normal_roughness.packed_tex" type="Texture" id=4]
+[ext_resource path="res://Game_slot0_normal_roughness.packed_tex" type="Texture" id=5]
+[ext_resource path="res://Game_slot0_albedo_bump.packed_tex" type="Texture" id=6]
+[ext_resource path="res://Game_slot1_albedo_bump.packed_tex" type="Texture" id=7]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 3 )
 mode = 0
-textures = [ [  ], [  ] ]
+textures = [ [ ExtResource( 6 ), ExtResource( 7 ) ], [ ExtResource( 5 ), ExtResource( 4 ) ] ]
+
+[sub_resource type="SphereMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.596078, 0.8, 0.32549, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.388235, 0.803922, 0.776471, 1 )
+
+[sub_resource type="CylinderMesh" id=5]
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.533333, 0.211765, 0.305882, 1 )
 
 [node name="Game" type="Spatial"]
 
@@ -26,10 +43,37 @@ texture_set = SubResource( 1 )
 shader_params/u_ground_uv_scale_per_texture = Plane( 20, 20, 20, 20 )
 shader_params/u_depth_blending = true
 shader_params/u_triplanar = false
-shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
+shader_params/u_tile_reduction = Plane( 1, 1, 1, 1 )
 shader_params/u_globalmap_blend_start = null
 shader_params/u_globalmap_blend_distance = null
 shader_params/u_colormap_opacity_per_texture = Plane( 1, 1, 1, 1 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( -0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0.707107, 0.5, -0.5, 0, 100, 0 )
+transform = Transform( -0.980161, 0.0265425, -0.196419, -0.107282, 0.762231, 0.638353, 0.16666, 0.646761, -0.744261, 0, 4.23379, 0 )
+light_color = Color( 1, 0.980392, 0.831373, 1 )
+
+[node name="ARVROrigin" type="ARVROrigin" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.72, 0.51, 37.765 )
+
+[node name="HeadCamera" type="ARVRCamera" parent="ARVROrigin"]
+
+[node name="LeftController" type="ARVRController" parent="ARVROrigin"]
+
+[node name="MeshInstance" type="MeshInstance" parent="ARVROrigin/LeftController"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="RightController" type="ARVRController" parent="ARVROrigin"]
+controller_id = 2
+
+[node name="MeshInstance2" type="MeshInstance" parent="ARVROrigin/RightController"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0 )
+mesh = SubResource( 2 )
+skeleton = NodePath("../../LeftController")
+material/0 = SubResource( 4 )
+
+[node name="OriginMarker" type="MeshInstance" parent="ARVROrigin"]
+transform = Transform( 0.1, 0, 0, 0, 0.01, 0, 0, 0, 0.1, 0, 0, 0 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )

@@ -1,0 +1,8 @@
+{
+	"contains_albedo": true,
+	"resolution": 1024,
+	"src": {
+		"a": "res://textures/forest_ground_2-4K/4K-forest_2_height.jpg",
+		"rgb": "res://textures/forest_ground_2-4K/4K-forest_2_albedo.jpg"
+	}
+}
