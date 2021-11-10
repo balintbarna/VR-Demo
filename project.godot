@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "ResourceFormatLoader",
+"class": "HTerrainDataLoader",
+"language": "GDScript",
+"path": "res://addons/zylann.hterrain/hterrain_resource_loader.gd"
+}, {
+"base": "ResourceFormatSaver",
+"class": "HTerrainDataSaver",
+"language": "GDScript",
+"path": "res://addons/zylann.hterrain/hterrain_resource_saver.gd"
+}, {
 "base": "OculusTracker",
 "class": "OculusHandTracker",
 "language": "GDScript",
@@ -25,6 +35,8 @@ _global_script_classes=[ {
 "path": "res://addons/godot_ovrmobile/example_scenes/oculus_tracker.gd"
 } ]
 _global_script_class_icons={
+"HTerrainDataLoader": "",
+"HTerrainDataSaver": "",
 "OculusHandTracker": "",
 "OculusTouchController": "",
 "OculusTracker": ""
