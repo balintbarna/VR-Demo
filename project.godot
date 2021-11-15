@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "OculusTracker",
 "language": "GDScript",
 "path": "res://addons/godot_ovrmobile/example_scenes/oculus_tracker.gd"
+}, {
+"base": "Reference",
+"class": "QuestConfig",
+"language": "GDScript",
+"path": "res://vr-intergration/QuestConfig.gd"
 } ]
 _global_script_class_icons={
 "HTerrainDataLoader": "",
 "HTerrainDataSaver": "",
 "OculusHandTracker": "",
 "OculusTouchController": "",
-"OculusTracker": ""
+"OculusTracker": "",
+"QuestConfig": ""
 }
 
 [application]
