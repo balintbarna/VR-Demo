@@ -1,7 +1,7 @@
 extends Reference
 class_name QuestConfig
 
-func config(viewport: Viewport):
+func config(viewport: Viewport) -> bool:
     var interface = ARVRServer.find_interface("OVRMobile")
     if interface and interface.initialize():
         var ovr_init_config = preload("res://addons/godot_ovrmobile/OvrInitConfig.gdns").new()

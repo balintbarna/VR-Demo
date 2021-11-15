@@ -5,4 +5,7 @@ func _ready():
     print("OS name " + osname)
     print("VR interfaces: " + str(ARVRServer.get_interfaces()))
     if osname == "Android":
-        var oq_success = load("res://vr-intergration/QuestConfig.gd").new().config(get_viewport())
+        var oq_success: bool = preload("res://vr-intergration/QuestConfig.gd").new().config(get_viewport())
+        if not oq_success:
+            # try other android VR headset runtimes
+            pass
