@@ -39,6 +39,6 @@ func get_joystick_vector_raw() -> Vector2:
 func apply_deadzone(v, z) -> Vector2:
     var l = v.length()
     if l < z:
-        return Vector2(0,0)
+        return Vector2()
     else:
         return v.normalized() * ((l - z) / (1 - z))
