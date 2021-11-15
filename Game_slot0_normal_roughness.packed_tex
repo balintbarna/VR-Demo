@@ -1,9 +1,0 @@
-{
-	"contains_albedo": false,
-	"resolution": 1024,
-	"src": {
-		"a": "res://textures/forest_ground_2-4K/4K-forest_2_ao.jpg",
-		"normalmap_flip_y": true,
-		"rgb": "res://textures/forest_ground_2-4K/4K-forest_2_normal.jpg"
-	}
-}
