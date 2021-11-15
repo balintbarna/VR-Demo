@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://StartingBoxMaterial.tres" type="Material" id=1]
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=2]
@@ -23,6 +23,11 @@ extents = Vector3( 1, 0, 1 )
 
 [sub_resource type="BoxShape" id=13]
 extents = Vector3( 1, 0, 1 )
+
+[sub_resource type="CubeMesh" id=15]
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="BoxShape" id=16]
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 8 )
@@ -107,3 +112,13 @@ material/0 = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="World/StartingBox/Wall4"]
 shape = SubResource( 13 )
+
+[node name="Cube" type="StaticBody" parent="World/StartingBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23192, 6.0661, -1.52117 )
+
+[node name="MeshInstance" type="MeshInstance" parent="World/StartingBox/Cube"]
+mesh = SubResource( 15 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="World/StartingBox/Cube"]
+shape = SubResource( 16 )
