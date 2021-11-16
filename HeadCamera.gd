@@ -11,7 +11,7 @@ func get_right_direction() -> Vector3:
 
 func get_origin() -> ARVROrigin:
     var parent = get_parent()
-    if "get_origin" in parent:
+    if parent.has_method("get_origin"):
         return parent.get_origin()
     else:
         push_error("No get_origin in parent")
