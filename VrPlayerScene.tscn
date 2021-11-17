@@ -44,7 +44,7 @@ script = ExtResource( 2 )
 script = ExtResource( 3 )
 
 [node name="LeftControllerDebugMesh" type="MeshInstance" parent="LeftController"]
-transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.0905263, 0 )
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0 )
 mesh = SubResource( 9 )
 material/0 = SubResource( 3 )
 
