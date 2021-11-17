@@ -11,10 +11,10 @@ func _ready():
     if Globals.origin:
         subscribe_to_controller_signals()
     else:
-        Globals.connect("origin_set_signal", self, "subscribe_to_controller_signals")
+        var _r = Globals.connect("origin_set_signal", self, "subscribe_to_controller_signals")
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
     var controller = get_controller() as VrController
     if controller:
         display_basics(controller)
