@@ -20,10 +20,12 @@ var velocity = Vector3()
 
 func process(delta: float, body: KinematicBody):
     var origin = Globals.origin as VrOrigin
-    var offset_from_rotation = apply_rotation_and_calculate_offset(delta, origin)
-    origin.global_translate(-offset_from_rotation)
+    apply_rotation_and_fix_offset(delta, origin)
     apply_movement(delta, origin, body)
+    follow_body_with_camera(origin, body)
 
+
+func follow_body_with_camera(origin: VrOrigin, body: KinematicBody) -> void:
     var offset = body.global_transform.origin - origin.head.global_transform.origin
     body.translation = Vector3()
     origin.global_translate(offset)
@@ -52,6 +54,11 @@ func get_movement_forward(delta: float, head, left) -> Vector3:
 
 func get_movement_right(delta: float, head, left) -> Vector3:
     return head.get_right_direction() * left.get_movement_vector().x * delta * movement_speed
+
+
+func apply_rotation_and_fix_offset(delta: float, origin) -> void:
+    var offset_from_rotation = apply_rotation_and_calculate_offset(delta, origin)
+    origin.global_translate(-offset_from_rotation)
 
 
 func apply_rotation_and_calculate_offset(delta: float, origin) -> Vector3:
