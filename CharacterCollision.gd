@@ -2,7 +2,6 @@ extends CollisionShape
 
 
 onready var GLOBAL_ROTATION = global_transform.basis
-onready var origin: VrOrigin = get_origin()
 const ZERO_VECTOR = Vector3()
 
 func _physics_process(_delta: float) -> void:
@@ -14,7 +13,7 @@ func _physics_process(_delta: float) -> void:
 func set_height_between_origin_and_camera() -> void:
     var head = get_vr_head()
     var position = Vector3(head.global_transform.origin)
-    position.y = origin.global_transform.origin.y + head.translation.y / 2
+    position.y = get_origin().global_transform.origin.y + head.translation.y / 2
     global_transform.origin = position
 
 
@@ -31,13 +30,8 @@ func get_vr_height() -> float:
 
 
 func get_vr_head() -> HeadCamera:
-    return origin.head
+    return get_origin().head
 
 
 func get_origin() -> VrOrigin:
-    var parent = get_parent()
-    if parent.has_method("get_origin"):
-        return parent.get_origin()
-    else:
-        push_error("No get_origin in parent")
-        return null
+    return Globals.get_origin()

@@ -48,7 +48,3 @@ func get_movement_right(delta: float) -> Vector3:
 
 func get_player_rotation_amount(delta: float) -> float:
     return right.get_movement_vector().y * delta * ROTATION_SPEED
-
-
-func get_origin() -> VrOrigin:
-    return self
