@@ -22,7 +22,7 @@ func reset_orientation() -> void:
 
 
 func scale_to_camera_height() -> void:
-    scale.y = abs(get_vr_height())
+    scale.z = abs(get_vr_height()) # Z axis instead of Y because the shape is rotated around X
 
 
 func get_vr_height() -> float:
@@ -34,4 +34,4 @@ func get_vr_head() -> HeadCamera:
 
 
 func get_origin() -> VrOrigin:
-    return Globals.origin
+    return Globals.origin as VrOrigin
