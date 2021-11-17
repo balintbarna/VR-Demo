@@ -31,7 +31,7 @@ func any() -> bool:
     return Input.get_connected_joypads().size() > 0
 
 
-func apply_deadzone(v: Vector2, z: float) -> Vector2:
+static func apply_deadzone(v: Vector2, z: float) -> Vector2:
     var l = v.length()
     if l < z:
         return Vector2()
