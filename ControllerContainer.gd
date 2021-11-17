@@ -20,6 +20,16 @@ func _process(delta: float) -> void:
         display_basics(controller)
         display_all_button_states(controller)
         display_all_axes_states(controller)
+        display_transform(controller)
+
+
+func display_transform(controller):
+    var tr = controller.translation
+    var rd = controller.rotation_degrees
+    var posarr = ["%2.3f" % tr.x, "%2.3f" % tr.y, "%2.3f" % tr.z]
+    var rotarr = ["%2.3f" % rd.x, "%2.3f" % rd.y, "%2.3f" % rd.z]
+    $LeftContainer/TransformContainer/Position.text = "Position\nX:  {}\nY:  {}\nZ: {}".format(posarr, "{}")
+    $LeftContainer/TransformContainer/Rotation.text = "Rotation\nX:  {}\nY:  {}\nZ: {}".format(rotarr, "{}")
 
 
 func display_all_button_states(controller: VrController):
