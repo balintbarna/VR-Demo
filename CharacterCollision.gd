@@ -2,7 +2,7 @@ extends CollisionShape
 
 
 onready var GLOBAL_ROTATION = global_transform.basis
-onready var origin: ARVROrigin = get_origin()
+onready var origin: VrOrigin = get_origin()
 const ZERO_VECTOR = Vector3()
 
 func _physics_process(_delta: float) -> void:
@@ -34,7 +34,7 @@ func get_vr_head() -> ARVRCamera:
     return origin.head
 
 
-func get_origin() -> ARVROrigin:
+func get_origin() -> VrOrigin:
     var parent = get_parent()
     if parent.has_method("get_origin"):
         return parent.get_origin()
