@@ -30,7 +30,7 @@ func get_vr_height() -> float:
     return get_vr_head().translation.y
 
 
-func get_vr_head() -> ARVRCamera:
+func get_vr_head() -> HeadCamera:
     return origin.head
 
 

@@ -1,4 +1,5 @@
 extends ARVRCamera
+class_name HeadCamera
 
 
 func get_forward_direction() -> Vector3:

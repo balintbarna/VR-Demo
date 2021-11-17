@@ -6,9 +6,9 @@ const ROTATION_SPEED = 2*PI
 const ROTATION_VECTOR = Vector3(0, -1, 0)
 
 
-onready var left = $LeftController
-onready var right = $RightController
-onready var head = $HeadCamera
+onready var left: VrController = $LeftController
+onready var right: VrController = $RightController
+onready var head: HeadCamera = $HeadCamera
 
 
 var freecam = true

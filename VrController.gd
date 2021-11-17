@@ -1,4 +1,5 @@
 extends ARVRController
+class_name VrController
 
 
 const CONTROLLER_RUMBLE_FADE_SPEED = 2.0
