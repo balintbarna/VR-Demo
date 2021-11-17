@@ -5,5 +5,5 @@ export var kinematic_handler: Resource
 
 
 func _physics_process(delta: float):
-    var h = kinematic_handler as PlayerKinematicHandler
-    h._process(delta, self)
+    var h = kinematic_handler as KinematicBodyMover
+    h.process(delta, self)

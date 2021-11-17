@@ -1,4 +1,4 @@
-extends Resource
+extends KinematicBodyMover
 class_name PlayerKinematicHandler
 
 
@@ -7,7 +7,7 @@ const SNAP_VECTOR = Vector3(0, -1, 0)
 const UP_DIRECTION = Vector3(0, 1, 0)
 
 
-export var movement_speed = 3
+export var movement_speed = 1.5
 export var rotation_speed = 2*PI
 export var gravity_acceleration = 9.8
 export var stop_on_slope = true
@@ -19,45 +19,52 @@ export var infinite_inertia = false
 var velocity = Vector3()
 
 
-func _process(delta: float, body: KinematicBody):
+func process(delta: float, body: KinematicBody):
     var origin = Globals.origin as VrOrigin
-    var offset_from_rotation = apply_rotation_and_calculate_offset(delta)
+    var offset_from_rotation = apply_rotation_and_calculate_offset(delta, origin)
     origin.global_translate(-offset_from_rotation)
-    apply_movement(delta)
+    apply_movement(delta, origin, body)
 
-    velocity.y = velocity.y - gravity_acceleration * delta
-    velocity = body.move_and_slide_with_snap(velocity, SNAP_VECTOR, UP_DIRECTION, stop_on_slope, max_slides, floor_max_angle, infinite_inertia)
     var offset = body.global_transform.origin - origin.head.global_transform.origin
-    body.global_transform.origin = origin.head.global_transform.origin
+    body.translation = Vector3()
     origin.global_translate(offset)
 
 
-func apply_movement(delta: float) -> void:
-    (Globals.origin as VrOrigin).global_translate(get_complete_movement_vector(delta))
+func apply_movement(delta: float, origin: VrOrigin, body) -> void:
+    velocity = velocity + get_complete_movement_vector(delta, origin.head, origin.left)
+    var vertical = velocity.y
+    velocity.y = 0
+    if velocity.length() > movement_speed:
+        velocity = velocity.normalized() * movement_speed
+    velocity.y = vertical
+    velocity = body.move_and_slide_with_snap(velocity, SNAP_VECTOR, UP_DIRECTION, stop_on_slope, max_slides, floor_max_angle, infinite_inertia)
+
+    velocity.y = velocity.y - gravity_acceleration * delta
+    velocity = body.move_and_slide_with_snap(velocity, SNAP_VECTOR, UP_DIRECTION, stop_on_slope, max_slides, floor_max_angle, infinite_inertia)
 
 
-func get_complete_movement_vector(delta: float) -> Vector3:
-    return get_movement_forward(delta) + get_movement_right(delta)
+func get_complete_movement_vector(delta: float, head, left) -> Vector3:
+    return get_movement_forward(delta, head, left) + get_movement_right(delta, head, left)
 
 
-func get_movement_forward(delta: float) -> Vector3:
-    return (Globals.origin as VrOrigin).head.get_forward_direction() * (Globals.origin as VrOrigin).left.get_movement_vector().y * delta * movement_speed
+func get_movement_forward(delta: float, head, left) -> Vector3:
+    return head.get_forward_direction() * left.get_movement_vector().y * delta * movement_speed
 
 
-func get_movement_right(delta: float) -> Vector3:
-    return (Globals.origin as VrOrigin).head.get_right_direction() * (Globals.origin as VrOrigin).left.get_movement_vector().x * delta * movement_speed
+func get_movement_right(delta: float, head, left) -> Vector3:
+    return head.get_right_direction() * left.get_movement_vector().x * delta * movement_speed
 
 
-func apply_rotation_and_calculate_offset(delta: float) -> Vector3:
-    var head = (Globals.origin as VrOrigin).head
-    var pos = head.global_transform.origin
-    apply_rotation(delta)
-    return head.global_transform.origin - pos
+func apply_rotation_and_calculate_offset(delta: float, origin) -> Vector3:
+    var old = origin.head.global_transform.origin
+    apply_rotation(delta, origin)
+    var new = origin.head.global_transform.origin
+    return new - old
 
 
-func apply_rotation(delta: float) -> void:
-    (Globals.origin as VrOrigin).global_rotate(ROTATION_VECTOR, get_player_rotation_amount(delta))
+func apply_rotation(delta: float, origin) -> void:
+    origin.global_rotate(ROTATION_VECTOR, get_player_rotation_amount(delta, origin.right))
 
 
-func get_player_rotation_amount(delta: float) -> float:
-    return (Globals.origin as VrOrigin).right.get_movement_vector().x * delta * rotation_speed
+func get_player_rotation_amount(delta: float, right) -> float:
+    return right.get_movement_vector().x * delta * rotation_speed
