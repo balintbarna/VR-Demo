@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ControllerDisplay.tscn" type="PackedScene" id=1]
 [ext_resource path="res://HmdContainer.gd" type="Script" id=2]
+[ext_resource path="res://OriginContainer.gd" type="Script" id=3]
 
 [node name="BoardGui" type="Control"]
 anchor_right = 1.0
@@ -73,6 +74,7 @@ margin_top = 78.0
 margin_right = 115.0
 margin_bottom = 164.0
 custom_constants/separation = 10
+script = ExtResource( 3 )
 
 [node name="Title" type="Label" parent="CenterContainer/HBoxContainer/MiddleContainer/OriginContainer"]
 margin_right = 115.0
@@ -91,18 +93,18 @@ margin_right = 115.0
 margin_bottom = 62.0
 text = "Transform"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/HBoxContainer/MiddleContainer/OriginContainer"]
+[node name="TransformContainer" type="HBoxContainer" parent="CenterContainer/HBoxContainer/MiddleContainer/OriginContainer"]
 margin_top = 72.0
 margin_right = 115.0
 margin_bottom = 86.0
 custom_constants/separation = 10
 
-[node name="Position" type="Label" parent="CenterContainer/HBoxContainer/MiddleContainer/OriginContainer/HBoxContainer"]
+[node name="Position" type="Label" parent="CenterContainer/HBoxContainer/MiddleContainer/OriginContainer/TransformContainer"]
 margin_right = 52.0
 margin_bottom = 14.0
 text = "Position"
 
-[node name="Rotation" type="Label" parent="CenterContainer/HBoxContainer/MiddleContainer/OriginContainer/HBoxContainer"]
+[node name="Rotation" type="Label" parent="CenterContainer/HBoxContainer/MiddleContainer/OriginContainer/TransformContainer"]
 margin_left = 62.0
 margin_right = 115.0
 margin_bottom = 14.0
