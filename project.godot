@@ -54,6 +54,10 @@ config/name="VR-Demo"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Globals="*res://Globals.gd"
+
 [debug]
 
 settings/stdout/print_fps=true
