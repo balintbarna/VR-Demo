@@ -1,5 +1,5 @@
 extends ARVROrigin
-
+class_name VrOrigin
 
 const MOVEMENT_SPEED = 3
 const ROTATION_SPEED = 2*PI
@@ -15,7 +15,7 @@ var freecam = true
 
 
 func _ready() -> void:
-    pass # Replace with function body.
+    Globals.origin = self
 
 
 func _physics_process(delta: float) -> void:
@@ -50,5 +50,5 @@ func get_player_rotation_amount(delta: float) -> float:
     return right.get_movement_vector().y * delta * ROTATION_SPEED
 
 
-func get_origin() -> ARVROrigin:
+func get_origin() -> VrOrigin:
     return self

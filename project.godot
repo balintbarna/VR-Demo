@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "QuestConfig",
 "language": "GDScript",
 "path": "res://vr-intergration/QuestConfig.gd"
+}, {
+"base": "ARVROrigin",
+"class": "VrOrigin",
+"language": "GDScript",
+"path": "res://ARVROrigin.gd"
 } ]
 _global_script_class_icons={
 "HTerrainDataLoader": "",
@@ -45,7 +50,8 @@ _global_script_class_icons={
 "OculusHandTracker": "",
 "OculusTouchController": "",
 "OculusTracker": "",
-"QuestConfig": ""
+"QuestConfig": "",
+"VrOrigin": ""
 }
 
 [application]

@@ -1,8 +1,8 @@
 extends Node
 
 
-var origin: ARVROrigin = null
+var origin: VrOrigin = null
 
 
-func get_origin() -> ARVROrigin:
+func get_origin() -> VrOrigin:
     return origin
