@@ -13,4 +13,4 @@ func set_origin(value: VrOrigin) -> void:
 
 
 func get_origin() -> VrOrigin:
-    return origin as VrOrigin
+    return origin
