@@ -37,10 +37,7 @@ func apply_movement(delta: float, origin: VrOrigin, body) -> void:
     velocity.y = 0
     if velocity.length() > movement_speed:
         velocity = velocity.normalized() * movement_speed
-    velocity.y = vertical
-    velocity = body.move_and_slide_with_snap(velocity, SNAP_VECTOR, UP_DIRECTION, stop_on_slope, max_slides, floor_max_angle, infinite_inertia)
-
-    velocity.y = velocity.y - gravity_acceleration * delta
+    velocity.y = vertical - gravity_acceleration * delta
     velocity = body.move_and_slide_with_snap(velocity, SNAP_VECTOR, UP_DIRECTION, stop_on_slope, max_slides, floor_max_angle, infinite_inertia)
 
 
