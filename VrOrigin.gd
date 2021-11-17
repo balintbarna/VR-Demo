@@ -39,12 +39,12 @@ func get_complete_movement_vector(delta: float) -> Vector3:
 
 
 func get_movement_forward(delta: float) -> Vector3:
-    return head.get_forward_direction() * left.get_movement_vector().x * delta * MOVEMENT_SPEED
+    return head.get_forward_direction() * left.get_movement_vector().y * delta * MOVEMENT_SPEED
 
 
 func get_movement_right(delta: float) -> Vector3:
-    return head.get_right_direction() * left.get_movement_vector().y * delta * MOVEMENT_SPEED
+    return head.get_right_direction() * left.get_movement_vector().x * delta * MOVEMENT_SPEED
 
 
 func get_player_rotation_amount(delta: float) -> float:
-    return right.get_movement_vector().y * delta * ROTATION_SPEED
+    return right.get_movement_vector().x * delta * ROTATION_SPEED

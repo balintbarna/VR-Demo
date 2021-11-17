@@ -30,11 +30,15 @@ func get_joystick_vector() -> Vector2:
 
 
 func get_trackpad_vector_raw() -> Vector2:
-    return Vector2(-get_joystick_axis(1), get_joystick_axis(0))
+    var leftright = get_joystick_axis(JOY_OPENVR_TOUCHPADX) # -1 - 1
+    var backforward = get_joystick_axis(JOY_OPENVR_TOUCHPADY) # -1 - 1
+    return Vector2(leftright, backforward) # X - Y
 
 
 func get_joystick_vector_raw() -> Vector2:
-    return Vector2(-get_joystick_axis(5), get_joystick_axis(4))
+    var leftright = get_joystick_axis(4) # -1 - 1
+    var backforward = get_joystick_axis(5) # -1 - 1
+    return Vector2(leftright, backforward) # X - Y
 
 
 func apply_deadzone(v, z) -> Vector2:
