@@ -1,11 +1,18 @@
 extends Spatial
 
 func _ready():
+    load_vr_interfaces()
+
+
+func load_vr_interfaces():
     var osname = OS.get_name()
     print("OS name " + osname)
     print("VR interfaces: " + str(ARVRServer.get_interfaces()))
     if osname == "Android":
-        var oq_success: bool = preload("res://vr-intergration/QuestConfig.gd").new().config(get_viewport())
-        if not oq_success:
-            # try other android VR headset runtimes
-            pass
+        load_android_vr_interfaces()
+
+
+func load_android_vr_interfaces():
+    var oq_success: bool = preload("res://vr-intergration/QuestConfig.gd").new().config(get_viewport())
+    if not oq_success:
+        push_error("Failed to register VR interfaces for Android")
