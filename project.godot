@@ -25,9 +25,9 @@ _global_script_classes=[ {
 "path": "res://HeadCamera.gd"
 }, {
 "base": "Resource",
-"class": "Joypads",
+"class": "Joypad",
 "language": "GDScript",
-"path": "res://Joypads.gd"
+"path": "res://Joypad.gd"
 }, {
 "base": "OculusTracker",
 "class": "OculusHandTracker",
@@ -43,6 +43,11 @@ _global_script_classes=[ {
 "class": "OculusTracker",
 "language": "GDScript",
 "path": "res://addons/godot_ovrmobile/example_scenes/oculus_tracker.gd"
+}, {
+"base": "Resource",
+"class": "PlayerKinematicHandler",
+"language": "GDScript",
+"path": "res://PlayerKinematicHandler.gd"
 }, {
 "base": "Reference",
 "class": "QuestConfig",
@@ -63,10 +68,11 @@ _global_script_class_icons={
 "HTerrainDataLoader": "",
 "HTerrainDataSaver": "",
 "HeadCamera": "",
-"Joypads": "",
+"Joypad": "",
 "OculusHandTracker": "",
 "OculusTouchController": "",
 "OculusTracker": "",
+"PlayerKinematicHandler": "",
 "QuestConfig": "",
 "VrController": "",
 "VrOrigin": ""
