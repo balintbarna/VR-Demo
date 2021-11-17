@@ -34,4 +34,4 @@ func get_vr_head() -> HeadCamera:
 
 
 func get_origin() -> VrOrigin:
-    return Globals.get_origin()
+    return Globals.origin
