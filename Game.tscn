@@ -48,7 +48,7 @@ extents = Vector3( 0.5, 0.5, 0.01 )
 [node name="Game" type="Spatial"]
 script = ExtResource( 8 )
 
-[node name="ARVROrigin" parent="." instance=ExtResource( 7 )]
+[node name="VrOrigin" parent="." instance=ExtResource( 7 )]
 
 [node name="World" type="Spatial" parent="."]
 
