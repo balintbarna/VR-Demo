@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://ControllerContainer.gd" type="Script" id=2]
+[ext_resource path="res://ControllerDisplay.tscn" type="PackedScene" id=1]
 
 [node name="BoardGui" type="Control"]
 anchor_right = 1.0
@@ -22,64 +22,21 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
-margin_left = 371.0
-margin_top = 221.0
-margin_right = 653.0
-margin_bottom = 379.0
+margin_left = 226.0
+margin_top = 209.0
+margin_right = 798.0
+margin_bottom = 391.0
 custom_constants/separation = 30
 
-[node name="LeftContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
-margin_right = 91.0
-margin_bottom = 158.0
-custom_constants/separation = 10
-script = ExtResource( 2 )
+[node name="LeftControllerDisplay" parent="CenterContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_right = 240.0
+margin_bottom = 182.0
 controller_id = 1
 
-[node name="Title" type="Label" parent="CenterContainer/HBoxContainer/LeftContainer"]
-margin_right = 91.0
-margin_bottom = 14.0
-text = "Left Controller"
-
-[node name="Name" type="Label" parent="CenterContainer/HBoxContainer/LeftContainer"]
-margin_top = 24.0
-margin_right = 91.0
-margin_bottom = 38.0
-
-[node name="Hand" type="Label" parent="CenterContainer/HBoxContainer/LeftContainer"]
-margin_top = 48.0
-margin_right = 91.0
-margin_bottom = 62.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Active" type="Label" parent="CenterContainer/HBoxContainer/LeftContainer"]
-margin_top = 72.0
-margin_right = 91.0
-margin_bottom = 86.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Joystick" type="Label" parent="CenterContainer/HBoxContainer/LeftContainer"]
-margin_top = 96.0
-margin_right = 91.0
-margin_bottom = 110.0
-
-[node name="MeshUpdate" type="Label" parent="CenterContainer/HBoxContainer/LeftContainer"]
-margin_top = 120.0
-margin_right = 91.0
-margin_bottom = 134.0
-
-[node name="ButtonEvent" type="Label" parent="CenterContainer/HBoxContainer/LeftContainer"]
-margin_top = 144.0
-margin_right = 91.0
-margin_bottom = 158.0
-
 [node name="MiddleContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
-margin_left = 121.0
-margin_right = 153.0
-margin_bottom = 158.0
+margin_left = 270.0
+margin_right = 302.0
+margin_bottom = 182.0
 custom_constants/separation = 10
 
 [node name="HmdContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer/MiddleContainer"]
@@ -91,51 +48,8 @@ margin_right = 32.0
 margin_bottom = 14.0
 text = "HMD"
 
-[node name="RightContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
-margin_left = 183.0
-margin_right = 282.0
-margin_bottom = 158.0
-custom_constants/separation = 10
-script = ExtResource( 2 )
+[node name="RightControllerDisplay" parent="CenterContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 332.0
+margin_right = 572.0
+margin_bottom = 182.0
 controller_id = 2
-
-[node name="Title" type="Label" parent="CenterContainer/HBoxContainer/RightContainer"]
-margin_right = 99.0
-margin_bottom = 14.0
-text = "Right Controller"
-
-[node name="Name" type="Label" parent="CenterContainer/HBoxContainer/RightContainer"]
-margin_top = 24.0
-margin_right = 99.0
-margin_bottom = 38.0
-
-[node name="Hand" type="Label" parent="CenterContainer/HBoxContainer/RightContainer"]
-margin_top = 48.0
-margin_right = 99.0
-margin_bottom = 62.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Active" type="Label" parent="CenterContainer/HBoxContainer/RightContainer"]
-margin_top = 72.0
-margin_right = 99.0
-margin_bottom = 86.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Joystick" type="Label" parent="CenterContainer/HBoxContainer/RightContainer"]
-margin_top = 96.0
-margin_right = 99.0
-margin_bottom = 110.0
-
-[node name="MeshUpdate" type="Label" parent="CenterContainer/HBoxContainer/RightContainer"]
-margin_top = 120.0
-margin_right = 99.0
-margin_bottom = 134.0
-
-[node name="ButtonEvent" type="Label" parent="CenterContainer/HBoxContainer/RightContainer"]
-margin_top = 144.0
-margin_right = 99.0
-margin_bottom = 158.0

@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends HBoxContainer
 
 
 export var controller_id: int = 0
@@ -17,11 +17,31 @@ func _ready():
 func _process(delta: float) -> void:
     var controller = get_controller() as VrController
     if controller:
-        $Name.text = "Name: {}".format([controller.get_name()], "{}")
-        $Hand.text = "Hand: {}".format([controller.get_hand()], "{}")
-        $Active.text = "Active: {}".format([controller.get_is_active()], "{}")
-        $Joystick.text = "Joystick: {}".format([controller.get_joystick_id()], "{}")
-        $MeshUpdate.text = "Mesh updated {} times".format([mesh_counter], "{}")
+        display_basics(controller)
+        display_all_button_states(controller)
+        display_all_axes_states(controller)
+
+
+func display_all_button_states(controller: VrController):
+    var text = "All buttons:\n"
+    for i in JOY_BUTTON_MAX:
+        text = text + "button {}    |{}|\n".format(["%2d" % i, "X" if controller.is_button_pressed(i) else "  "], "{}")
+    $RightContainer/AllButtons.text = text
+
+
+func display_all_axes_states(controller: VrController):
+    var text = "All axes:\n"
+    for i in JOY_AXIS_MAX:
+        text = text + "axis {}    {}\n".format(["%3d" % i, "%0.2f" % controller.get_joystick_axis(i)], "{}")
+    $LeftContainer/AllAxes.text = text
+
+
+func display_basics(controller: VrController):
+    $LeftContainer/Name.text = "Name: {}".format([controller.get_name()], "{}")
+    $LeftContainer/Hand.text = "Hand: {}".format([controller.get_hand()], "{}")
+    $LeftContainer/Active.text = "Active: {}".format([controller.get_is_active()], "{}")
+    $LeftContainer/Joystick.text = "Joystick: {}".format([controller.get_joystick_id()], "{}")
+    $LeftContainer/MeshUpdate.text = "Mesh updated {} times".format([mesh_counter], "{}")
 
 
 func subscribe_to_controller_signals() -> void:
@@ -48,4 +68,4 @@ func _on_button_released(button: int) -> void:
     _on_button_action(button, "released")
 
 func _on_button_action(button: int, action: String) -> void:
-    $ButtonEvent.text = "Button {} {}".format([button, action], "{}")
+    $LeftContainer/ButtonEvent.text = "Button {} {}".format(["%2d" % button, action], "{}")
