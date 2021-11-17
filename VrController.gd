@@ -18,11 +18,11 @@ func get_movement_vector() -> Vector2:
 
 
 func get_trackpad_vector() -> Vector2:
-    return Joypads.apply_deadzone(get_trackpad_vector_raw(), CONTROLLER_DEADZONE)
+    return Joypad.apply_deadzone(get_trackpad_vector_raw(), CONTROLLER_DEADZONE)
 
 
 func get_joystick_vector() -> Vector2:
-    return Joypads.apply_deadzone(get_joystick_vector_raw(), CONTROLLER_DEADZONE)
+    return Joypad.apply_deadzone(get_joystick_vector_raw(), CONTROLLER_DEADZONE)
 
 
 func get_trackpad_vector_raw() -> Vector2:

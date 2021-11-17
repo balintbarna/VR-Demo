@@ -1,5 +1,5 @@
 extends Resource
-class_name Joypads
+class_name Joypad
 
 export var joypadIndex: int = 0
 export var deadzone: float = 0.1
