@@ -19,15 +19,21 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-    apply_rotation(delta)
-    apply_movement(delta)
+    var offset = apply_rotation_and_calculate_offset(delta)
+    apply_movement(delta, offset)
 
 
-func apply_movement(delta: float) -> void:
+func apply_movement(delta: float, offset: Vector3) -> void:
     if freecam:
-        global_translate(get_complete_movement_vector(delta))
+        global_translate(get_complete_movement_vector(delta) - offset)
     else:
         pass
+
+
+func apply_rotation_and_calculate_offset(delta: float) -> Vector3:
+    var pos = head.global_transform.origin
+    apply_rotation(delta)
+    return head.global_transform.origin - pos
 
 
 func apply_rotation(delta: float) -> void:
