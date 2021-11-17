@@ -2,7 +2,6 @@ extends KinematicBodyMover
 class_name PlayerKinematicHandler
 
 
-const ROTATION_VECTOR = Vector3(0, -1, 0)
 const SNAP_VECTOR = Vector3(0, -1, 0)
 const UP_DIRECTION = Vector3(0, 1, 0)
 
@@ -63,8 +62,8 @@ func apply_rotation_and_calculate_offset(delta: float, origin) -> Vector3:
 
 
 func apply_rotation(delta: float, origin) -> void:
-    origin.global_rotate(ROTATION_VECTOR, get_player_rotation_amount(delta, origin.right))
+    origin.rotate_y(get_player_rotation_amount(delta, origin.right))
 
 
 func get_player_rotation_amount(delta: float, right) -> float:
-    return right.get_movement_vector().x * delta * rotation_speed
+    return -right.get_movement_vector().x * delta * rotation_speed
