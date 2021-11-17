@@ -42,7 +42,7 @@ _global_script_classes=[ {
 "base": "ARVROrigin",
 "class": "VrOrigin",
 "language": "GDScript",
-"path": "res://ARVROrigin.gd"
+"path": "res://VrOrigin.gd"
 } ]
 _global_script_class_icons={
 "HTerrainDataLoader": "",
