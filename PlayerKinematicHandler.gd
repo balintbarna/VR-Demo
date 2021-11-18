@@ -7,13 +7,13 @@ const UP_DIRECTION = Vector3(0, 1, 0)
 
 
 export var GRAVITY_ACCELERATION_MPS2 = 9.81
-export var NORMAL_ACCELERATION_MPS2 = 10
-export var SPRINT_ACCELERATION_MPS2 = 20
+export var NORMAL_ACCELERATION_MPS2 = 9
+export var SPRINT_ACCELERATION_MPS2 = 15
 export var NORMAL_MAX_SPEED_MPS = 3
 export var SPRINT_MAX_SPEED_MPS = 5
-export var CUTOFF_VELOCITY_MPS = 0.3
-export var DAMPING_COEFFICIENT_NSPM = 150
-export var AIR_THICKNESS = 0.3 # affects in-air damping
+export var CUTOFF_VELOCITY_MPS = 0.02
+export var DAMPING_COEFFICIENT_NSPM = 10
+export var AIR_THICKNESS = 0.9 # affects in-air damping
 export var JUMP_SPEED = 50
 # export var MOUSE_SENSITIVITY = 0.5
 # export var JOYPAD_SENSITIVITY = 2
@@ -23,7 +23,7 @@ export var MASS = 70
 
 
 var max_speed = NORMAL_MAX_SPEED_MPS
-var acceleration = NORMAL_ACCELERATION_MPS2
+var max_acceleration = NORMAL_ACCELERATION_MPS2
 export var rotation_speed = 2*PI
 export var stop_on_slope = true
 export var max_slides = 4
@@ -45,40 +45,44 @@ func follow_body_with_camera(origin: VrOrigin, body: KinematicBody) -> void:
     origin.global_translate(offset)
 
 
-func apply_movement(delta: float, origin: VrOrigin, body) -> void:
+func apply_movement(dt: float, origin: VrOrigin, body) -> void:
     calculate_sprint()
-    apply_dampening(delta, body)
-    accelerate_from_inputs(delta, origin, body)
-    var vertical = velocity.y
-    velocity.y = 0
-    if velocity.length() > max_speed:
-        velocity = velocity.normalized() * max_speed
-    velocity.y = vertical - GRAVITY_ACCELERATION_MPS2 * delta
+    apply_dampening(dt, body)
+    velocity.y -= GRAVITY_ACCELERATION_MPS2 * dt # apply gravity
+    accelerate_from_inputs(dt, origin, body)
     velocity = body.move_and_slide_with_snap(velocity, SNAP_VECTOR, UP_DIRECTION, stop_on_slope, max_slides, floor_max_angle, infinite_inertia)
 
 
 func accelerate_from_inputs(dt: float, origin: VrOrigin, body: KinematicBody) -> void:
     if body.is_on_floor():
-        var dv = acceleration * dt
-        var movement_vector = get_complete_movement_vector(origin.head, origin.left)
-        movement_vector.y = 0
-        if movement_vector.length() > 1:
-            movement_vector = movement_vector.normalized()
-        velocity += movement_vector * dv
+        var input_vector = get_complete_movement_vector(origin.head, origin.left)
+        input_vector.y = 0
+        if input_vector.length() > 1:
+            input_vector = input_vector.normalized()
+        var target_velocity = input_vector * max_speed
+        var vertical = velocity.y
+        velocity.y = 0
+        var ideal_dv = target_velocity - velocity
+        velocity.y = vertical
+        var max_dv = max_acceleration * dt
+        if ideal_dv.length() < max_dv:
+            velocity = target_velocity
+        else:
+            var dv = ideal_dv.normalized() * max_dv
+            velocity += dv
         if Input.is_action_pressed("movement_jump"):
             velocity.y = JUMP_SPEED
 
 
-func apply_dampening(dt: float, body: KinematicBody):
+func apply_dampening(dt: float, body: KinematicBody) -> void:
     var speed = velocity.length()
     if speed < CUTOFF_VELOCITY_MPS:
-        velocity.x = 0
-        velocity.z = 0
+        velocity = Vector3()
     else:
         # F = c*v
         # F = m*a -> a = F/m
         # dV = a*dt
-        var damping = DAMPING_COEFFICIENT_NSPM / MASS * dt * speed
+        var damping = DAMPING_COEFFICIENT_NSPM * dt * speed / MASS
         if not body.is_on_floor():
             damping *= AIR_THICKNESS
         if damping > speed:
@@ -87,10 +91,10 @@ func apply_dampening(dt: float, body: KinematicBody):
             velocity = velocity.normalized() * (speed - damping)
 
 
-func calculate_sprint():
+func calculate_sprint() -> void:
     var sprint = 1 if Input.is_action_pressed("movement_sprint") else 0 # TODO add VR sprinting capability by hand movement
     max_speed = NORMAL_MAX_SPEED_MPS + sprint * (SPRINT_MAX_SPEED_MPS - NORMAL_MAX_SPEED_MPS)
-    acceleration = NORMAL_ACCELERATION_MPS2 + sprint * (SPRINT_ACCELERATION_MPS2 - NORMAL_ACCELERATION_MPS2)
+    max_acceleration = NORMAL_ACCELERATION_MPS2 + sprint * (SPRINT_ACCELERATION_MPS2 - NORMAL_ACCELERATION_MPS2)
 
 
 func apply_rotation_and_fix_offset(delta: float, origin) -> void:
