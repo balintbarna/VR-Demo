@@ -12,3 +12,8 @@ onready var head: HeadCamera = $HeadCamera
 
 func _ready() -> void:
     Globals.origin = self
+
+
+func _physics_process(_delta):
+    if translation.y < -50:
+        translation = Vector3()

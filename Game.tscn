@@ -48,7 +48,11 @@ extents = Vector3( 0.5, 0.5, 0.01 )
 [node name="Game" type="Spatial"]
 script = ExtResource( 8 )
 
-[node name="VrOrigin" parent="." instance=ExtResource( 7 )]
+[node name="StartingPosition" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0 )
+
+[node name="VrOrigin" parent="StartingPosition" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="World" type="Spatial" parent="."]
 
