@@ -50,7 +50,7 @@ func apply_movement(dt: float, origin: VrOrigin, body) -> void:
     apply_dampening(dt, body)
     velocity.y -= GRAVITY_ACCELERATION_MPS2 * dt # apply gravity
     accelerate_from_inputs(dt, origin, body)
-    velocity = body.move_and_slide_with_snap(velocity, SNAP_VECTOR, STOP_ON_SLOPE, MAX_SLIDES, FLOOR_MAX_ANGLE, INFINITE_INERTIA)
+    velocity = body.move_and_slide_with_snap(velocity, SNAP_VECTOR, UP_DIRECTION, STOP_ON_SLOPE, MAX_SLIDES, FLOOR_MAX_ANGLE, INFINITE_INERTIA)
 
 
 func accelerate_from_inputs(dt: float, origin: VrOrigin, body: KinematicBody) -> void:
