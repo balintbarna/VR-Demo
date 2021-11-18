@@ -7,6 +7,7 @@ ground_horizon_color = Color( 0.411765, 0.627451, 1, 1 )
 [resource]
 background_mode = 2
 background_sky = SubResource( 1 )
-ambient_light_color = Color( 1, 0.976471, 0.619608, 1 )
+ambient_light_color = Color( 1, 0.980392, 0.701961, 1 )
+ambient_light_energy = 0.0
 ambient_light_sky_contribution = 0.5
 ss_reflections_roughness = false
