@@ -15,10 +15,10 @@ export var CUTOFF_VELOCITY_MPS = 0.3
 export var DAMPING_COEFFICIENT_NSPM = 150
 export var AIR_THICKNESS = 0.3 # affects in-air damping
 export var JUMP_SPEED = 50
-export var MOUSE_SENSITIVITY = 0.5
-export var JOYPAD_SENSITIVITY = 2
-export var JOYPAD_DEADZONE = 0.15
-export var MOUSE_SENSITIVITY_SCROLL_WHEEL = 0.08
+# export var MOUSE_SENSITIVITY = 0.5
+# export var JOYPAD_SENSITIVITY = 2
+# export var JOYPAD_DEADZONE = 0.15
+# export var MOUSE_SENSITIVITY_SCROLL_WHEEL = 0.08
 export var MASS = 70
 
 
