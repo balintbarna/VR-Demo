@@ -75,20 +75,17 @@ func accelerate_from_inputs(dt: float, origin: VrOrigin, body: KinematicBody) ->
 
 
 func apply_dampening(dt: float, body: KinematicBody) -> void:
-    var speed = velocity.length()
-    if speed < CUTOFF_VELOCITY_MPS:
-        velocity = Vector3()
-    else:
+    if velocity.length() > CUTOFF_VELOCITY_MPS:
         # F = c*v
         # F = m*a -> a = F/m
         # dV = a*dt
-        var damping = DAMPING_COEFFICIENT_NSPM * dt * speed / MASS_KG
+        var damping_ratio = DAMPING_COEFFICIENT_NSPM * dt / MASS_KG
         if not body.is_on_floor():
-            damping *= AIR_THICKNESS
-        if damping > speed:
-            velocity = Vector3()
+            damping_ratio *= AIR_THICKNESS
+        if damping_ratio < 1:
+            velocity *= (1 - damping_ratio)
         else:
-            velocity = velocity.normalized() * (speed - damping)
+            velocity = Vector3()
 
 
 func calculate_sprint() -> void:
