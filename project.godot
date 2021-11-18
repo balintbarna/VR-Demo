@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBodyMover",
+"class": "FlatWorldPhysicsKinematicMover",
+"language": "GDScript",
+"path": "res://FlatWorldPhysicsKinematicMover.gd"
+}, {
 "base": "ResourceFormatLoader",
 "class": "HTerrainDataLoader",
 "language": "GDScript",
@@ -49,11 +54,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot_ovrmobile/example_scenes/oculus_tracker.gd"
 }, {
-"base": "KinematicBodyMover",
-"class": "PlayerKinematicHandler",
-"language": "GDScript",
-"path": "res://PlayerKinematicHandler.gd"
-}, {
 "base": "Reference",
 "class": "QuestConfig",
 "language": "GDScript",
@@ -70,6 +70,7 @@ _global_script_classes=[ {
 "path": "res://VrOrigin.gd"
 } ]
 _global_script_class_icons={
+"FlatWorldPhysicsKinematicMover": "",
 "HTerrainDataLoader": "",
 "HTerrainDataSaver": "",
 "HeadCamera": "",
@@ -78,7 +79,6 @@ _global_script_class_icons={
 "OculusHandTracker": "",
 "OculusTouchController": "",
 "OculusTracker": "",
-"PlayerKinematicHandler": "",
 "QuestConfig": "",
 "VrController": "",
 "VrOrigin": ""

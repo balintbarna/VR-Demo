@@ -5,10 +5,21 @@
 [ext_resource path="res://VrController.gd" type="Script" id=3]
 [ext_resource path="res://HeadCamera.gd" type="Script" id=4]
 [ext_resource path="res://Character.gd" type="Script" id=5]
-[ext_resource path="res://PlayerKinematicHandler.gd" type="Script" id=6]
+[ext_resource path="res://FlatWorldPhysicsKinematicMover.gd" type="Script" id=6]
 
 [sub_resource type="Resource" id=11]
 script = ExtResource( 6 )
+GRAVITY_ACCELERATION_MPS2 = 9.81
+NORMAL_ACCELERATION_MPS2 = 9
+SPRINT_ACCELERATION_MPS2 = 15
+NORMAL_MAX_SPEED_MPS = 3
+SPRINT_MAX_SPEED_MPS = 5
+CUTOFF_VELOCITY_MPS = 0.02
+DAMPING_COEFFICIENT_NSPM = 10
+AIR_THICKNESS = 0.9
+JUMP_SPEED_MPS = 50
+MASS_KG = 70
+ROTATION_SPEED_RPS = 6.28319
 
 [sub_resource type="CapsuleShape" id=10]
 radius = 0.3

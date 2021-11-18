@@ -1,9 +1,13 @@
 extends KinematicBodyMover
-class_name PlayerKinematicHandler
+class_name FlatWorldPhysicsKinematicMover
 
 
 const SNAP_VECTOR = Vector3(0, -1, 0)
 const UP_DIRECTION = Vector3(0, 1, 0)
+const STOP_ON_SLOPE = true
+const MAX_SLIDES = 4
+const FLOOR_MAX_ANGLE = 0.785398
+const INFINITE_INERTIA = false
 
 
 export var GRAVITY_ACCELERATION_MPS2 = 9.81
@@ -14,21 +18,17 @@ export var SPRINT_MAX_SPEED_MPS = 5
 export var CUTOFF_VELOCITY_MPS = 0.02
 export var DAMPING_COEFFICIENT_NSPM = 10
 export var AIR_THICKNESS = 0.9 # affects in-air damping
-export var JUMP_SPEED = 50
+export var JUMP_SPEED_MPS = 50 # overrides vertical speed
+export var MASS_KG = 70
+export var ROTATION_SPEED_RPS = 2*PI
 # export var MOUSE_SENSITIVITY = 0.5
 # export var JOYPAD_SENSITIVITY = 2
 # export var JOYPAD_DEADZONE = 0.15
 # export var MOUSE_SENSITIVITY_SCROLL_WHEEL = 0.08
-export var MASS = 70
 
 
 var max_speed = NORMAL_MAX_SPEED_MPS
 var max_acceleration = NORMAL_ACCELERATION_MPS2
-export var rotation_speed = 2*PI
-export var stop_on_slope = true
-export var max_slides = 4
-export var floor_max_angle = 0.785398
-export var infinite_inertia = false
 var velocity = Vector3()
 
 
@@ -50,7 +50,7 @@ func apply_movement(dt: float, origin: VrOrigin, body) -> void:
     apply_dampening(dt, body)
     velocity.y -= GRAVITY_ACCELERATION_MPS2 * dt # apply gravity
     accelerate_from_inputs(dt, origin, body)
-    velocity = body.move_and_slide_with_snap(velocity, SNAP_VECTOR, UP_DIRECTION, stop_on_slope, max_slides, floor_max_angle, infinite_inertia)
+    velocity = body.move_and_slide_with_snap(velocity, SNAP_VECTOR, STOP_ON_SLOPE, MAX_SLIDES, FLOOR_MAX_ANGLE, INFINITE_INERTIA)
 
 
 func accelerate_from_inputs(dt: float, origin: VrOrigin, body: KinematicBody) -> void:
@@ -71,7 +71,7 @@ func accelerate_from_inputs(dt: float, origin: VrOrigin, body: KinematicBody) ->
             var dv = ideal_dv.normalized() * max_dv
             velocity += dv
         if Input.is_action_pressed("movement_jump"):
-            velocity.y = JUMP_SPEED
+            velocity.y = JUMP_SPEED_MPS
 
 
 func apply_dampening(dt: float, body: KinematicBody) -> void:
@@ -82,7 +82,7 @@ func apply_dampening(dt: float, body: KinematicBody) -> void:
         # F = c*v
         # F = m*a -> a = F/m
         # dV = a*dt
-        var damping = DAMPING_COEFFICIENT_NSPM * dt * speed / MASS
+        var damping = DAMPING_COEFFICIENT_NSPM * dt * speed / MASS_KG
         if not body.is_on_floor():
             damping *= AIR_THICKNESS
         if damping > speed:
@@ -126,4 +126,4 @@ func get_rightward_velocity_input_vector(head, left) -> Vector3:
 
 
 func get_player_rotation_amount(delta: float, right) -> float:
-    return -right.get_biaxial_analog_input_vector().x * delta * rotation_speed
+    return -right.get_biaxial_analog_input_vector().x * delta * ROTATION_SPEED_RPS
