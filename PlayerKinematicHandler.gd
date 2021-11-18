@@ -7,12 +7,12 @@ const UP_DIRECTION = Vector3(0, 1, 0)
 
 
 export var GRAVITY_ACCELERATION_MPS2 = 9.81
-export var NORMAL_ACCELERATION_MPS2 = 2
-export var SPRINT_ACCELERATION_MPS2 = 4
-export var NORMAL_MAX_SPEED_MPS = 1.5
-export var SPRINT_MAX_SPEED_MPS = 3
-export var CUTOFF_VELOCITY_MPS = 0.1
-export var DAMPING_COEFFICIENT_NSPM = 70
+export var NORMAL_ACCELERATION_MPS2 = 10
+export var SPRINT_ACCELERATION_MPS2 = 20
+export var NORMAL_MAX_SPEED_MPS = 3
+export var SPRINT_MAX_SPEED_MPS = 5
+export var CUTOFF_VELOCITY_MPS = 0.3
+export var DAMPING_COEFFICIENT_NSPM = 150
 export var AIR_THICKNESS = 0.3 # affects in-air damping
 export var JUMP_SPEED = 50
 export var MOUSE_SENSITIVITY = 0.5
@@ -48,13 +48,25 @@ func follow_body_with_camera(origin: VrOrigin, body: KinematicBody) -> void:
 func apply_movement(delta: float, origin: VrOrigin, body) -> void:
     calculate_sprint()
     apply_dampening(delta, body)
-    velocity += get_complete_movement_vector(delta, origin.head, origin.left)
+    accelerate_from_inputs(delta, origin, body)
     var vertical = velocity.y
     velocity.y = 0
     if velocity.length() > max_speed:
         velocity = velocity.normalized() * max_speed
     velocity.y = vertical - GRAVITY_ACCELERATION_MPS2 * delta
     velocity = body.move_and_slide_with_snap(velocity, SNAP_VECTOR, UP_DIRECTION, stop_on_slope, max_slides, floor_max_angle, infinite_inertia)
+
+
+func accelerate_from_inputs(dt: float, origin: VrOrigin, body: KinematicBody) -> void:
+    if body.is_on_floor():
+        var dv = acceleration * dt
+        var movement_vector = get_complete_movement_vector(origin.head, origin.left)
+        movement_vector.y = 0
+        if movement_vector.length() > 1:
+            movement_vector = movement_vector.normalized()
+        velocity += movement_vector * dv
+        if Input.is_action_pressed("movement_jump"):
+            velocity.y = JUMP_SPEED
 
 
 func apply_dampening(dt: float, body: KinematicBody):
@@ -81,18 +93,6 @@ func calculate_sprint():
     acceleration = NORMAL_ACCELERATION_MPS2 + sprint * (SPRINT_ACCELERATION_MPS2 - NORMAL_ACCELERATION_MPS2)
 
 
-func get_complete_movement_vector(delta: float, head, left) -> Vector3:
-    return get_movement_forward(delta, head, left) + get_movement_right(delta, head, left)
-
-
-func get_movement_forward(delta: float, head, left) -> Vector3:
-    return head.get_forward_direction() * left.get_movement_vector().y * delta * max_speed
-
-
-func get_movement_right(delta: float, head, left) -> Vector3:
-    return head.get_right_direction() * left.get_movement_vector().x * delta * max_speed
-
-
 func apply_rotation_and_fix_offset(delta: float, origin) -> void:
     var offset_from_rotation = apply_rotation_and_calculate_offset(delta, origin)
     origin.global_translate(-offset_from_rotation)
@@ -107,6 +107,18 @@ func apply_rotation_and_calculate_offset(delta: float, origin) -> Vector3:
 
 func apply_rotation(delta: float, origin) -> void:
     origin.rotate_y(get_player_rotation_amount(delta, origin.right))
+
+
+func get_complete_movement_vector(head, left) -> Vector3:
+    return get_movement_forward(head, left) + get_movement_right(head, left)
+
+
+func get_movement_forward(head, left) -> Vector3:
+    return head.get_forward_direction() * left.get_movement_vector().y
+
+
+func get_movement_right(head, left) -> Vector3:
+    return head.get_right_direction() * left.get_movement_vector().x
 
 
 func get_player_rotation_amount(delta: float, right) -> float:
