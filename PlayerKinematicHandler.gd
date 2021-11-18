@@ -55,7 +55,7 @@ func apply_movement(dt: float, origin: VrOrigin, body) -> void:
 
 func accelerate_from_inputs(dt: float, origin: VrOrigin, body: KinematicBody) -> void:
     if body.is_on_floor():
-        var input_vector = get_complete_movement_vector(origin.head, origin.left)
+        var input_vector = get_velocity_input_vector(origin.head, origin.left)
         input_vector.y = 0
         if input_vector.length() > 1:
             input_vector = input_vector.normalized()
@@ -113,17 +113,17 @@ func apply_rotation(delta: float, origin) -> void:
     origin.rotate_y(get_player_rotation_amount(delta, origin.right))
 
 
-func get_complete_movement_vector(head, left) -> Vector3:
-    return get_movement_forward(head, left) + get_movement_right(head, left)
+func get_velocity_input_vector(head, left) -> Vector3:
+    return get_forward_velocity_input_vector(head, left) + get_rightward_velocity_input_vector(head, left)
 
 
-func get_movement_forward(head, left) -> Vector3:
-    return head.get_forward_direction() * left.get_movement_vector().y
+func get_forward_velocity_input_vector(head, left) -> Vector3:
+    return head.get_forward_direction() * left.get_biaxial_analog_input_vector().y
 
 
-func get_movement_right(head, left) -> Vector3:
-    return head.get_right_direction() * left.get_movement_vector().x
+func get_rightward_velocity_input_vector(head, left) -> Vector3:
+    return head.get_right_direction() * left.get_biaxial_analog_input_vector().x
 
 
 func get_player_rotation_amount(delta: float, right) -> float:
-    return -right.get_movement_vector().x * delta * rotation_speed
+    return -right.get_biaxial_analog_input_vector().x * delta * rotation_speed

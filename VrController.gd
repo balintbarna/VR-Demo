@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
             rumble = 0
 
 
-func get_movement_vector() -> Vector2:
+func get_biaxial_analog_input_vector() -> Vector2:
     return get_trackpad_vector() + get_joystick_vector()
 
 
