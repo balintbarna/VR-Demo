@@ -20,4 +20,7 @@ func _reflection_portal_activated(body: Node):
 func _freemove_portal_activated(body: Node):
     if body is KinematicBody:
         if body.has_method("switch_to_freelook_mover"):
+            # warning-ignore:UNSAFE_METHOD_ACCESS
             body.switch_to_freelook_mover()
+        else:
+            push_error("method_not_found")
