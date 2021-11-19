@@ -68,7 +68,7 @@ script = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.3, -0.5 )
 script = ExtResource( 3 )
 
-[node name="LeftControllerDebugMesh" type="MeshInstance" parent="LeftController"]
+[node name="MeshInstance" type="MeshInstance" parent="LeftController"]
 transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0 )
 mesh = SubResource( 9 )
 material/0 = SubResource( 3 )
@@ -78,13 +78,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.3, -0.5 )
 controller_id = 2
 script = ExtResource( 3 )
 
-[node name="RightControllerDebugMesh" type="MeshInstance" parent="RightController"]
+[node name="MeshInstance" type="MeshInstance" parent="RightController"]
 transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0 )
 mesh = SubResource( 2 )
 skeleton = NodePath("../../LeftController")
 material/0 = SubResource( 4 )
 
-[node name="OriginDebugMesh" type="MeshInstance" parent="."]
+[node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 0.1, 0, 0, 0, 0.01, 0, 0, 0, 0.1, 0, 0, 0 )
 mesh = SubResource( 5 )
 material/0 = SubResource( 6 )
