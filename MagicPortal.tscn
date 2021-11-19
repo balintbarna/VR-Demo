@@ -36,7 +36,6 @@ scale_random = 1.0
 flags_unshaded = true
 params_diffuse_mode = 4
 params_specular_mode = 4
-albedo_color = Color( 1, 0, 1, 1 )
 
 [sub_resource type="CubeMesh" id=32]
 material = SubResource( 31 )
