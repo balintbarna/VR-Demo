@@ -9,6 +9,9 @@ func config(viewport: Viewport) -> bool:
         var ovr_display = preload("res://addons/godot_ovrmobile/OvrDisplay.gdns").new()
         ovr_init_config.set_render_target_size_multiplier(1)
         ovr_performance.set_extra_latency_mode(1)
+        ovr_performance.set_foveation_level(3)
+        ovr_performance.set_enable_dynamic_foveation(true)
+        ovr_performance.set_clock_levels(3, 3)
         viewport.arvr = true
         OS.vsync_enabled = false
         print("Color space:" + str(ovr_display.get_color_space()))
