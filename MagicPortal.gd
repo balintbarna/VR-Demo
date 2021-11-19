@@ -24,3 +24,8 @@ func set_properties(n, c):
     var l = $PortalNameTag/Viewport/PortalLabel
     l.set_name(n)
     l.set_color(c)
+    var a = $MagicArea
+    if a.has_method("set_color"):
+        a.set_color(c)
+    else:
+        push_error("method_not_found")
