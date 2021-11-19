@@ -3,12 +3,12 @@ extends Spatial
 
 onready var reflection_portal = $ReflectionPortal
 onready var reflection_probe = $ReflectionProbe
-onready var freemove_portal = $LocomotionPortal
+onready var locomotion_swap_portal = $LocomotionPortal
 
 
 func _ready() -> void:
     reflection_portal.connect("body_entered", self, "_reflection_portal_activated")
-    freemove_portal.connect("body_entered", self, "_freemove_portal_activated")
+    locomotion_swap_portal.connect("body_entered", self, "_locomotion_swap_portal_activated")
 
 
 func _reflection_portal_activated(body: Node):
@@ -17,11 +17,11 @@ func _reflection_portal_activated(body: Node):
         Globals.origin.reset_to_parent()
 
 
-func _freemove_portal_activated(body: Node):
+func _locomotion_swap_portal_activated(body: Node):
     if body is KinematicBody:
-        if body.has_method("switch_to_freelook_mover"):
+        if body.has_method("swap_mover"):
             # warning-ignore:UNSAFE_METHOD_ACCESS
-            body.switch_to_freelook_mover()
+            body.swap_mover()
             Globals.origin.reset_to_parent()
         else:
             push_error("method_not_found")

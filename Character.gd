@@ -9,5 +9,8 @@ func _physics_process(delta: float):
     h.process(delta, self)
 
 
-func switch_to_freelook_mover():
-    kinematic_handler = FreeLookKinematicMover.new()
+func swap_mover():
+    if kinematic_handler is FreeLookKinematicMover:
+        kinematic_handler = FlatWorldPhysicsKinematicMover.new()
+    else:
+        kinematic_handler = FreeLookKinematicMover.new()
