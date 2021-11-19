@@ -1,17 +1,18 @@
 extends Resource
+class_name QuestButtons
 
-const YB = 1
-const GRIP_TRIGGER = 2
-const MENU = 3
+const BY = JOY_OCULUS_BY
+const GRIP = JOY_VR_GRIP
+const MENU = JOY_OCULUS_MENU
 
-const TOUCH_XA = 5
-const TOUCH_YB = 6
-const XA = 7
+const AX_TOUCHING = 5
+const BY_TOUCHING = 6
+const AX = JOY_OCULUS_AX
 
 
-const TOUCH_THUMB_UP = 10
+const THUMB_POINTING_UP = 10
 const INDEX_TOUCHING = 11
 const INDEX_POINTING = 12
 
-const THUMBSTICK = 14
-const INDEX_TRIGGER = 15
+const THUMBSTICK = JOY_VR_PAD
+const TRIGGER = JOY_VR_TRIGGER
