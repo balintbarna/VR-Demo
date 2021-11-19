@@ -4,5 +4,5 @@
 params_diffuse_mode = 4
 params_specular_mode = 3
 albedo_color = Color( 0.835294, 0.643137, 0.313726, 1 )
-metallic = 0.5
-roughness = 0.25
+metallic = 0.6
+roughness = 0.2
