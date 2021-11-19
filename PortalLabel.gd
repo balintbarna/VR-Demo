@@ -1,7 +1,7 @@
 extends Control
 
 
-func set_label(portal_name):
+func set_name(portal_name):
     ($Label as Label).text = portal_name
 
 
