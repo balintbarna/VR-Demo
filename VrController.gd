@@ -3,6 +3,7 @@ class_name VrController
 
 
 signal grip_pressed
+signal grip_released
 
 
 const CONTROLLER_RUMBLE_FADE_SPEED = 2.0
@@ -18,6 +19,7 @@ var buttons = QuestButtons.new()
 func _ready():
     var _r = connect("mesh_updated", self, "_set_controller_mesh")
     _r = connect("button_pressed", self, "_on_button_pressed")
+    _r = connect("button_release", self, "_on_button_released")
     _set_controller_mesh()
 
 
@@ -31,6 +33,11 @@ func _physics_process(delta: float) -> void:
 func _on_button_pressed(button: int):
     if button == buttons.GRIP:
         emit_signal("grip_pressed")
+
+
+func _on_button_released(button: int):
+    if button == buttons.GRIP:
+        emit_signal("grip_released")
 
 
 func _set_controller_mesh():
