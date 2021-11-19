@@ -55,6 +55,7 @@ size = Vector2( 1.6, 0.4 )
 
 [sub_resource type="SpatialMaterial" id=36]
 resource_local_to_scene = true
+flags_transparent = true
 flags_unshaded = true
 params_diffuse_mode = 4
 params_specular_mode = 4
