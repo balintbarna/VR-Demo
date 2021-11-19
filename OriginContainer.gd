@@ -1,6 +1,11 @@
 extends VBoxContainer
 
 
+onready var world_scale_label = $WorldScale as Label
+onready var position_label = $TransformContainer/Position as Label
+onready var rotation_label = $TransformContainer/Rotation as Label
+
+
 func _process(_delta: float) -> void:
     var origin = Globals.origin as VrOrigin
     if origin:
@@ -9,7 +14,7 @@ func _process(_delta: float) -> void:
 
 
 func display_scale(origin):
-    ($WorldScale as Label).text = "World scale: {}".format([origin.world_scale], "{}")
+    world_scale_label.text = "World scale: {}".format([origin.world_scale], "{}")
 
 
 func display_transform(origin):
@@ -17,5 +22,5 @@ func display_transform(origin):
     var rd = origin.rotation_degrees
     var posarr = ["%2.3f" % tr.x, "%2.3f" % tr.y, "%2.3f" % tr.z]
     var rotarr = ["%2.3f" % rd.x, "%2.3f" % rd.y, "%2.3f" % rd.z]
-    ($TransformContainer/Position as Label).text = "Position\nX:  {}\nY:  {}\nZ: {}".format(posarr, "{}")
-    ($TransformContainer/Rotation as Label).text = "Rotation\nX:  {}\nY:  {}\nZ: {}".format(rotarr, "{}")
+    position_label.text = "Position\nX:  {}\nY:  {}\nZ: {}".format(posarr, "{}")
+    rotation_label.text = "Rotation\nX:  {}\nY:  {}\nZ: {}".format(rotarr, "{}")

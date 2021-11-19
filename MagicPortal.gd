@@ -9,6 +9,7 @@ export var portal_color = Color(1, 1, 1, 1)
 
 
 onready var collision_area: Area = $MagicArea
+onready var label = $PortalNameTag/Viewport/PortalLabel
 
 
 func _ready() -> void:
@@ -21,11 +22,10 @@ func _on_body_entered_area(body: Node):
 
 
 func set_properties(n, c):
-    var l = $PortalNameTag/Viewport/PortalLabel
-    l.set_name(n)
-    l.set_color(c)
-    var a = $MagicArea
-    if a.has_method("set_color"):
-        a.set_color(c)
+    label.set_name(n)
+    label.set_color(c)
+    if collision_area.has_method("set_color"):
+        # warning-ignore:UNSAFE_METHOD_ACCESS
+        collision_area.set_color(c)
     else:
         push_error("method_not_found")

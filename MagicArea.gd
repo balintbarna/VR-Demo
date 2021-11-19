@@ -1,8 +1,10 @@
 extends Area
 
 
+onready var m = $MagicMesh
+
+
 func set_color(c: Color):
-    var m = $MagicMesh
     if m.has_method("set_color"):
         m.set_color(c)
     else:
