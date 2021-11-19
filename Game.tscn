@@ -216,6 +216,11 @@ material/0 = SubResource( 24 )
 [node name="CollisionShape" type="CollisionShape" parent="World/StartingBox/Mirror"]
 shape = SubResource( 25 )
 
-[node name="MagicPortal" parent="World/StartingBox" instance=ExtResource( 2 )]
+[node name="LocomotionPortal" parent="World/StartingBox" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 1.5, 0 )
+portal_name = "Change Movement Mode"
+portal_color = Color( 0, 1, 1, 1 )
+
+[node name="ReflectionPortal" parent="World/StartingBox" instance=ExtResource( 2 )]
 portal_name = "Reset Reflections"
 portal_color = Color( 1, 0, 1, 1 )
