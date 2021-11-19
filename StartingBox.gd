@@ -22,5 +22,6 @@ func _freemove_portal_activated(body: Node):
         if body.has_method("switch_to_freelook_mover"):
             # warning-ignore:UNSAFE_METHOD_ACCESS
             body.switch_to_freelook_mover()
+            Globals.origin.reset_to_parent()
         else:
             push_error("method_not_found")
