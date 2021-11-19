@@ -26,7 +26,7 @@ MASS_KG = 70
 ROTATION_SPEED_RPS = 6.28319
 
 [sub_resource type="CapsuleShape" id=10]
-radius = 0.3
+radius = 0.2
 height = 0.5
 
 [sub_resource type="CubeMesh" id=9]
