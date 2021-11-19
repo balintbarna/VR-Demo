@@ -19,7 +19,8 @@ sun_latitude = 10.0
 [sub_resource type="Environment" id=34]
 background_mode = 2
 background_sky = SubResource( 33 )
-ambient_light_energy = 0.0
+ambient_light_color = Color( 0, 0.486275, 1, 1 )
+ambient_light_energy = 0.2
 glow_enabled = true
 
 [sub_resource type="PlaneMesh" id=7]
@@ -89,8 +90,8 @@ environment = SubResource( 34 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="World/StartingBox"]
 transform = Transform( -0.99534, -0.0193228, -0.094472, -0.0483052, 0.947839, 0.315069, 0.0834562, 0.318164, -0.944355, 0, 6.9004, -32.1769 )
-light_color = Color( 1, 0.886275, 0.666667, 1 )
-light_energy = 0.3
+light_color = Color( 1, 0.788235, 0.462745, 1 )
+light_energy = 0.25
 shadow_enabled = true
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="World/StartingBox"]
