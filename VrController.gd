@@ -2,6 +2,9 @@ extends ARVRController
 class_name VrController
 
 
+signal grip_pressed
+
+
 const CONTROLLER_RUMBLE_FADE_SPEED = 2.0
 const CONTROLLER_DEADZONE = 0.1
 
@@ -9,8 +12,12 @@ const CONTROLLER_DEADZONE = 0.1
 onready var mesh_instance: MeshInstance = $MeshInstance
 
 
+var buttons = QuestButtons.new()
+
+
 func _ready():
     var _r = connect("mesh_updated", self, "_set_controller_mesh")
+    _r = connect("button_pressed", self, "_on_button_presed")
     _set_controller_mesh()
 
 
@@ -21,9 +28,14 @@ func _physics_process(delta: float) -> void:
             rumble = 0
 
 
+func _on_button_presed(button: int):
+    if button == buttons.GRIP:
+        emit_signal("grip_pressed")
+
+
 func _set_controller_mesh():
     var mesh = get_mesh()
-    if(mesh):
+    if mesh:
         mesh_instance.set_mesh(mesh)
 
 
