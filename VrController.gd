@@ -17,7 +17,7 @@ var buttons = QuestButtons.new()
 
 func _ready():
     var _r = connect("mesh_updated", self, "_set_controller_mesh")
-    _r = connect("button_pressed", self, "_on_button_presed")
+    _r = connect("button_pressed", self, "_on_button_pressed")
     _set_controller_mesh()
 
 
@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
             rumble = 0
 
 
-func _on_button_presed(button: int):
+func _on_button_pressed(button: int):
     if button == buttons.GRIP:
         emit_signal("grip_pressed")
 
