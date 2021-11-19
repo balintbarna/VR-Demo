@@ -1,9 +1,9 @@
 extends Spatial
 
 
-onready var reflection_portal = $ReflectionPortal
-onready var reflection_probe = $ReflectionProbe
-onready var locomotion_swap_portal = $LocomotionPortal
+onready var reflection_portal = $World/ReflectionPortal
+onready var reflection_probe = $World/ReflectionProbe
+onready var locomotion_swap_portal = $World/LocomotionPortal
 
 
 func _ready() -> void:

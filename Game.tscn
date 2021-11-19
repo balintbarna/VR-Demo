@@ -12,6 +12,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 
 [node name="VrOrigin" parent="StartingPosition" instance=ExtResource( 7 )]
 
-[node name="World" type="Spatial" parent="."]
-
-[node name="StartingBox" parent="World" instance=ExtResource( 1 )]
+[node name="StartingBox" parent="." instance=ExtResource( 1 )]
