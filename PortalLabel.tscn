@@ -16,6 +16,7 @@ anchor_bottom = 1.0
 text = "Portal"
 align = 1
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
