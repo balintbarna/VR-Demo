@@ -68,24 +68,20 @@ script = ExtResource( 1 )
 use_in_baked_light = true
 use_collision = true
 
-[node name="Frame" type="CSGCombiner" parent="FullBody"]
-use_in_baked_light = true
-use_collision = true
-
-[node name="Base" type="CSGBox" parent="FullBody/Frame"]
+[node name="Base" type="CSGBox" parent="FullBody"]
 use_in_baked_light = true
 height = 3.0
 depth = 1.0
 material = ExtResource( 5 )
 
-[node name="Cutout" type="CSGBox" parent="FullBody/Frame"]
+[node name="Cutout" type="CSGBox" parent="FullBody"]
 use_in_baked_light = true
 operation = 2
 width = 1.0
 depth = 1.0
 material = ExtResource( 5 )
 
-[node name="CSGPolygon" type="CSGPolygon" parent="FullBody"]
+[node name="Ramp" type="CSGPolygon" parent="FullBody"]
 transform = Transform( -4.37114e-08, 0, 1.5, 0, 0.5, 0, -1, 0, -6.55671e-08, 0.75, -1.5, 1.5 )
 use_in_baked_light = true
 polygon = PoolVector2Array( 0, 0, 1, 0, 1, 1 )
