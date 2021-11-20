@@ -5,7 +5,10 @@ onready var hand_grab_point = $GrabPoint as Spatial
 
 
 var grabbed_body: PhysicsBody = null
-var grab_point_offset = Transform()
+var grabbed_body_scale: Vector3 = Vector3.ONE
+var grab_point: Spatial = null
+var grab_point_offset: Transform = Transform.IDENTITY
+var grabbed_body_mode = RigidBody.MODE_RIGID
 
 
 func _ready() -> void:
@@ -14,9 +17,8 @@ func _ready() -> void:
 
 func _physics_process(_delta):
     if grabbed_body:
-        var held_scale = grabbed_body.scale
         grabbed_body.global_transform = hand_grab_point.global_transform * grab_point_offset
-        grabbed_body.scale = held_scale
+        grabbed_body.scale = grabbed_body_scale
 
 
 func register_hand_events():
@@ -34,20 +36,35 @@ func _on_grip_pressed():
 
 
 func _on_grip_released():
+    if grabbed_body is RigidBody:
+        (grabbed_body as RigidBody).mode = grabbed_body_mode
     grabbed_body = null
 
 
 func grab_body(body):
     grabbed_body = body
+    if grabbed_body is RigidBody:
+        grabbed_body_mode = body.mode
+        body.mode = RigidBody.MODE_KINEMATIC
+    find_closes_grab_point(body.get_grab_points())
+    calculate_grab_point_offset(body, grab_point)
+
+
+func find_closes_grab_point(grab_points):
     var lowest_distance = INF
     var closest_point = null
-    for point in body.get_grab_points():
-        var dist = (point.origin - hand_grab_point.global_transform.origin).length()
+    for point in grab_points:
+        var dist = (point.global_transform.origin - hand_grab_point.global_transform.origin).length()
         if dist < lowest_distance:
             lowest_distance = dist
             closest_point = point
     if lowest_distance == INF:
-        closest_point = Transform()
+        closest_point = null
+    grab_point = closest_point
+
+
+func calculate_grab_point_offset(body, point):
     var body_frame = body.global_transform.orthonormalized() 
-    var grab_point_body_frame = body_frame.inverse() * closest_point.orthonormalized()
-    grab_point_offset = grab_point_body_frame.inverse()
+    var point_frame = point.global_transform.orthonormalized()
+    var point_in_body_frame = body_frame.inverse() * point_frame
+    grab_point_offset = point_in_body_frame.inverse()
