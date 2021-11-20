@@ -2,7 +2,6 @@ extends CollisionShape
 
 
 onready var GLOBAL_ROTATION = global_transform.basis
-const ZERO_VECTOR = Vector3()
 
 func _physics_process(_delta: float) -> void:
     reset_orientation()
