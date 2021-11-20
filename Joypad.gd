@@ -24,7 +24,7 @@ func get_right_stick_raw() -> Vector2:
 func get_stick_raw(axisX, axisY) -> Vector2:
     if any():
         return Vector2(Input.get_joy_axis(joypadIndex, axisX), Input.get_joy_axis(joypadIndex, axisY))
-    return Vector2()
+    return Vector2.ZERO
 
 
 func any() -> bool:
@@ -34,6 +34,6 @@ func any() -> bool:
 static func apply_deadzone(v: Vector2, z: float) -> Vector2:
     var l = v.length()
     if l < z:
-        return Vector2()
+        return Vector2.ZERO
     else:
         return v.normalized() * ((l - z) / (1 - z))
