@@ -1,12 +1,12 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://MagicPortal.gd" type="Script" id=1]
-[ext_resource path="res://MagicArea.gd" type="Script" id=2]
-[ext_resource path="res://ViewportMesh.gd" type="Script" id=3]
-[ext_resource path="res://PortalLabel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://PortalMaterial.tres" type="Material" id=5]
-[ext_resource path="res://MagicMesh.gd" type="Script" id=6]
-[ext_resource path="res://MagicParticles.gd" type="Script" id=7]
+[ext_resource path="res://portal/MagicPortal.gd" type="Script" id=1]
+[ext_resource path="res://portal/MagicArea.gd" type="Script" id=2]
+[ext_resource path="res://general/ViewportMesh.gd" type="Script" id=3]
+[ext_resource path="res://portal/PortalLabel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://portal/PortalMaterial.tres" type="Material" id=5]
+[ext_resource path="res://portal/MagicMesh.gd" type="Script" id=6]
+[ext_resource path="res://portal/MagicParticles.gd" type="Script" id=7]
 
 [sub_resource type="CubeMesh" id=26]
 size = Vector3( 1, 1, 1 )

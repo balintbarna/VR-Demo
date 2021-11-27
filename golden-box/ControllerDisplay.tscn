@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://ControllerContainer.gd" type="Script" id=1]
+[ext_resource path="res://golden-box/ControllerContainer.gd" type="Script" id=1]
 
 [node name="ControllerContainer" type="HBoxContainer"]
 margin_right = 40.0

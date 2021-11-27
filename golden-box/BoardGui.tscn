@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://ControllerDisplay.tscn" type="PackedScene" id=1]
-[ext_resource path="res://HmdContainer.gd" type="Script" id=2]
-[ext_resource path="res://OriginContainer.gd" type="Script" id=3]
+[ext_resource path="res://golden-box/ControllerDisplay.tscn" type="PackedScene" id=1]
+[ext_resource path="res://golden-box/HmdContainer.gd" type="Script" id=2]
+[ext_resource path="res://golden-box/OriginContainer.gd" type="Script" id=3]
 
 [node name="BoardGui" type="Control"]
 anchor_right = 1.0

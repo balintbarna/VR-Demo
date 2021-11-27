@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "KinematicBodyMover",
 "class": "FlatWorldPhysicsKinematicMover",
 "language": "GDScript",
-"path": "res://FlatWorldPhysicsKinematicMover.gd"
+"path": "res://player/FlatWorldPhysicsKinematicMover.gd"
 }, {
 "base": "KinematicBodyMover",
 "class": "FreeLookKinematicMover",
 "language": "GDScript",
-"path": "res://FreeLookKinematicMover.gd"
+"path": "res://player/FreeLookKinematicMover.gd"
 }, {
 "base": "ResourceFormatLoader",
 "class": "HTerrainDataLoader",
@@ -32,17 +32,17 @@ _global_script_classes=[ {
 "base": "ARVRCamera",
 "class": "HeadCamera",
 "language": "GDScript",
-"path": "res://HeadCamera.gd"
+"path": "res://player/HeadCamera.gd"
 }, {
 "base": "Resource",
 "class": "Joypad",
 "language": "GDScript",
-"path": "res://Joypad.gd"
+"path": "res://player/Joypad.gd"
 }, {
 "base": "Resource",
 "class": "KinematicBodyMover",
 "language": "GDScript",
-"path": "res://KinematicBodyMover.gd"
+"path": "res://player/KinematicBodyMover.gd"
 }, {
 "base": "OculusTracker",
 "class": "OculusHandTracker",
@@ -72,12 +72,12 @@ _global_script_classes=[ {
 "base": "ARVRController",
 "class": "VrController",
 "language": "GDScript",
-"path": "res://VrController.gd"
+"path": "res://player/VrController.gd"
 }, {
 "base": "ARVROrigin",
 "class": "VrOrigin",
 "language": "GDScript",
-"path": "res://VrOrigin.gd"
+"path": "res://player/VrOrigin.gd"
 } ]
 _global_script_class_icons={
 "FlatWorldPhysicsKinematicMover": "",
@@ -104,7 +104,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Globals="*res://Globals.gd"
+Globals="*res://general/Globals.gd"
 
 [debug]
 
@@ -147,4 +147,4 @@ vram_compression/import_etc=true
 quality/shading/force_vertex_shading.mobile=false
 quality/shading/use_physical_light_attenuation=true
 quality/depth/hdr.mobile=true
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://general/default_env.tres"
