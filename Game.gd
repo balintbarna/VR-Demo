@@ -1,4 +1,4 @@
-extends Spatial
+extends Node
 
 func _ready():
     load_vr_interfaces()
