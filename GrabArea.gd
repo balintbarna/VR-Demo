@@ -7,7 +7,6 @@ onready var hand_grab_point = $GrabPoint as Spatial
 var grabbed_body: PhysicsBody = null
 var grabbed_body_scale: Vector3 = Vector3.ONE
 var grab_point: Spatial = null
-var grab_point_offset: Transform = Transform.IDENTITY
 var grabbed_body_mode = RigidBody.MODE_RIGID
 
 
@@ -17,7 +16,8 @@ func _ready() -> void:
 
 func _physics_process(_delta):
     if grabbed_body:
-        grabbed_body.global_transform = hand_grab_point.global_transform * grab_point_offset
+        var offset = calculate_grab_point_offset(grabbed_body, grab_point)
+        grabbed_body.global_transform = hand_grab_point.global_transform * offset
         grabbed_body.scale = grabbed_body_scale
 
 
@@ -47,7 +47,6 @@ func grab_body(body):
         grabbed_body_mode = body.mode
         body.mode = RigidBody.MODE_KINEMATIC
     find_closes_grab_point(body.get_grab_points())
-    calculate_grab_point_offset(body, grab_point)
 
 
 func find_closes_grab_point(grab_points):
@@ -67,4 +66,4 @@ func calculate_grab_point_offset(body, point):
     var body_frame = body.global_transform.orthonormalized() 
     var point_frame = point.global_transform.orthonormalized()
     var point_in_body_frame = body_frame.inverse() * point_frame
-    grab_point_offset = point_in_body_frame.inverse()
+    return point_in_body_frame.inverse()
