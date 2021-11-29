@@ -2,6 +2,7 @@
 
 [ext_resource path="res://portal/MagicPortal.gd" type="Script" id=1]
 [ext_resource path="res://portal/MagicArea.gd" type="Script" id=2]
+[ext_resource path="res://portal/MagicAreaMaterial.tres" type="Material" id=3]
 [ext_resource path="res://portal/PortalLabel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://portal/PortalMaterial.tres" type="Material" id=5]
 [ext_resource path="res://portal/MagicMesh.gd" type="Script" id=6]
@@ -9,18 +10,6 @@
 
 [sub_resource type="CubeMesh" id=26]
 size = Vector3( 1, 1, 1 )
-
-[sub_resource type="SpatialMaterial" id=37]
-resource_local_to_scene = true
-flags_transparent = true
-params_diffuse_mode = 4
-params_specular_mode = 4
-albedo_color = Color( 1, 1, 1, 0.0392157 )
-emission_enabled = true
-emission = Color( 1, 1, 1, 1 )
-emission_energy = 5.0
-emission_operator = 0
-emission_on_uv2 = false
 
 [sub_resource type="ParticlesMaterial" id=30]
 lifetime_randomness = 1.0
@@ -86,7 +75,7 @@ script = ExtResource( 2 )
 [node name="MagicMesh" type="MeshInstance" parent="MagicArea"]
 use_in_baked_light = true
 mesh = SubResource( 26 )
-material/0 = SubResource( 37 )
+material/0 = ExtResource( 3 )
 script = ExtResource( 6 )
 
 [node name="MagicParticles" type="Particles" parent="MagicArea/MagicMesh"]
