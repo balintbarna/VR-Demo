@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://golden-box/Stand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://golden-box/StartingBox.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://golden-box/BoardGui.tscn" type="PackedScene" id=5]
 [ext_resource path="res://golden-box/StartingBoxMaterial.tres" type="Material" id=6]
 [ext_resource path="res://sword/Sword.tscn" type="PackedScene" id=7]
+[ext_resource path="res://player/VrPlayerScene.tscn" type="PackedScene" id=8]
 
 [sub_resource type="QuadMesh" id=23]
 
@@ -227,3 +228,8 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = SubResource( 34 )
+
+[node name="StartingPosition" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+
+[node name="VrOrigin" parent="StartingPosition" instance=ExtResource( 8 )]
