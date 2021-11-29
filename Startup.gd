@@ -3,11 +3,19 @@ extends Node
 func _ready():
     load_vr_interfaces()
     load_starting_scene()
+    load_goldbox_scene()
     queue_free()
 
 
+func load_goldbox_scene():
+    LoadingSignaler.mark_load_started(SceneLibrary.get_gold_box_scene())
+
+
 func load_starting_scene():
-    if not OK == get_tree().change_scene_to(SceneLibrary.get_loading_room_scene()):
+    var loader = SceneLibrary.get_loading_room_scene()
+    loader.wait()
+    var resource = loader.get_resource()
+    if not OK == get_tree().change_scene_to(resource):
         push_error("COULD NOT LOAD STARTING SCENE")
 
 

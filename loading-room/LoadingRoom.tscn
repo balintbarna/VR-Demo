@@ -134,8 +134,8 @@ shape = SubResource( 12 )
 stream = ExtResource( 2 )
 autoplay = true
 
-[node name="SmallPortal" parent="World/Room" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75361, -0.45935, -1.5781 )
+[node name="ContinuePortal" parent="World/Room" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1.7 )
 portal_name = "Continue"
 portal_color = Color( 0, 1, 0.670588, 1 )
 
@@ -178,6 +178,6 @@ double_sided = false
 texture = SubResource( 8 )
 
 [node name="StartingPoint" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00652, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00652, 1.04795 )
 
 [node name="VrOrigin" parent="StartingPoint" instance=ExtResource( 1 )]
