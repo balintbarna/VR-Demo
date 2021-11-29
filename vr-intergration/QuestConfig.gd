@@ -12,8 +12,7 @@ func config(viewport: Viewport) -> bool:
         ovr_performance.set_foveation_level(3)
         ovr_performance.set_enable_dynamic_foveation(true)
         ovr_performance.set_clock_levels(3, 3)
-        viewport.arvr = true
-        OS.vsync_enabled = false
+
         print("Color space:" + str(ovr_display.get_color_space()))
         var refresh_rates = ovr_display.get_supported_display_refresh_rates()
         print("Supported refresh rates:" + str(refresh_rates))
@@ -21,5 +20,8 @@ func config(viewport: Viewport) -> bool:
         Engine.iterations_per_second = highest_rate
         Engine.target_fps = highest_rate
         print("Rates set to " + str(highest_rate))
+
+        viewport.arvr = true
+        OS.vsync_enabled = false
         return true
     return false
