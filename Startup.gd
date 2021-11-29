@@ -7,8 +7,8 @@ func _ready():
 
 
 func load_starting_scene():
-    var gold_box_scene: PackedScene = load("res://res://loading-room/LoadingRoom.tscn")
-    if not OK == get_tree().change_scene_to(gold_box_scene):
+    var loading_room_scene: PackedScene = load("res://loading-room/LoadingRoom.tscn")
+    if not OK == get_tree().change_scene_to(loading_room_scene):
         push_error("COULD NOT LOAD STARTING SCENE")
 
 
