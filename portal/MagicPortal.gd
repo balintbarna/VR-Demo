@@ -9,7 +9,7 @@ export var portal_color = Color(1, 1, 1, 1)
 
 
 onready var collision_area: Area = $MagicArea
-onready var label = $PortalNameTag/Viewport/PortalLabel
+onready var label = $Viewport/PortalLabel
 
 
 func _ready() -> void:
