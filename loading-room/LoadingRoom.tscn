@@ -19,8 +19,8 @@ clearcoat_enabled = true
 clearcoat = 1.0
 clearcoat_gloss = 0.5
 
-[sub_resource type="ViewportTexture" id=5]
-viewport_path = NodePath("Viewport")
+[sub_resource type="ViewportTexture" id=9]
+viewport_path = NodePath("World/Room/LoadingTexts/Viewport")
 
 [sub_resource type="SpatialMaterial" id=7]
 albedo_color = Color( 0.32549, 1, 0.827451, 1 )
@@ -80,7 +80,7 @@ shadow_enabled = true
 [node name="LoadingTexts" type="Spatial" parent="World/Room"]
 
 [node name="Viewport" type="Viewport" parent="World/Room/LoadingTexts"]
-size = Vector2( 200, 200 )
+size = Vector2( 200, 100 )
 transparent_bg = true
 hdr = false
 disable_3d = true
@@ -91,22 +91,14 @@ gui_disable_input = true
 [node name="Label" type="Label" parent="World/Room/LoadingTexts/Viewport"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = "Loading...
-"
+text = "Loading..."
 align = 1
 valign = 1
 
 [node name="Sprite3D" type="Sprite3D" parent="World/Room/LoadingTexts"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.499 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
 use_in_baked_light = true
-double_sided = false
-texture = SubResource( 5 )
-
-[node name="Sprite3D2" type="Sprite3D" parent="World/Room/LoadingTexts"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 2.499 )
-use_in_baked_light = true
-double_sided = false
-texture = SubResource( 5 )
+texture = SubResource( 9 )
 
 [node name="FloatingBox" type="Spatial" parent="World"]
 
@@ -134,7 +126,7 @@ gui_disable_input = true
 [node name="Label" type="Label" parent="World/ScaryText/Viewport"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = "Don't Look Out!!!"
+text = "Don't look out!"
 align = 1
 valign = 1
 
@@ -142,6 +134,7 @@ valign = 1
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0, 0 )
 use_in_baked_light = true
 modulate = Color( 0.733333, 0.0901961, 0.0901961, 1 )
+billboard = 2
 double_sided = false
 texture = SubResource( 8 )
 
