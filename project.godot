@@ -105,6 +105,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Globals="*res://general/Globals.gd"
+SceneLibrary="*res://general/SceneLibrary.gd"
 
 [debug]
 
