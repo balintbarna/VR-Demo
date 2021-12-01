@@ -30,4 +30,4 @@ func _on_continue():
     if OK == get_tree().change_scene_to(next_scene):
         current.queue_free()
     else:
-        push_error("CHANGING TO LOADED SCENE FAILD")
+        push_error("CHANGING TO LOADED SCENE FAILED")
