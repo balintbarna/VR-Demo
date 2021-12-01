@@ -43,9 +43,7 @@ func get_scene():
 
 
 func start_loading(new_loader):
-    if not loader == null:
-        push_error("SceneLoader still working")
-    else:
+    if loader == null:
         loader = new_loader
         if finished():
             _on_complete()
@@ -54,6 +52,8 @@ func start_loading(new_loader):
             var __ = thread.start(self, "blocking_load", Thread.PRIORITY_LOW)
             set_process(true)
         emit_signal("loading_started")
+    else:
+        push_error("SceneLoader still working")
 
 
 func blocking_load(_userdata):
@@ -66,7 +66,8 @@ func blocking_load(_userdata):
 
 
 func _on_complete():
-    emit_signal("loading_complete", get_scene())
-    loader = null
-    thread = null
     set_process(false)
+    loader = null
+    thread.wait_to_finish()
+    thread = null
+    emit_signal("loading_complete", get_scene())
