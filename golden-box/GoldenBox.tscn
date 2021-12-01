@@ -71,6 +71,11 @@ glow_enabled = true
 [node name="GoldenBox" type="Spatial"]
 script = ExtResource( 1 )
 
+[node name="StartingPosition" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+
+[node name="VrOrigin" parent="StartingPosition" instance=ExtResource( 5 )]
+
 [node name="World" type="Spatial" parent="."]
 
 [node name="SwordPlacement" type="Spatial" parent="World"]
@@ -222,8 +227,3 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = SubResource( 34 )
-
-[node name="StartingPosition" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
-
-[node name="VrOrigin" parent="StartingPosition" instance=ExtResource( 5 )]
