@@ -8,6 +8,21 @@
 [ext_resource path="res://golden-box/BoardGui.tscn" type="PackedScene" id=6]
 [ext_resource path="res://sword/Sword.tscn" type="PackedScene" id=7]
 
+[sub_resource type="ProceduralSky" id=33]
+sky_top_color = Color( 0.254902, 0.603922, 0.788235, 1 )
+sky_horizon_color = Color( 0.831373, 0.478431, 0.262745, 1 )
+ground_bottom_color = Color( 0.235294, 0.329412, 0.52549, 1 )
+ground_horizon_color = Color( 0.564706, 0.380392, 0.341176, 1 )
+sun_color = Color( 0.839216, 0.443137, 0, 1 )
+sun_latitude = 10.0
+
+[sub_resource type="Environment" id=34]
+background_mode = 2
+background_sky = SubResource( 33 )
+ambient_light_color = Color( 0, 0.486275, 1, 1 )
+ambient_light_energy = 0.2
+glow_enabled = true
+
 [sub_resource type="QuadMesh" id=23]
 
 [sub_resource type="SpatialMaterial" id=24]
@@ -53,21 +68,6 @@ extents = Vector3( 1, 0, 1 )
 [sub_resource type="BoxShape" id=13]
 extents = Vector3( 0.5, 0.5, 0 )
 
-[sub_resource type="ProceduralSky" id=33]
-sky_top_color = Color( 0.254902, 0.603922, 0.788235, 1 )
-sky_horizon_color = Color( 0.831373, 0.478431, 0.262745, 1 )
-ground_bottom_color = Color( 0.235294, 0.329412, 0.52549, 1 )
-ground_horizon_color = Color( 0.564706, 0.380392, 0.341176, 1 )
-sun_color = Color( 0.839216, 0.443137, 0, 1 )
-sun_latitude = 10.0
-
-[sub_resource type="Environment" id=34]
-background_mode = 2
-background_sky = SubResource( 33 )
-ambient_light_color = Color( 0, 0.486275, 1, 1 )
-ambient_light_energy = 0.2
-glow_enabled = true
-
 [node name="GoldenBox" type="Spatial"]
 script = ExtResource( 1 )
 
@@ -78,23 +78,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 
 [node name="World" type="Spatial" parent="."]
 
-[node name="SwordPlacement" type="Spatial" parent="World"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.957, 0, 9.31895 )
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource( 34 )
 
-[node name="Stand" parent="World/SwordPlacement" instance=ExtResource( 3 )]
-transform = Transform( 0.2, 0, 0, 0, 0.15, 0, 0, 0, 0.2, 0, 0, 0 )
-
-[node name="Sword" parent="World/SwordPlacement" instance=ExtResource( 7 )]
-transform = Transform( -1.74846e-09, -0.04, 1.74846e-09, 0, -1.74846e-09, -0.04, 0.04, -1.74846e-09, 7.64274e-17, 0.108179, 0.9367, 0 )
-
-[node name="ReflectionPortal" parent="World" instance=ExtResource( 4 )]
-portal_name = "Reset Reflections"
-portal_color = Color( 1, 0, 1, 1 )
-
-[node name="LocomotionPortal" parent="World" instance=ExtResource( 4 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 1.5, 0 )
-portal_name = "Change Movement Mode"
-portal_color = Color( 0, 1, 1, 1 )
+[node name="DirectionalLight" type="DirectionalLight" parent="World"]
+transform = Transform( -0.99534, -0.0193228, -0.094472, -0.0483052, 0.947839, 0.315069, 0.0834562, 0.318164, -0.944355, 0, 6.9004, -32.1769 )
+light_color = Color( 1, 0.788235, 0.462745, 1 )
+light_energy = 0.25
+shadow_enabled = true
 
 [node name="Mirror" type="StaticBody" parent="World"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -9.99 )
@@ -212,18 +203,27 @@ material/0 = ExtResource( 2 )
 [node name="CollisionShape" type="CollisionShape" parent="World/Walls/Wall4"]
 shape = SubResource( 13 )
 
+[node name="ReflectionPortal" parent="World" instance=ExtResource( 4 )]
+portal_name = "Reset Reflections"
+portal_color = Color( 1, 0, 1, 1 )
+
+[node name="LocomotionPortal" parent="World" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 1.5, 0 )
+portal_name = "Change Movement Mode"
+portal_color = Color( 0, 1, 1, 1 )
+
+[node name="SwordPlacement" type="Spatial" parent="World"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.957, 0, 9.31895 )
+
+[node name="Stand" parent="World/SwordPlacement" instance=ExtResource( 3 )]
+transform = Transform( 0.2, 0, 0, 0, 0.15, 0, 0, 0, 0.2, 0, 0, 0 )
+
+[node name="Sword" parent="World/SwordPlacement" instance=ExtResource( 7 )]
+transform = Transform( -1.74846e-09, -0.04, 1.74846e-09, 0, -1.74846e-09, -0.04, 0.04, -1.74846e-09, 7.64274e-17, 0.108179, 0.9367, 0 )
+
 [node name="ReflectionProbe" type="ReflectionProbe" parent="World"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59037, -6.36869 )
 max_distance = 20.0
 extents = Vector3( 11, 15, 20 )
 box_projection = true
 enable_shadows = true
-
-[node name="DirectionalLight" type="DirectionalLight" parent="World"]
-transform = Transform( -0.99534, -0.0193228, -0.094472, -0.0483052, 0.947839, 0.315069, 0.0834562, 0.318164, -0.944355, 0, 6.9004, -32.1769 )
-light_color = Color( 1, 0.788235, 0.462745, 1 )
-light_energy = 0.25
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
-environment = SubResource( 34 )
