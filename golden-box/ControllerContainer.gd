@@ -20,10 +20,8 @@ var mesh_counter = 0
 
 
 func _ready():
-    if Globals.origin:
-        subscribe_to_controller_signals()
-    else:
-        var _r = Globals.connect("origin_set_signal", self, "subscribe_to_controller_signals")
+    subscribe_to_controller_signals()
+    var __ = Globals.connect("new_origin_set", self, "subscribe_to_controller_signals")
 
 
 func _process(_delta: float) -> void:
@@ -68,9 +66,10 @@ func display_basics(controller: VrController):
 
 func subscribe_to_controller_signals() -> void:
     var controller = get_controller() as VrController
-    controller.connect("mesh_updated", self, "_on_mesh_updated")
-    controller.connect("button_pressed", self, "_on_button_pressed")
-    controller.connect("button_release", self, "_on_button_released")
+    if controller:
+        controller.connect("mesh_updated", self, "_on_mesh_updated")
+        controller.connect("button_pressed", self, "_on_button_pressed")
+        controller.connect("button_release", self, "_on_button_released")
 
 
 func get_controller() -> VrController:

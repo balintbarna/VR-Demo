@@ -1,7 +1,7 @@
 extends Node
 
 
-signal origin_set_signal
+signal new_origin_set
 
 
 var origin: VrOrigin = null setget set_origin, get_origin
@@ -9,7 +9,7 @@ var origin: VrOrigin = null setget set_origin, get_origin
 
 func set_origin(value: VrOrigin) -> void:
     origin = value
-    emit_signal("origin_set_signal")
+    emit_signal("new_origin_set")
 
 
 func get_origin() -> VrOrigin:
