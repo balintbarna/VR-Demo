@@ -16,7 +16,8 @@ func _ready():
 
 
 func _process(_delta):
-    if finished():
+    if is_finished():
+        set_process(false)
         _on_complete()
 
 
@@ -28,11 +29,17 @@ func get_stage_count():
     return stage_count
 
 
-func finished():
-    if loader:
-        return not loader.get_resource() == null
-    else:
-        return true
+func is_loading():
+    if thread:
+        return thread.is_alive()
+    return false
+
+
+func is_finished():
+    if not is_loading():
+        if get_scene():
+            return true
+    return false
 
 
 func get_scene():
@@ -45,7 +52,7 @@ func get_scene():
 func start_loading(new_loader):
     if loader == null:
         loader = new_loader
-        if finished():
+        if is_finished():
             _on_complete()
         else:
             thread = Thread.new()
@@ -58,16 +65,16 @@ func start_loading(new_loader):
 
 func blocking_load(_userdata):
     if loader:
-        var loading = true
-        while loading:
-            loading = loader.poll() == OK
+        var status = OK
+        while status == OK:
+            status = loader.poll()
             stage = loader.get_stage()
             stage_count = loader.get_stage_count()
 
 
 func _on_complete():
-    set_process(false)
+    var scene = get_scene()
     loader = null
     thread.wait_to_finish()
     thread = null
-    emit_signal("loading_complete", get_scene())
+    emit_signal("loading_complete", scene)
