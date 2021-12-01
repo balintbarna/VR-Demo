@@ -6,36 +6,16 @@
 [ext_resource path="res://portal/MagicArea.gd" type="Script" id=4]
 [ext_resource path="res://portal/MagicPortal.gd" type="Script" id=5]
 [ext_resource path="res://portal/PortalLabel.gd" type="Script" id=6]
+[ext_resource path="res://portal/small-portal/SmallPortalParticleProcessMaterial.tres" type="Material" id=7]
+[ext_resource path="res://portal/small-portal/SmallPortalParticleMaterial.tres" type="Material" id=8]
 
 [sub_resource type="SphereMesh" id=1]
 material = ExtResource( 1 )
 radius = 0.2
 height = 1.0
 
-[sub_resource type="ParticlesMaterial" id=3]
-resource_local_to_scene = true
-lifetime_randomness = 1.0
-emission_shape = 1
-emission_sphere_radius = 0.3
-direction = Vector3( 0, 1, 0 )
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 0.15
-initial_velocity_random = 0.1
-damping = 0.1
-damping_random = 0.1
-scale_random = 0.2
-hue_variation_random = 0.2
-
-[sub_resource type="SpatialMaterial" id=4]
-resource_local_to_scene = true
-
-[sub_resource type="SphereMesh" id=5]
-resource_local_to_scene = true
-material = SubResource( 4 )
-radius = 0.01
-height = 0.02
-radial_segments = 8
-rings = 8
+[sub_resource type="PointMesh" id=8]
+material = ExtResource( 8 )
 
 [sub_resource type="SphereShape" id=2]
 radius = 0.2
@@ -50,6 +30,7 @@ script = ExtResource( 5 )
 script = ExtResource( 4 )
 
 [node name="MagicMesh" type="MeshInstance" parent="MagicArea"]
+use_in_baked_light = true
 mesh = SubResource( 1 )
 material/0 = null
 script = ExtResource( 3 )
@@ -57,8 +38,8 @@ script = ExtResource( 3 )
 [node name="MagicParticles" type="Particles" parent="MagicArea/MagicMesh"]
 amount = 14
 lifetime = 2.0
-process_material = SubResource( 3 )
-draw_pass_1 = SubResource( 5 )
+process_material = ExtResource( 7 )
+draw_pass_1 = SubResource( 8 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="MagicArea"]
@@ -79,6 +60,7 @@ gui_disable_input = true
 [node name="Label" type="Label" parent="Viewport"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Portal"
 align = 1
 valign = 1
