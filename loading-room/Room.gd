@@ -9,7 +9,7 @@ var next_scene = null
 
 
 func _ready():
-    remove_child(portal)
+    portal.visible = false
 
 
 func scene_loaded(scene):
@@ -17,7 +17,7 @@ func scene_loaded(scene):
     Globals.get_origin().reset_to_parent()
     loading_text.visible = false
     var __ = portal.connect("body_entered", self, "_on_body_entered")
-    add_child(portal)
+    portal.visible = true
 
 
 func _on_body_entered(body: Node):
