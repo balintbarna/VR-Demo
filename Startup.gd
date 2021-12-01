@@ -14,8 +14,7 @@ func load_goldbox_scene():
 func load_starting_scene():
     var loader = SceneLibrary.get_loading_room_scene()
     loader.wait()
-    var resource = loader.get_resource()
-    if not OK == get_tree().change_scene_to(resource):
+    if not OK == get_tree().change_scene_to(loader.get_resource()):
         push_error("COULD NOT LOAD STARTING SCENE")
 
 
