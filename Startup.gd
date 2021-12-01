@@ -8,7 +8,7 @@ func _ready():
 
 
 func load_goldbox_scene():
-    LoadingSignaler.mark_load_started(SceneLibrary.get_gold_box_scene())
+    SceneLoader.start_loading(SceneLibrary.get_gold_box_scene())
 
 
 func load_starting_scene():

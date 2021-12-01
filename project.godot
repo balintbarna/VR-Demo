@@ -106,7 +106,7 @@ config/icon="res://icon.png"
 
 Globals="*res://general/Globals.gd"
 SceneLibrary="*res://general/SceneLibrary.gd"
-LoadingSignaler="*res://general/SceneLoader.gd"
+SceneLoader="*res://general/SceneLoader.gd"
 
 [debug]
 

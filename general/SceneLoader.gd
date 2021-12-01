@@ -25,7 +25,14 @@ func get_finished():
         return true
 
 
-func mark_load_started(new_loader):
+func get_scene():
+    if loader:
+        return loader.get_resource()
+    else:
+        return null
+
+
+func start_loading(new_loader):
     if not loader == null:
         push_error("SceneLoader still working")
     else:
