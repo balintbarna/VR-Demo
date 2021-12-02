@@ -1,21 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://player/VrOrigin.gd" type="Script" id=1]
 [ext_resource path="res://player/HeadCamera.tscn" type="PackedScene" id=2]
-[ext_resource path="res://player/VrController.gd" type="Script" id=3]
+[ext_resource path="res://player/RightController.tscn" type="PackedScene" id=3]
 [ext_resource path="res://player/LeftController.tscn" type="PackedScene" id=4]
-[ext_resource path="res://player/WakeUpArea.gd" type="Script" id=8]
-
-[sub_resource type="CubeMesh" id=30]
-size = Vector3( 0.02, 0.02, 0.03 )
-
-[sub_resource type="SpatialMaterial" id=4]
-params_diffuse_mode = 4
-params_specular_mode = 3
-albedo_color = Color( 0.388235, 0.803922, 0.776471, 1 )
-
-[sub_resource type="SphereShape" id=29]
-radius = 0.1
 
 [sub_resource type="CylinderMesh" id=5]
 top_radius = 0.05
@@ -34,21 +22,7 @@ script = ExtResource( 1 )
 
 [node name="LeftController" parent="." instance=ExtResource( 4 )]
 
-[node name="RightController" type="ARVRController" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.3, -0.5 )
-controller_id = 2
-script = ExtResource( 3 )
-
-[node name="MeshInstance" type="MeshInstance" parent="RightController"]
-mesh = SubResource( 30 )
-skeleton = NodePath("../../LeftController")
-material/0 = SubResource( 4 )
-
-[node name="WakeUpArea" type="Area" parent="RightController"]
-script = ExtResource( 8 )
-
-[node name="CollisionShape" type="CollisionShape" parent="RightController/WakeUpArea"]
-shape = SubResource( 29 )
+[node name="RightController" parent="." instance=ExtResource( 3 )]
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 5 )
