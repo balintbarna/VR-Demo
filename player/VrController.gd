@@ -10,7 +10,7 @@ const CONTROLLER_RUMBLE_FADE_SPEED = 2.0
 const CONTROLLER_DEADZONE = 0.1
 
 
-onready var mesh_instance: MeshInstance = $GrabArea/MeshInstance
+onready var mesh_instance: MeshInstance = $MeshInstance
 
 
 var buttons = QuestButtons.new()
