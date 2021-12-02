@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://portal/MagicAreaMaterial.tres" type="Material" id=1]
 [ext_resource path="res://portal/MagicParticles.gd" type="Script" id=2]
@@ -7,17 +7,13 @@
 [ext_resource path="res://portal/MagicPortal.gd" type="Script" id=5]
 [ext_resource path="res://portal/PortalLabel.gd" type="Script" id=6]
 [ext_resource path="res://portal/small-portal/SmallPortalParticleProcessMaterial.tres" type="Material" id=7]
-[ext_resource path="res://portal/small-portal/SmallPortalParticleMaterial.tres" type="Material" id=8]
+[ext_resource path="res://portal/PortalParticlePointMesh.tres" type="PointMesh" id=8]
 
 [sub_resource type="SphereMesh" id=1]
 resource_local_to_scene = true
 material = ExtResource( 1 )
 radius = 0.2
 height = 1.0
-
-[sub_resource type="PointMesh" id=8]
-resource_local_to_scene = true
-material = ExtResource( 8 )
 
 [sub_resource type="SphereShape" id=2]
 radius = 0.2
@@ -42,7 +38,7 @@ script = ExtResource( 3 )
 amount = 14
 lifetime = 2.0
 process_material = ExtResource( 7 )
-draw_pass_1 = SubResource( 8 )
+draw_pass_1 = ExtResource( 8 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="MagicArea"]
