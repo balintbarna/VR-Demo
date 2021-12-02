@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://player/VrOrigin.gd" type="Script" id=1]
 [ext_resource path="res://player/CharacterCollision.gd" type="Script" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://player/FlatWorldPhysicsKinematicMover.gd" type="Script" id=6]
 [ext_resource path="res://general/OutlineMaterial.tres" type="Material" id=7]
 [ext_resource path="res://player/WakeUpArea.gd" type="Script" id=8]
-[ext_resource path="res://player/DebugDisplay.tscn" type="PackedScene" id=9]
+[ext_resource path="res://DebugDisplay.tscn" type="PackedScene" id=9]
 [ext_resource path="res://player/GrabArea.gd" type="Script" id=10]
 [ext_resource path="res://player/NeckPoint.gd" type="Script" id=11]
 
@@ -100,9 +100,6 @@ next_pass = ExtResource( 7 )
 params_diffuse_mode = 4
 params_specular_mode = 3
 albedo_color = Color( 0.596078, 0.8, 0.32549, 1 )
-
-[sub_resource type="ViewportTexture" id=27]
-viewport_path = NodePath("LeftController/GrabArea/MeshInstance/Viewport")
 
 [sub_resource type="SphereShape" id=14]
 radius = 0.07
@@ -198,20 +195,8 @@ transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0 )
 mesh = SubResource( 9 )
 material/0 = SubResource( 3 )
 
-[node name="Viewport" type="Viewport" parent="LeftController/MeshInstance"]
-size = Vector2( 100, 100 )
-transparent_bg = true
-hdr = false
-disable_3d = true
-usage = 0
-render_target_v_flip = true
-
-[node name="DebugDisplay" parent="LeftController/MeshInstance/Viewport" instance=ExtResource( 9 )]
-
-[node name="Sprite3D" type="Sprite3D" parent="LeftController/MeshInstance"]
+[node name="DebugDisplay" parent="LeftController/MeshInstance" instance=ExtResource( 9 )]
 transform = Transform( -8.74228e-08, -2, -4.37114e-08, 0, -8.74228e-08, 1, -2, 8.74228e-08, 1.91069e-15, 0, 1.4, 0 )
-use_in_baked_light = true
-texture = SubResource( 27 )
 
 [node name="GrabArea" type="Area" parent="LeftController"]
 script = ExtResource( 10 )
