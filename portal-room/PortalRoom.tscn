@@ -59,6 +59,6 @@ sphere_color = Color( 0.560784, 0.831373, 0.164706, 1 )
 audio_stream = ExtResource( 5 )
 
 [node name="GoldenBoxPortal" parent="World/Room" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.35524, -0.456766, -4.34642 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.35524, -0.456766, -4.04123 )
 portal_name = "Golden Box"
 portal_color = Color( 1, 0.890196, 0, 1 )
