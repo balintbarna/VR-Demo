@@ -2,8 +2,8 @@ extends Area
 
 
 func _ready():
-    connect("body_entered", self, "wake_up")
-    connect("body_exited", self, "let_sleep")
+    var __ = connect("body_entered", self, "wake_up")
+    __ = connect("body_exited", self, "let_sleep")
 
 
 func wake_up(body):
