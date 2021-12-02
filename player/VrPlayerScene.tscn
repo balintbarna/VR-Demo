@@ -30,6 +30,8 @@ radius = 0.2
 height = 0.5
 
 [sub_resource type="SpatialMaterial" id=15]
+params_diffuse_mode = 4
+params_specular_mode = 4
 albedo_color = Color( 0.647059, 0, 0.396078, 1 )
 
 [sub_resource type="SphereMesh" id=16]
@@ -38,6 +40,8 @@ radius = 0.015
 height = 0.03
 
 [sub_resource type="SpatialMaterial" id=17]
+params_diffuse_mode = 4
+params_specular_mode = 4
 albedo_color = Color( 0, 0.513726, 0.776471, 1 )
 
 [sub_resource type="SphereMesh" id=18]
@@ -50,6 +54,8 @@ radius = 0.015
 height = 0.03
 
 [sub_resource type="SpatialMaterial" id=20]
+params_diffuse_mode = 4
+params_specular_mode = 4
 albedo_color = Color( 0, 0.670588, 0.25098, 1 )
 
 [sub_resource type="SphereMesh" id=21]
@@ -59,6 +65,8 @@ radial_segments = 16
 rings = 8
 
 [sub_resource type="SpatialMaterial" id=22]
+params_diffuse_mode = 4
+params_specular_mode = 4
 albedo_color = Color( 0.694118, 0.878431, 0, 1 )
 
 [sub_resource type="SphereMesh" id=23]
@@ -66,6 +74,8 @@ radius = 0.015
 height = 0.03
 
 [sub_resource type="SpatialMaterial" id=24]
+params_diffuse_mode = 4
+params_specular_mode = 4
 albedo_color = Color( 0.886275, 0.568627, 0, 1 )
 
 [sub_resource type="SphereMesh" id=25]
@@ -75,6 +85,8 @@ radial_segments = 16
 rings = 8
 
 [sub_resource type="SpatialMaterial" id=26]
+params_diffuse_mode = 4
+params_specular_mode = 4
 albedo_color = Color( 0.898039, 0, 0, 1 )
 
 [sub_resource type="CubeMesh" id=9]
