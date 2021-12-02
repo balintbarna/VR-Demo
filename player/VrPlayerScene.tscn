@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://player/VrOrigin.gd" type="Script" id=1]
 [ext_resource path="res://player/CharacterCollision.gd" type="Script" id=2]
@@ -6,9 +6,8 @@
 [ext_resource path="res://player/HeadCamera.gd" type="Script" id=4]
 [ext_resource path="res://player/Character.gd" type="Script" id=5]
 [ext_resource path="res://player/FlatWorldPhysicsKinematicMover.gd" type="Script" id=6]
-[ext_resource path="res://general/OutlineMaterial.tres" type="Material" id=7]
 [ext_resource path="res://player/WakeUpArea.gd" type="Script" id=8]
-[ext_resource path="res://DebugDisplay.tscn" type="PackedScene" id=9]
+[ext_resource path="res://player/DebugDisplay.tscn" type="PackedScene" id=9]
 [ext_resource path="res://player/GrabArea.gd" type="Script" id=10]
 [ext_resource path="res://player/NeckPoint.gd" type="Script" id=11]
 
@@ -97,7 +96,6 @@ albedo_color = Color( 0.898039, 0, 0, 1 )
 size = Vector3( 0.02, 0.02, 0.03 )
 
 [sub_resource type="SpatialMaterial" id=3]
-next_pass = ExtResource( 7 )
 params_diffuse_mode = 4
 params_specular_mode = 3
 albedo_color = Color( 0.596078, 0.8, 0.32549, 1 )
