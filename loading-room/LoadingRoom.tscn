@@ -91,6 +91,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03954, 0 )
 shadow_enabled = true
 
 [node name="LoadingText" parent="World/Room" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -2 )
 
 [node name="AudioBall" parent="World/Room" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2.3 )
