@@ -17,4 +17,4 @@ func try_grab():
 
 
 func release():
-    emit_signal("releasing", hand_grab_point)
+    emit_signal("releasing", self, hand_grab_point)

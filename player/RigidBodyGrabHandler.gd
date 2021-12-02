@@ -64,7 +64,8 @@ func find_closest_grab_point():
         grab_point = body
 
 
-func on_release(point):
+func on_release(sender, point):
+    sender.disconnect("releasing", self, "on_release")
     if hand_point == point:
         body.mode = old_mode
         body.collision_layer = old_collision_layer
