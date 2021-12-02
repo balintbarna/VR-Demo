@@ -3,7 +3,6 @@
 [ext_resource path="res://player/DebugGui.tscn" type="PackedScene" id=1]
 
 [sub_resource type="ViewportTexture" id=27]
-resource_local_to_scene = false
 viewport_path = NodePath("Viewport")
 
 [node name="DebugDisplay" type="Spatial"]
