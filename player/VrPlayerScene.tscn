@@ -198,7 +198,7 @@ mesh = SubResource( 9 )
 material/0 = SubResource( 3 )
 
 [node name="DebugDisplay" parent="LeftController/MeshInstance" instance=ExtResource( 9 )]
-transform = Transform( -8.74228e-08, -2, -4.37114e-08, 0, -8.74228e-08, 1, -2, 8.74228e-08, 1.91069e-15, 0, 1.4, 0 )
+transform = Transform( -8.74228e-10, -0.02, -4.37114e-10, 0, -8.74228e-10, 0.01, -0.02, 8.74228e-10, 1.91069e-17, 0, 0.014, 0 )
 
 [node name="GrabArea" type="Area" parent="LeftController"]
 script = ExtResource( 10 )
