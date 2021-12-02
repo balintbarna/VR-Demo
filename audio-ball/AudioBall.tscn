@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://loading-room/Bossa-Antigua.mp3" type="AudioStream" id=1]
-[ext_resource path="res://loading-room/AudioBall.gd" type="Script" id=2]
+[ext_resource path="res://audio-ball/AudioBall.gd" type="Script" id=1]
+[ext_resource path="res://loading-room/Bossa-Antigua.mp3" type="AudioStream" id=2]
 
 [sub_resource type="SphereShape" id=12]
 radius = 0.1
@@ -27,9 +27,9 @@ params_specular_mode = 4
 albedo_color = Color( 0.203922, 0.164706, 0.164706, 1 )
 
 [node name="AudioBall" type="RigidBody"]
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 sphere_color = Color( 1, 1, 1, 1 )
-audio_stream = ExtResource( 1 )
+audio_stream = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 12 )
@@ -46,7 +46,7 @@ material/0 = SubResource( 14 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CollisionShape/MeshInstance/MeshInstance"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
-stream = ExtResource( 1 )
+stream = ExtResource( 2 )
 autoplay = true
 emission_angle_enabled = true
 attenuation_filter_cutoff_hz = 8000.0
