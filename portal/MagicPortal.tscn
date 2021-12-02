@@ -44,6 +44,7 @@ viewport_path = NodePath("Viewport")
 [node name="MagicPortal" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.5, -8.5 )
 script = ExtResource( 1 )
+portal_color = Color( 1, 1, 1, 1 )
 
 [node name="FullBody" type="CSGCombiner" parent="."]
 use_in_baked_light = true
@@ -104,6 +105,7 @@ gui_disable_input = true
 [node name="Label" type="Label" parent="Viewport"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Portal"
 align = 1
 valign = 1

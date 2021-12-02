@@ -25,6 +25,7 @@ viewport_path = NodePath("Viewport")
 
 [node name="SmallPortal" type="Spatial"]
 script = ExtResource( 5 )
+portal_color = Color( 1, 1, 1, 1 )
 
 [node name="MagicArea" type="Area" parent="."]
 script = ExtResource( 4 )
