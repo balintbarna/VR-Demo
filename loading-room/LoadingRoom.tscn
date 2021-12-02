@@ -15,9 +15,13 @@ background_energy = 0.0
 ambient_light_energy = 0.0
 
 [sub_resource type="SpatialMaterial" id=3]
+params_diffuse_mode = 4
+params_specular_mode = 4
 albedo_color = Color( 0.92549, 0.901961, 0.513726, 1 )
 
 [sub_resource type="SpatialMaterial" id=4]
+params_diffuse_mode = 4
+params_specular_mode = 4
 roughness = 0.0
 clearcoat_enabled = true
 clearcoat = 1.0
@@ -27,6 +31,8 @@ clearcoat_gloss = 0.5
 viewport_path = NodePath("World/Room/LoadingText/Viewport")
 
 [sub_resource type="SpatialMaterial" id=7]
+params_diffuse_mode = 4
+params_specular_mode = 4
 albedo_color = Color( 0.32549, 1, 0.827451, 1 )
 
 [sub_resource type="ViewportTexture" id=8]
