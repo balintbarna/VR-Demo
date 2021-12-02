@@ -27,7 +27,7 @@ script = ExtResource( 3 )
 mesh = SubResource( 9 )
 material/0 = SubResource( 3 )
 
-[node name="DebugDisplay" type="Spatial" parent="MeshInstance" instance=ExtResource( 2 )]
+[node name="DebugDisplay" parent="MeshInstance" instance=ExtResource( 2 )]
 transform = Transform( -8.74228e-10, -0.02, -4.37114e-10, 0, -8.74228e-10, 0.01, -0.02, 8.74228e-10, 1.91069e-17, 0, 0.014, 0 )
 
 [node name="GrabArea" type="Area" parent="."]
@@ -44,3 +44,6 @@ script = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="WakeUpArea"]
 shape = SubResource( 29 )
+
+[connection signal="grip_pressed" from="." to="GrabArea" method="try_grab"]
+[connection signal="grip_released" from="." to="GrabArea" method="release"]

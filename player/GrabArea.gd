@@ -10,10 +10,6 @@ var grab_point: Spatial = null
 var grabbed_body_mode = RigidBody.MODE_RIGID
 
 
-func _ready() -> void:
-    register_hand_events()
-
-
 func _physics_process(_delta):
     if grabbed_body:
         var offset = calculate_grab_point_offset(grabbed_body, grab_point)
@@ -21,13 +17,7 @@ func _physics_process(_delta):
         grabbed_body.scale = grabbed_body_scale
 
 
-func register_hand_events():
-    var hand = get_parent()
-    hand.connect("grip_pressed", self, "_on_grip_pressed")
-    hand.connect("grip_released", self, "_on_grip_released")
-
-
-func _on_grip_pressed():
+func try_grab():
     var bodies = get_overlapping_bodies()
     for body in bodies:
         if body.has_method("get_grab_points"):
@@ -35,7 +25,7 @@ func _on_grip_pressed():
             return
 
 
-func _on_grip_released():
+func release():
     if grabbed_body is RigidBody:
         (grabbed_body as RigidBody).mode = grabbed_body_mode
     grabbed_body = null
