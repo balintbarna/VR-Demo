@@ -10,11 +10,13 @@
 [ext_resource path="res://portal/small-portal/SmallPortalParticleMaterial.tres" type="Material" id=8]
 
 [sub_resource type="SphereMesh" id=1]
+resource_local_to_scene = true
 material = ExtResource( 1 )
 radius = 0.2
 height = 1.0
 
 [sub_resource type="PointMesh" id=8]
+resource_local_to_scene = true
 material = ExtResource( 8 )
 
 [sub_resource type="SphereShape" id=2]

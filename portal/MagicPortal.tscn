@@ -26,6 +26,7 @@ damping_random = 0.2
 scale_random = 1.0
 
 [sub_resource type="PointMesh" id=39]
+resource_local_to_scene = true
 material = ExtResource( 8 )
 
 [sub_resource type="BoxShape" id=27]
