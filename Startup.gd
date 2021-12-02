@@ -3,12 +3,12 @@ extends Node
 func _ready():
     load_vr_interfaces()
     load_starting_scene()
-    load_goldbox_scene()
+    load_portal_room_scene()
     queue_free()
 
 
-func load_goldbox_scene():
-    SceneLoader.start_loading(SceneLibrary.get_gold_box_scene())
+func load_portal_room_scene():
+    SceneLoader.start_loading(SceneLibrary.get_portal_room_scene())
 
 
 func load_starting_scene():

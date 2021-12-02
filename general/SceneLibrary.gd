@@ -7,3 +7,7 @@ func get_loading_room_scene() -> PackedScene:
 
 func get_gold_box_scene() -> ResourceInteractiveLoader:
     return ResourceLoader.load_interactive("res://golden-box/GoldenBox.tscn")
+
+
+func get_portal_room_scene() -> ResourceInteractiveLoader:
+    return ResourceLoader.load_interactive("res://portal-room/PortalRoom.tscn")
