@@ -10,6 +10,8 @@ func next(v):
         var t = OS.get_ticks_usec()
         v = v.orthonormalized() # scaling should not be included in the calculation
         if v_old and t_old:
+            # warning-ignore:UNSAFE_CAST
+            # warning-ignore:UNSAFE_CAST
             derived = calc(v as Basis, v_old as Basis, t, t_old)
         else:
             derived = Vector3.ZERO

@@ -2,7 +2,9 @@ tool
 extends Label
 
 
+# warning-ignore:UNUSED_CLASS_VARIABLE
 var portal_name: String setget set_portal_name, get_portal_name
+# warning-ignore:UNUSED_CLASS_VARIABLE
 var portal_color: Color setget set_portal_color, get_portal_color
 
 

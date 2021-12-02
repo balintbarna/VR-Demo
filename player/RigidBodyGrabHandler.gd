@@ -73,7 +73,9 @@ func on_release(sender, point):
         body.mode = old_mode
         body.collision_layer = old_collision_layer
         body.collision_mask = old_collision_mask
+        # warning-ignore:UNSAFE_PROPERTY_ACCESS
         body.linear_velocity = velocity_calculator.derived
+        # warning-ignore:UNSAFE_PROPERTY_ACCESS
         body.angular_velocity = angular_velocity_calculator.derived
         hand_point = null
         return true

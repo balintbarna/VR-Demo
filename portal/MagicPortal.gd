@@ -51,7 +51,7 @@ func update_portal_color():
         label.portal_color = portal_color
     if collision_area:
         if "portal_color" in collision_area:
-            # warning-ignore:UNSAFE_METHOD_ACCESS
+            # warning-ignore:UNSAFE_PROPERTY_ACCESS
             collision_area.portal_color = portal_color
         else:
             push_error("property_not_found")

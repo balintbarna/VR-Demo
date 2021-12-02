@@ -6,7 +6,9 @@ export var sphere_color: Color setget set_sphere_color, get_sphere_color
 export var audio_stream: AudioStream setget set_audio_stream, get_audio_stream
 var grab_handler: RigidBodyGrabHandler = RigidBodyGrabHandler.new()
 onready var mesh_node = $CollisionShape/MeshInstance as MeshInstance
+# warning-ignore:UNSAFE_CAST
 onready var mesh = mesh_node.mesh as SphereMesh
+# warning-ignore:UNSAFE_CAST
 onready var audio_player = mesh_node.get_node("MeshInstance/AudioStreamPlayer3D") as AudioStreamPlayer3D
 
 

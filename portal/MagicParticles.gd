@@ -2,6 +2,7 @@ tool
 extends Particles
 
 
+# warning-ignore:UNUSED_CLASS_VARIABLE
 var portal_color: Color setget set_portal_color, get_portal_color
 
 
