@@ -2,7 +2,7 @@ tool
 extends RigidBody
 
 
-export var sphere_color: Color = Color.aquamarine setget set_sphere_color, get_sphere_color
+export var sphere_color: Color = Color.white setget set_sphere_color, get_sphere_color
 export var audio_stream: AudioStream setget set_audio_stream, get_audio_stream
 var grab_handler: RigidBodyGrabHandler = RigidBodyGrabHandler.new()
 onready var mesh_node = $CollisionShape/MeshInstance as MeshInstance
@@ -32,7 +32,6 @@ func _physics_process(delta):
 
 
 func set_sphere_color(color: Color):
-    sphere_color = color
     mesh_node.get_active_material(0).albedo_color = color
 
 
