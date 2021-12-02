@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://player/VrController.gd" type="Script" id=1]
 [ext_resource path="res://player/WakeUpArea.gd" type="Script" id=2]
 [ext_resource path="res://player/GrabArea.gd" type="Script" id=3]
-[ext_resource path="res://player/hand_debug_mesh.tres" type="CubeMesh" id=4]
+[ext_resource path="res://player/HandDebugMesh.tres" type="CubeMesh" id=4]
+[ext_resource path="res://player/touch_controller.dae" type="PackedScene" id=5]
 
 [sub_resource type="SpatialMaterial" id=4]
 params_diffuse_mode = 4
@@ -19,6 +20,9 @@ radius = 0.1
 [node name="RightController" type="ARVRController"]
 controller_id = 2
 script = ExtResource( 1 )
+
+[node name="touch_controller" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, -8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = ExtResource( 4 )
