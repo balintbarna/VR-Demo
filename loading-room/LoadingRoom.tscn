@@ -119,6 +119,7 @@ use_in_baked_light = true
 texture = SubResource( 9 )
 
 [node name="AudioBall" parent="World/Room" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2.3 )
 
 [node name="ContinuePortal" parent="World/Room" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1.7 )
