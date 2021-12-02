@@ -45,6 +45,11 @@ _global_script_classes=[ {
 "path": "res://player/KinematicBodyMover.gd"
 }, {
 "base": "Resource",
+"class": "NumericAngularDerivator",
+"language": "GDScript",
+"path": "res://general/NumericAngularDerivator.gd"
+}, {
+"base": "Resource",
 "class": "NumericDerivator",
 "language": "GDScript",
 "path": "res://general/NumericDerivator.gd"
@@ -97,6 +102,7 @@ _global_script_class_icons={
 "HeadCamera": "",
 "Joypad": "",
 "KinematicBodyMover": "",
+"NumericAngularDerivator": "",
 "NumericDerivator": "",
 "OculusHandTracker": "",
 "OculusTouchController": "",

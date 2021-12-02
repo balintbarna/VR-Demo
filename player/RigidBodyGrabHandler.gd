@@ -10,6 +10,7 @@ var grab_point: Spatial
 var hand_point: Spatial
 var grab_points: Array
 var velocity_calculator: NumericDerivator
+var angular_velocity_calculator: NumericAngularDerivator
 
 
 func process(_delta):
@@ -22,6 +23,7 @@ func process(_delta):
             body.global_transform = hand_point.global_transform * offset
             body.scale = body_scale
             velocity_calculator.next(body.global_transform.origin)
+            angular_velocity_calculator.next(body.global_transform.basis)
         else:
             push_error("BODY NOT SET")
 
@@ -43,6 +45,7 @@ func on_grab(point):
     body.collision_mask = 0
     hand_point = point
     velocity_calculator = NumericDerivator.new()
+    angular_velocity_calculator = NumericAngularDerivator.new()
     find_closest_grab_point()
     return true
 
@@ -71,6 +74,7 @@ func on_release(sender, point):
         body.collision_layer = old_collision_layer
         body.collision_mask = old_collision_mask
         body.linear_velocity = velocity_calculator.derived
+        body.angular_velocity = angular_velocity_calculator.derived
         hand_point = null
         return true
     return false
