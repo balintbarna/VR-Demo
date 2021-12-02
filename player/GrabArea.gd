@@ -36,10 +36,10 @@ func grab_body(body):
     if grabbed_body is RigidBody:
         grabbed_body_mode = body.mode
         body.mode = RigidBody.MODE_KINEMATIC
-    find_closes_grab_point(body.get_grab_points())
+    find_closest_grab_point(body.get_grab_points())
 
 
-func find_closes_grab_point(grab_points):
+func find_closest_grab_point(grab_points):
     var lowest_distance = INF
     var closest_point = null
     for point in grab_points:
