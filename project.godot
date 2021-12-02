@@ -82,7 +82,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "RigidBodyGrabHandler",
 "language": "GDScript",
-"path": "res://player/RigidBodyGrabHandler.gd"
+"path": "res://general/RigidBodyGrabHandler.gd"
 }, {
 "base": "ARVRController",
 "class": "VrController",
