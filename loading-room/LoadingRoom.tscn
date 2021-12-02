@@ -94,11 +94,12 @@ shadow_enabled = true
 
 [node name="AudioBall" parent="World/Room" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2.3 )
+sphere_color = Color( 0.588235, 0.0784314, 0.588235, 1 )
 
 [node name="ContinuePortal" parent="World/Room" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1.7 )
 portal_name = "Continue"
-portal_color = Color( 0, 1, 0.670588, 1 )
+portal_color = Color( 1, 1, 0, 1 )
 
 [node name="FloatingBox" type="Spatial" parent="World"]
 
