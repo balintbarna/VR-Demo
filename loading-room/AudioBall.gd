@@ -2,7 +2,7 @@ extends RigidBody
 
 
 var grab_points = []
-onready var mesh_node = $MeshInstance as MeshInstance
+onready var mesh_node = $CollisionShape/MeshInstance as MeshInstance
 onready var mesh = mesh_node.mesh as SphereMesh
 
 
