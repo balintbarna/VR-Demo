@@ -70,7 +70,7 @@ func on_release(sender, point):
         body.mode = old_mode
         body.collision_layer = old_collision_layer
         body.collision_mask = old_collision_mask
-        body.apply_impulse(Vector3(0, 0, 0), velocity_calculator.derived)
+        body.linear_velocity = velocity_calculator.derived
         hand_point = null
         return true
     return false
