@@ -8,16 +8,11 @@ onready var portal = $ContinuePortal
 var next_scene = null
 
 
-func _ready():
-    portal.visible = false
-
-
 func scene_loaded(scene):
     next_scene = scene
     Globals.get_origin().reset_to_parent()
     loading_text.visible = false
     var __ = portal.connect("body_entered", self, "_on_body_entered")
-    portal.visible = true
 
 
 func _on_body_entered(body: Node):
@@ -26,8 +21,5 @@ func _on_body_entered(body: Node):
 
 
 func _on_continue():
-    var current = get_tree().current_scene
-    if OK == get_tree().change_scene_to(next_scene):
-        current.queue_free()
-    else:
+    if not OK == get_tree().change_scene_to(next_scene):
         push_error("CHANGING TO LOADED SCENE FAILED")
