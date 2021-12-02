@@ -6,6 +6,7 @@
 [ext_resource path="res://loading-room/LoadingRoom.gd" type="Script" id=4]
 [ext_resource path="res://portal/small-portal/SmallPortal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://loading-room/LoadingText.tscn" type="PackedScene" id=6]
+[ext_resource path="res://loading-room/ScaryText.tscn" type="PackedScene" id=7]
 
 [sub_resource type="PanoramaSky" id=1]
 
@@ -32,9 +33,6 @@ clearcoat_gloss = 0.5
 params_diffuse_mode = 4
 params_specular_mode = 4
 albedo_color = Color( 0.32549, 1, 0.827451, 1 )
-
-[sub_resource type="ViewportTexture" id=8]
-viewport_path = NodePath("World/ScaryText/Viewport")
 
 [node name="LoadingRoom" type="Spatial"]
 script = ExtResource( 4 )
@@ -114,28 +112,4 @@ material = SubResource( 7 )
 [node name="SpotLight" type="SpotLight" parent="World/FloatingBox"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.14109, -0.0319109, 1.35482 )
 
-[node name="ScaryText" type="Spatial" parent="World"]
-
-[node name="Viewport" type="Viewport" parent="World/ScaryText"]
-size = Vector2( 200, 100 )
-transparent_bg = true
-hdr = false
-disable_3d = true
-usage = 0
-render_target_v_flip = true
-gui_disable_input = true
-
-[node name="Label" type="Label" parent="World/ScaryText/Viewport"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "Don't look out!"
-align = 1
-valign = 1
-
-[node name="Sprite3D" type="Sprite3D" parent="World/ScaryText"]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0, 0 )
-use_in_baked_light = true
-modulate = Color( 0.733333, 0.0901961, 0.0901961, 1 )
-billboard = 2
-double_sided = false
-texture = SubResource( 8 )
+[node name="ScaryText" parent="World" instance=ExtResource( 7 )]
