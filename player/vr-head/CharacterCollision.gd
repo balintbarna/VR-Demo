@@ -11,9 +11,10 @@ func _physics_process(_delta: float) -> void:
 
 func set_height_between_origin_and_camera() -> void:
     var head = get_vr_head()
-    var position = Vector3(head.global_transform.origin)
-    position.y = get_origin().global_transform.origin.y + head.translation.y / 2
-    global_transform.origin = position
+    var position_in_origin_frame = Vector3(head.translation)
+    position_in_origin_frame.y /= 2.0
+    var position_in_global_frame = get_origin().global_transform * position_in_origin_frame
+    global_transform.origin = position_in_global_frame
 
 
 func reset_orientation() -> void:
