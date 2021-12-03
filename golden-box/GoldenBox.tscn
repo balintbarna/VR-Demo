@@ -201,7 +201,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.957, 0, 9.31895 )
 transform = Transform( 0.2, 0, 0, 0, 0.15, 0, 0, 0, 0.2, 0, 0, 0 )
 
 [node name="Sword" parent="World/SwordPlacement" instance=ExtResource( 7 )]
-transform = Transform( -1.74846e-09, -0.04, 1.74846e-09, 0, -1.74846e-09, -0.04, 0.04, -1.74846e-09, 7.64274e-17, 0.108179, 0.9367, 0 )
+transform = Transform( -4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0.0128136, 0.9367, 0 )
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="World"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59037, -6.36869 )
