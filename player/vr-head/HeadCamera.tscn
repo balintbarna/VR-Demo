@@ -1,10 +1,10 @@
 [gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://player/CharacterCollision.gd" type="Script" id=1]
-[ext_resource path="res://player/Character.gd" type="Script" id=2]
-[ext_resource path="res://player/HeadCamera.gd" type="Script" id=3]
-[ext_resource path="res://player/FlatWorldPhysicsKinematicMover.gd" type="Script" id=4]
-[ext_resource path="res://player/NeckPoint.gd" type="Script" id=5]
+[ext_resource path="res://player/vr-head/CharacterCollision.gd" type="Script" id=1]
+[ext_resource path="res://player/vr-head/HeadCamera.gd" type="Script" id=2]
+[ext_resource path="res://player/vr-head/Character.gd" type="Script" id=3]
+[ext_resource path="res://player/vr-head/FlatWorldPhysicsKinematicMover.gd" type="Script" id=4]
+[ext_resource path="res://player/vr-head/NeckPoint.gd" type="Script" id=5]
 [ext_resource path="res://player/WakeUpArea.gd" type="Script" id=6]
 
 [sub_resource type="Resource" id=11]
@@ -90,10 +90,10 @@ albedo_color = Color( 0.898039, 0, 0, 1 )
 
 [node name="HeadCamera" type="ARVRCamera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="Character" type="KinematicBody" parent="."]
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 kinematic_handler = SubResource( 11 )
 
 [node name="CharacterCollision" type="CollisionShape" parent="Character"]

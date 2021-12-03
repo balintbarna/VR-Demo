@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "KinematicBodyMover",
 "class": "FlatWorldPhysicsKinematicMover",
 "language": "GDScript",
-"path": "res://player/FlatWorldPhysicsKinematicMover.gd"
+"path": "res://player/vr-head/FlatWorldPhysicsKinematicMover.gd"
 }, {
 "base": "KinematicBodyMover",
 "class": "FreeLookKinematicMover",
 "language": "GDScript",
-"path": "res://player/FreeLookKinematicMover.gd"
+"path": "res://player/vr-head/FreeLookKinematicMover.gd"
 }, {
 "base": "ResourceFormatLoader",
 "class": "HTerrainDataLoader",
@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "ARVRCamera",
 "class": "HeadCamera",
 "language": "GDScript",
-"path": "res://player/HeadCamera.gd"
+"path": "res://player/vr-head/HeadCamera.gd"
 }, {
 "base": "Resource",
 "class": "Joypad",
@@ -42,7 +42,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "KinematicBodyMover",
 "language": "GDScript",
-"path": "res://player/KinematicBodyMover.gd"
+"path": "res://player/vr-head/KinematicBodyMover.gd"
 }, {
 "base": "Resource",
 "class": "NumericAngularDerivator",
