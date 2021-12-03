@@ -48,8 +48,9 @@ material = SubResource( 17 )
 radius = 0.015
 height = 0.03
 
-[sub_resource type="SphereMesh" id=19]
-radius = 0.015
+[sub_resource type="CylinderMesh" id=29]
+top_radius = 0.0
+bottom_radius = 0.015
 height = 0.03
 
 [sub_resource type="SpatialMaterial" id=20]
@@ -126,7 +127,8 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="NeckPoint/ChestPoint/StomachPoint"]
-mesh = SubResource( 19 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 29 )
 material/0 = SubResource( 20 )
 
 [node name="GenitaliaPoint" type="Spatial" parent="NeckPoint/ChestPoint/StomachPoint"]
