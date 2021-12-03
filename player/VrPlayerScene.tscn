@@ -2,8 +2,8 @@
 
 [ext_resource path="res://player/VrOrigin.gd" type="Script" id=1]
 [ext_resource path="res://player/HeadCamera.tscn" type="PackedScene" id=2]
-[ext_resource path="res://player/RightController.tscn" type="PackedScene" id=3]
-[ext_resource path="res://player/LeftController.tscn" type="PackedScene" id=4]
+[ext_resource path="res://player/vr-controllers/RightController.tscn" type="PackedScene" id=3]
+[ext_resource path="res://player/vr-controllers/LeftController.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CylinderMesh" id=5]
 top_radius = 0.05

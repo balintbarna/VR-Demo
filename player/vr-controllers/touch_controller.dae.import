@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/touch_controller.dae-d504d059652350c8bb4a73c32519d0b5.scn"
+path="res://.import/touch_controller.dae-e28976203cdfa0b4d8495fa7b80b8227.scn"
 
 [deps]
 
-source_file="res://player/touch_controller.dae"
-dest_files=[ "res://.import/touch_controller.dae-d504d059652350c8bb4a73c32519d0b5.scn" ]
+source_file="res://player/vr-controllers/touch_controller.dae"
+dest_files=[ "res://.import/touch_controller.dae-e28976203cdfa0b4d8495fa7b80b8227.scn" ]
 
 [params]
 

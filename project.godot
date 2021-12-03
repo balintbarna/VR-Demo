@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Joypad",
 "language": "GDScript",
-"path": "res://player/Joypad.gd"
+"path": "res://player/vr-controllers/Joypad.gd"
 }, {
 "base": "Resource",
 "class": "KinematicBodyMover",
@@ -87,7 +87,7 @@ _global_script_classes=[ {
 "base": "ARVRController",
 "class": "VrController",
 "language": "GDScript",
-"path": "res://player/VrController.gd"
+"path": "res://player/vr-controllers/VrController.gd"
 }, {
 "base": "ARVROrigin",
 "class": "VrOrigin",
