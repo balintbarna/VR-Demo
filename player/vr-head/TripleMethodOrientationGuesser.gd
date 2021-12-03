@@ -1,25 +1,26 @@
-extends Spatial
+extends VrCharacterOrientationGuesser
+class_name TripleMethodOrientationGuesser
 
 
-func _process(_delta):
-    global_transform.basis = get_compound_frame()
+func process(delta, body: KinematicBody):
+    body.global_transform.basis = get_compound_frame(body.global_transform.origin)
 
 
-func get_compound_frame():
-    var flattened_direction_in_global_frame = get_compound_direction()
+func get_compound_frame(reference_body_global_position: Vector3):
+    var flattened_direction_in_global_frame = get_compound_direction(reference_body_global_position)
     var rotation = ExtraMath.get_vectors_rotation(Vector3.FORWARD, flattened_direction_in_global_frame)
     return Basis(rotation.normalized(), rotation.length())
 
 
-func get_compound_direction():
+func get_compound_direction(reference_body_global_position: Vector3):
     var head = get_head()
-    var compound = get_hands_displacement_vector() + get_hand_pair_forward_direction()
+    var compound = get_hands_displacement_vector(reference_body_global_position) + get_hand_pair_forward_direction()
     if head.is_upright():
         compound += head.get_forward_direction()
     var compound_direction_in_origin_frame = get_origin_frame().inverse() * compound
     compound_direction_in_origin_frame.y = 0 # flatten
-    var flattened_direction_in_global_frame = get_origin_frame() * compound_direction_in_origin_frame.normalized()
-    return flattened_direction_in_global_frame
+    var flattened_direction_in_global_frame = get_origin_frame() * compound_direction_in_origin_frame
+    return flattened_direction_in_global_frame.normalized()
 
 
 func get_hand_pair_forward_direction():
@@ -34,11 +35,10 @@ func get_hand_pair_forward_direction():
     return left_to_right_vector_in_global.rotated(up_of_vr_origin_in_global, PI/2)
 
 
-func get_hands_displacement_vector():
+func get_hands_displacement_vector(reference_body_global_position: Vector3):
     var left_global = get_left_hand().global_transform.origin
     var right_global = get_right_hand().global_transform.origin
-    var reference_global = global_transform.origin
-    return left_global - reference_global + right_global - reference_global
+    return left_global - reference_body_global_position + right_global - reference_body_global_position
 
 
 func get_origin_frame():
@@ -59,3 +59,4 @@ func get_head():
 
 func get_origin():
     return Globals.origin
+

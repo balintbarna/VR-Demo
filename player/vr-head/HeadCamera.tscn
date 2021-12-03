@@ -1,11 +1,14 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://player/vr-head/CharacterCollision.gd" type="Script" id=1]
 [ext_resource path="res://player/vr-head/HeadCamera.gd" type="Script" id=2]
 [ext_resource path="res://player/vr-head/Character.gd" type="Script" id=3]
 [ext_resource path="res://player/vr-head/FlatWorldPhysicsKinematicMover.gd" type="Script" id=4]
-[ext_resource path="res://player/vr-head/NeckPoint.gd" type="Script" id=5]
+[ext_resource path="res://player/vr-head/TripleMethodOrientationGuesser.gd" type="Script" id=5]
 [ext_resource path="res://player/WakeUpArea.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=30]
+script = ExtResource( 5 )
 
 [sub_resource type="Resource" id=11]
 script = ExtResource( 4 )
@@ -38,19 +41,18 @@ material = SubResource( 15 )
 radius = 0.015
 height = 0.03
 
+[sub_resource type="CylinderMesh" id=29]
+top_radius = 0.0
+bottom_radius = 0.015
+height = 0.03
+
 [sub_resource type="SpatialMaterial" id=17]
 params_diffuse_mode = 4
 params_specular_mode = 4
 albedo_color = Color( 0, 0.513726, 0.776471, 1 )
 
 [sub_resource type="SphereMesh" id=18]
-material = SubResource( 17 )
 radius = 0.015
-height = 0.03
-
-[sub_resource type="CylinderMesh" id=29]
-top_radius = 0.0
-bottom_radius = 0.015
 height = 0.03
 
 [sub_resource type="SpatialMaterial" id=20]
@@ -95,6 +97,7 @@ script = ExtResource( 2 )
 
 [node name="Character" type="KinematicBody" parent="."]
 script = ExtResource( 3 )
+orientation_guesser = SubResource( 30 )
 kinematic_handler = SubResource( 11 )
 
 [node name="CharacterCollision" type="CollisionShape" parent="Character"]
@@ -108,46 +111,46 @@ script = ExtResource( 6 )
 [node name="CollisionShape" type="CollisionShape" parent="Character/CharacterCollision/WakeUpArea"]
 shape = SubResource( 28 )
 
-[node name="NeckPoint" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
-script = ExtResource( 5 )
+[node name="NeckPoint" type="Spatial" parent="Character"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="NeckPoint"]
+[node name="MeshInstance" type="MeshInstance" parent="Character/NeckPoint"]
 mesh = SubResource( 16 )
 material/0 = null
 
-[node name="ChestPoint" type="Spatial" parent="NeckPoint"]
+[node name="ChestPoint" type="Spatial" parent="Character/NeckPoint"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="NeckPoint/ChestPoint"]
-mesh = SubResource( 18 )
-material/0 = null
-
-[node name="StomachPoint" type="Spatial" parent="NeckPoint/ChestPoint"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
-
-[node name="MeshInstance" type="MeshInstance" parent="NeckPoint/ChestPoint/StomachPoint"]
+[node name="MeshInstance2" type="MeshInstance" parent="Character/NeckPoint/ChestPoint"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
 mesh = SubResource( 29 )
-material/0 = SubResource( 20 )
+skeleton = NodePath("")
+material/0 = SubResource( 17 )
 
-[node name="GenitaliaPoint" type="Spatial" parent="NeckPoint/ChestPoint/StomachPoint"]
+[node name="StomachPoint" type="Spatial" parent="Character/NeckPoint/ChestPoint"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint"]
+[node name="MeshInstance" type="MeshInstance" parent="Character/NeckPoint/ChestPoint/StomachPoint"]
+mesh = SubResource( 18 )
+material/0 = SubResource( 20 )
+
+[node name="GenitaliaPoint" type="Spatial" parent="Character/NeckPoint/ChestPoint/StomachPoint"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Character/NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint"]
 mesh = SubResource( 21 )
 material/0 = SubResource( 22 )
 
-[node name="KneeHeight" type="Spatial" parent="NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0 )
+[node name="KneeHeight" type="Spatial" parent="Character/NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint/KneeHeight"]
+[node name="MeshInstance" type="MeshInstance" parent="Character/NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint/KneeHeight"]
 mesh = SubResource( 23 )
 material/0 = SubResource( 24 )
 
-[node name="FeetHeight" type="Spatial" parent="NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint/KneeHeight"]
+[node name="FeetHeight" type="Spatial" parent="Character/NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint/KneeHeight"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint/KneeHeight/FeetHeight"]
+[node name="MeshInstance" type="MeshInstance" parent="Character/NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint/KneeHeight/FeetHeight"]
 mesh = SubResource( 25 )
 material/0 = SubResource( 26 )

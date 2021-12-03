@@ -1,10 +1,7 @@
 extends CollisionShape
 
 
-onready var GLOBAL_ROTATION = global_transform.basis
-
 func _physics_process(_delta: float) -> void:
-    reset_orientation()
     set_height_between_origin_and_camera()
     scale_to_camera_height()
 
@@ -15,10 +12,6 @@ func set_height_between_origin_and_camera() -> void:
     position_in_origin_frame.y /= 2.0
     var position_in_global_frame = get_origin().global_transform * position_in_origin_frame
     global_transform.origin = position_in_global_frame
-
-
-func reset_orientation() -> void:
-    global_transform.basis = GLOBAL_ROTATION
 
 
 func scale_to_camera_height() -> void:

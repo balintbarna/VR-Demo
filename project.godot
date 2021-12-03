@@ -89,6 +89,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://general/RigidBodyGrabHandler.gd"
 }, {
+"base": "VrCharacterOrientationGuesser",
+"class": "TripleMethodOrientationGuesser",
+"language": "GDScript",
+"path": "res://player/vr-head/TripleMethodOrientationGuesser.gd"
+}, {
+"base": "Resource",
+"class": "VrCharacterOrientationGuesser",
+"language": "GDScript",
+"path": "res://player/vr-head/VrCharacterOrientationGuesser.gd"
+}, {
 "base": "ARVRController",
 "class": "VrController",
 "language": "GDScript",
@@ -116,6 +126,8 @@ _global_script_class_icons={
 "QuestButtons": "",
 "QuestConfig": "",
 "RigidBodyGrabHandler": "",
+"TripleMethodOrientationGuesser": "",
+"VrCharacterOrientationGuesser": "",
 "VrController": "",
 "VrOrigin": ""
 }
