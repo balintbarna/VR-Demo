@@ -6,8 +6,8 @@ export var kinematic_handler: Resource
 
 
 func _physics_process(delta: float):
-    (kinematic_handler as KinematicBodyMover).process(delta, self)
     (orientation_guesser as VrCharacterOrientationGuesser).process(delta, self)
+    (kinematic_handler as KinematicBodyMover).process(delta, self)
 
 
 func swap_mover():
