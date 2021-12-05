@@ -2,8 +2,10 @@ extends VrCharacterOrientationGuesser
 class_name TripleMethodOrientationGuesser
 
 
-func process(delta, body: KinematicBody):
+func process(_delta, body: KinematicBody):
+    var old_scale = body.scale
     body.global_transform.basis = get_compound_frame(body.global_transform.origin)
+    body.scale = old_scale
 
 
 func get_compound_frame(reference_body_global_position: Vector3):

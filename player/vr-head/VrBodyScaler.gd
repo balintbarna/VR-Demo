@@ -1,5 +1,5 @@
 extends Resource
-class_name VrCharacterOrientationGuesser
+class_name VrBodyScaler
 
 
 func process(_delta, _body: KinematicBody):
