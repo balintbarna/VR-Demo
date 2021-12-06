@@ -24,16 +24,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/vr-head/FreeLookKinematicMover.gd"
 }, {
-"base": "ResourceFormatLoader",
-"class": "HTerrainDataLoader",
-"language": "GDScript",
-"path": "res://addons/zylann.hterrain/hterrain_resource_loader.gd"
-}, {
-"base": "ResourceFormatSaver",
-"class": "HTerrainDataSaver",
-"language": "GDScript",
-"path": "res://addons/zylann.hterrain/hterrain_resource_saver.gd"
-}, {
 "base": "ARVRCamera",
 "class": "HeadCamera",
 "language": "GDScript",
@@ -123,8 +113,6 @@ _global_script_class_icons={
 "ExtraMath": "",
 "FlatWorldPhysicsKinematicMover": "",
 "FreeLookKinematicMover": "",
-"HTerrainDataLoader": "",
-"HTerrainDataSaver": "",
 "HeadCamera": "",
 "Joypad": "",
 "KinematicBodyMover": "",
@@ -164,10 +152,6 @@ gdscript/warnings/unsafe_property_access=true
 gdscript/warnings/unsafe_method_access=true
 gdscript/warnings/unsafe_cast=true
 gdscript/warnings/unsafe_call_argument=true
-
-[editor_plugins]
-
-enabled=PoolStringArray( "res://addons/zylann.hterrain/plugin.cfg" )
 
 [gdnative]
 
