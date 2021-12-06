@@ -24,7 +24,11 @@ func set_height(value):
     if collision_shape.shape is CapsuleShape:
         # warning-ignore:UNSAFE_CAST
         var shape = collision_shape.shape as CapsuleShape
-        shape.height = value - 2*shape.radius
-        collision_shape.translation.y = -value / 2.0
+        shape.height = value - shape.radius
+        # total height of the shape will be a radius more than the target height,
+        # the center of shape should be halfway of the height
+        # but the top of the shape should be a radius above
+        # the character (eye-level) point
+        collision_shape.translation.y = -value / 2.0 + shape.radius / 2.0
     else:
         push_error("WRONG SHAPE")
