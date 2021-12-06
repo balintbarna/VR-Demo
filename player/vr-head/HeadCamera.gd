@@ -27,5 +27,5 @@ func get_forward_direction() -> Vector3:
 
 
 func is_upright() -> bool:
-    var up_in_origin_frame = transform.basis.y.normalized()
+    var up_in_origin_frame = transform.basis.y
     return up_in_origin_frame.y > 0
