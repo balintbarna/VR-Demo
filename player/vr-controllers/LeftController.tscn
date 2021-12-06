@@ -5,7 +5,7 @@
 [ext_resource path="res://player/vr-controllers/VrController.gd" type="Script" id=3]
 [ext_resource path="res://player/WakeUpArea.gd" type="Script" id=4]
 [ext_resource path="res://player/vr-controllers/HandDebugMesh.tres" type="CubeMesh" id=5]
-[ext_resource path="res://player/vr-controllers/touch_controller.dae" type="PackedScene" id=6]
+[ext_resource path="res://addons/godot_ovrmobile/example_scenes/touch_controller.dae" type="PackedScene" id=6]
 
 [sub_resource type="SpatialMaterial" id=3]
 params_diffuse_mode = 4
@@ -19,7 +19,7 @@ radius = 0.1
 script = ExtResource( 3 )
 
 [node name="TouchController" parent="." instance=ExtResource( 6 )]
-transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0.135 )

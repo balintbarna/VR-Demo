@@ -4,7 +4,7 @@
 [ext_resource path="res://player/WakeUpArea.gd" type="Script" id=2]
 [ext_resource path="res://player/vr-controllers/GrabArea.tscn" type="PackedScene" id=3]
 [ext_resource path="res://player/vr-controllers/HandDebugMesh.tres" type="CubeMesh" id=4]
-[ext_resource path="res://player/vr-controllers/touch_controller.dae" type="PackedScene" id=5]
+[ext_resource path="res://addons/godot_ovrmobile/example_scenes/touch_controller.dae" type="PackedScene" id=5]
 
 [sub_resource type="SpatialMaterial" id=4]
 params_diffuse_mode = 4
