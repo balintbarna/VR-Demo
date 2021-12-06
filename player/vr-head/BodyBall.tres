@@ -1,0 +1,5 @@
+[gd_resource type="SphereMesh" format=2]
+
+[resource]
+radius = 0.015
+height = 0.03

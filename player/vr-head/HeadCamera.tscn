@@ -1,5 +1,6 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=21 format=2]
 
+[ext_resource path="res://player/vr-head/BodyBall.tres" type="SphereMesh" id=1]
 [ext_resource path="res://player/vr-head/HeadCamera.gd" type="Script" id=2]
 [ext_resource path="res://player/vr-head/Character.gd" type="Script" id=3]
 [ext_resource path="res://player/vr-head/FlatWorldPhysicsKinematicMover.gd" type="Script" id=4]
@@ -28,21 +29,17 @@ MASS_KG = 70
 ROTATION_SPEED_RPS = 6.28319
 
 [sub_resource type="CapsuleShape" id=10]
-radius = 0.2
-height = 1.4
+radius = 0.15
+height = 1.5
 
 [sub_resource type="SphereShape" id=28]
 radius = 0.9
 
-[sub_resource type="SpatialMaterial" id=15]
-params_diffuse_mode = 4
-params_specular_mode = 4
-albedo_color = Color( 0.647059, 0, 0.396078, 1 )
+[sub_resource type="SpatialMaterial" id=33]
+albedo_color = Color( 1, 0.92549, 0.305882, 1 )
 
-[sub_resource type="SphereMesh" id=16]
-material = SubResource( 15 )
-radius = 0.015
-height = 0.03
+[sub_resource type="SpatialMaterial" id=32]
+albedo_color = Color( 0.682353, 0.156863, 0.329412, 1 )
 
 [sub_resource type="CylinderMesh" id=29]
 top_radius = 0.0
@@ -54,40 +51,20 @@ params_diffuse_mode = 4
 params_specular_mode = 4
 albedo_color = Color( 0, 0.513726, 0.776471, 1 )
 
-[sub_resource type="SphereMesh" id=18]
-radius = 0.015
-height = 0.03
-
 [sub_resource type="SpatialMaterial" id=20]
 params_diffuse_mode = 4
 params_specular_mode = 4
 albedo_color = Color( 0, 0.670588, 0.25098, 1 )
-
-[sub_resource type="SphereMesh" id=21]
-radius = 0.015
-height = 0.03
-radial_segments = 16
-rings = 8
 
 [sub_resource type="SpatialMaterial" id=22]
 params_diffuse_mode = 4
 params_specular_mode = 4
 albedo_color = Color( 0.694118, 0.878431, 0, 1 )
 
-[sub_resource type="SphereMesh" id=23]
-radius = 0.015
-height = 0.03
-
 [sub_resource type="SpatialMaterial" id=24]
 params_diffuse_mode = 4
 params_specular_mode = 4
 albedo_color = Color( 0.886275, 0.568627, 0, 1 )
-
-[sub_resource type="SphereMesh" id=25]
-radius = 0.015
-height = 0.03
-radial_segments = 16
-rings = 8
 
 [sub_resource type="SpatialMaterial" id=26]
 params_diffuse_mode = 4
@@ -115,46 +92,53 @@ script = ExtResource( 6 )
 [node name="CollisionShape" type="CollisionShape" parent="Character/WakeUpArea"]
 shape = SubResource( 28 )
 
-[node name="NeckPoint" type="Spatial" parent="Character"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.1 )
+[node name="HeadCenterPoint" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.08 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Character/NeckPoint"]
-mesh = SubResource( 16 )
-material/0 = null
+[node name="MeshInstance" type="MeshInstance" parent="HeadCenterPoint"]
+mesh = ExtResource( 1 )
+material/0 = SubResource( 33 )
 
-[node name="ChestPoint" type="Spatial" parent="Character/NeckPoint"]
+[node name="NeckPoint" type="Spatial" parent="HeadCenterPoint"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="HeadCenterPoint/NeckPoint"]
+mesh = ExtResource( 1 )
+material/0 = SubResource( 32 )
+
+[node name="ChestPoint" type="Spatial" parent="HeadCenterPoint/NeckPoint"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
 
-[node name="MeshInstance2" type="MeshInstance" parent="Character/NeckPoint/ChestPoint"]
+[node name="MeshInstance2" type="MeshInstance" parent="HeadCenterPoint/NeckPoint/ChestPoint"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
 mesh = SubResource( 29 )
 skeleton = NodePath("")
 material/0 = SubResource( 17 )
 
-[node name="StomachPoint" type="Spatial" parent="Character/NeckPoint/ChestPoint"]
+[node name="StomachPoint" type="Spatial" parent="HeadCenterPoint/NeckPoint/ChestPoint"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Character/NeckPoint/ChestPoint/StomachPoint"]
-mesh = SubResource( 18 )
+[node name="MeshInstance" type="MeshInstance" parent="HeadCenterPoint/NeckPoint/ChestPoint/StomachPoint"]
+mesh = ExtResource( 1 )
 material/0 = SubResource( 20 )
 
-[node name="GenitaliaPoint" type="Spatial" parent="Character/NeckPoint/ChestPoint/StomachPoint"]
+[node name="GenitaliaPoint" type="Spatial" parent="HeadCenterPoint/NeckPoint/ChestPoint/StomachPoint"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Character/NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint"]
-mesh = SubResource( 21 )
+[node name="MeshInstance" type="MeshInstance" parent="HeadCenterPoint/NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint"]
+mesh = ExtResource( 1 )
 material/0 = SubResource( 22 )
 
-[node name="KneeHeight" type="Spatial" parent="Character/NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint"]
+[node name="KneeHeight" type="Spatial" parent="HeadCenterPoint/NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Character/NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint/KneeHeight"]
-mesh = SubResource( 23 )
+[node name="MeshInstance" type="MeshInstance" parent="HeadCenterPoint/NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint/KneeHeight"]
+mesh = ExtResource( 1 )
 material/0 = SubResource( 24 )
 
-[node name="FeetHeight" type="Spatial" parent="Character/NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint/KneeHeight"]
+[node name="FeetHeight" type="Spatial" parent="HeadCenterPoint/NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint/KneeHeight"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Character/NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint/KneeHeight/FeetHeight"]
-mesh = SubResource( 25 )
+[node name="MeshInstance" type="MeshInstance" parent="HeadCenterPoint/NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint/KneeHeight/FeetHeight"]
+mesh = ExtResource( 1 )
 material/0 = SubResource( 26 )
