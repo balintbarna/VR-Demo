@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://player/vr-head/BodyBall.tres" type="SphereMesh" id=1]
 [ext_resource path="res://player/vr-head/HeadCamera.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://player/vr-head/TripleMethodOrientationGuesser.gd" type="Script" id=5]
 [ext_resource path="res://player/WakeUpArea.gd" type="Script" id=6]
 [ext_resource path="res://player/vr-head/OriginToHeadHeightScaler.gd" type="Script" id=7]
+[ext_resource path="res://player/vr-head/NeckPoint.gd" type="Script" id=8]
 
 [sub_resource type="Resource" id=30]
 script = ExtResource( 5 )
@@ -37,6 +38,9 @@ radius = 0.9
 
 [sub_resource type="SpatialMaterial" id=33]
 albedo_color = Color( 1, 0.92549, 0.305882, 1 )
+
+[sub_resource type="Resource" id=34]
+script = ExtResource( 7 )
 
 [sub_resource type="SpatialMaterial" id=32]
 albedo_color = Color( 0.682353, 0.156863, 0.329412, 1 )
@@ -101,6 +105,9 @@ material/0 = SubResource( 33 )
 
 [node name="NeckPoint" type="Spatial" parent="HeadCenterPoint"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
+script = ExtResource( 8 )
+orientation_giver_path = NodePath("../../Character")
+body_scaler = SubResource( 34 )
 
 [node name="MeshInstance" type="MeshInstance" parent="HeadCenterPoint/NeckPoint"]
 mesh = ExtResource( 1 )

@@ -2,7 +2,7 @@ extends VrBodyScaler
 class_name OriginToHeadHeightScaler
 
 
-func process(_delta, body: KinematicBody):
+func process(_delta, body: Spatial):
         var origin_frame_inversed = get_origin_frame().inverse()
         var head_in_origin_frame = origin_frame_inversed * body.global_transform.origin
         var target_height = head_in_origin_frame.y
@@ -10,7 +10,7 @@ func process(_delta, body: KinematicBody):
             # warning-ignore:UNSAFE_METHOD_ACCESS
             body.set_height(target_height)
         else:
-            push_error("no set_height method foudn")
+            push_error("no set_height method found")
 
 
 func get_origin_frame():
