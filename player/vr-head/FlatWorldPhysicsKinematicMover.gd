@@ -36,11 +36,11 @@ func process(delta: float, body: KinematicBody):
     var origin = Globals.origin as VrOrigin
     apply_rotation_and_fix_offset(delta, origin)
     apply_movement(delta, origin, body)
-    follow_body_with_camera(origin, body)
+    follow_body_with_origin(origin, body)
 
 
-func follow_body_with_camera(origin: VrOrigin, body: KinematicBody) -> void:
-    var offset = body.global_transform.origin - origin.head.global_transform.origin
+func follow_body_with_origin(origin: VrOrigin, body: KinematicBody) -> void:
+    var offset = body.global_transform.origin - (body.get_parent() as Spatial).global_transform.origin
     body.translation = Vector3()
     origin.global_translate(offset)
 
