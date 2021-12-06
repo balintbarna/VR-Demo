@@ -87,7 +87,8 @@ depth = 5.0
 material = SubResource( 4 )
 
 [node name="OmniLight" type="OmniLight" parent="World/Room"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03954, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.835595, 0 )
+light_bake_mode = 0
 shadow_enabled = true
 
 [node name="LoadingText" parent="World/Room" instance=ExtResource( 6 )]
@@ -106,6 +107,7 @@ portal_color = Color( 1, 1, 0, 1 )
 
 [node name="CSGBox" type="CSGBox" parent="World/FloatingBox"]
 transform = Transform( 0.853553, -0.146447, 0.5, 0.5, 0.5, -0.707107, -0.146447, 0.853553, 0.5, -5, 0, 0 )
+use_in_baked_light = true
 width = 1.0
 height = 1.0
 depth = 1.0
@@ -113,5 +115,6 @@ material = SubResource( 7 )
 
 [node name="SpotLight" type="SpotLight" parent="World/FloatingBox"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.14109, -0.0319109, 1.35482 )
+light_bake_mode = 0
 
 [node name="ScaryText" parent="World" instance=ExtResource( 7 )]

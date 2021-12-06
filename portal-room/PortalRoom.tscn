@@ -34,6 +34,13 @@ environment = SubResource( 2 )
 [node name="Room" type="Spatial" parent="World"]
 script = ExtResource( 1 )
 
+[node name="OmniLight" type="OmniLight" parent="World/Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70325, 0 )
+light_energy = 0.3
+light_bake_mode = 0
+shadow_enabled = true
+omni_range = 10.0
+
 [node name="RoomBox" type="CSGCombiner" parent="World/Room"]
 use_in_baked_light = true
 use_collision = true
@@ -46,12 +53,6 @@ width = 10.0
 height = 4.0
 depth = 10.0
 material = SubResource( 3 )
-
-[node name="OmniLight" type="OmniLight" parent="World/Room"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70325, 0 )
-light_energy = 0.3
-shadow_enabled = true
-omni_range = 10.0
 
 [node name="AudioBall" parent="World/Room" instance=ExtResource( 4 )]
 transform = Transform( 0.0671098, 0, -0.997746, 0, 1, 0, 0.997746, 0, 0.0671098, 0.163467, 0.198113, -0.0250366 )
