@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://sword/Sword.gd" type="Script" id=1]
-[ext_resource path="res://sword/Steel.tres" type="Material" id=2]
+[ext_resource path="res://general/sword/Sword.gd" type="Script" id=1]
+[ext_resource path="res://general/sword/Steel.tres" type="Material" id=2]
 
 [sub_resource type="SpatialMaterial" id=5]
 params_diffuse_mode = 4

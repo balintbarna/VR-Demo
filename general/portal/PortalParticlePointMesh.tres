@@ -1,6 +1,6 @@
 [gd_resource type="PointMesh" load_steps=2 format=2]
 
-[ext_resource path="res://portal/small-portal/SmallPortalParticleMaterial.tres" type="Material" id=1]
+[ext_resource path="res://general/portal/small-portal/SmallPortalParticleMaterial.tres" type="Material" id=1]
 
 [resource]
 resource_local_to_scene = true

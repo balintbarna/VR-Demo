@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://portal/MagicAreaMaterial.tres" type="Material" id=1]
-[ext_resource path="res://portal/MagicParticles.gd" type="Script" id=2]
-[ext_resource path="res://portal/MagicMesh.gd" type="Script" id=3]
-[ext_resource path="res://portal/MagicArea.gd" type="Script" id=4]
-[ext_resource path="res://portal/MagicPortal.gd" type="Script" id=5]
-[ext_resource path="res://portal/PortalLabel.gd" type="Script" id=6]
-[ext_resource path="res://portal/small-portal/MagicAreaLight.gd" type="Script" id=7]
-[ext_resource path="res://portal/PortalParticlePointMesh.tres" type="PointMesh" id=8]
+[ext_resource path="res://general/portal/MagicAreaMaterial.tres" type="Material" id=1]
+[ext_resource path="res://general/portal/MagicParticles.gd" type="Script" id=2]
+[ext_resource path="res://general/portal/MagicMesh.gd" type="Script" id=3]
+[ext_resource path="res://general/portal/MagicArea.gd" type="Script" id=4]
+[ext_resource path="res://general/portal/MagicPortal.gd" type="Script" id=5]
+[ext_resource path="res://general/portal/PortalLabel.gd" type="Script" id=6]
+[ext_resource path="res://general/portal/small-portal/MagicAreaLight.gd" type="Script" id=7]
+[ext_resource path="res://general/portal/PortalParticlePointMesh.tres" type="PointMesh" id=8]
 
 [sub_resource type="SphereMesh" id=1]
 resource_local_to_scene = true
