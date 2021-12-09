@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://portal/MagicPortal.gd" type="Script" id=1]
 [ext_resource path="res://portal/MagicArea.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://portal/MagicMesh.gd" type="Script" id=6]
 [ext_resource path="res://portal/MagicParticles.gd" type="Script" id=7]
 [ext_resource path="res://portal/PortalParticlePointMesh.tres" type="PointMesh" id=8]
+[ext_resource path="res://portal/small-portal/MagicAreaLight.gd" type="Script" id=9]
 
 [sub_resource type="CubeMesh" id=26]
 size = Vector3( 1, 1, 1 )
@@ -71,6 +72,13 @@ damping = 0.2
 damping_random = 0.2
 scale_amount_random = 1.0
 script = ExtResource( 7 )
+
+[node name="MagicAreaLight" type="OmniLight" parent="MagicArea/MagicMesh"]
+transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+light_energy = 0.2
+light_indirect_energy = 0.0
+light_bake_mode = 0
+script = ExtResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="MagicArea"]
 shape = SubResource( 27 )

@@ -5,6 +5,7 @@ extends MeshInstance
 # warning-ignore:UNUSED_CLASS_VARIABLE
 var portal_color: Color setget set_portal_color, get_portal_color
 onready var p = $MagicParticles
+onready var l = $MagicAreaLight
 
 
 func set_portal_color(c: Color):
@@ -12,6 +13,10 @@ func set_portal_color(c: Color):
     mesh_material.albedo_color = Color(c.r, c.g, c.b, 0.7)
     if "portal_color" in p:
         p.portal_color = c
+    else:
+        push_error("property_not_found")
+    if "portal_color" in l:
+        l.portal_color = c
     else:
         push_error("property_not_found")
 
