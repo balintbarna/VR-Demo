@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://audio-ball/AudioBall.gd" type="Script" id=1]
+[ext_resource path="res://reusable/audio-ball/AudioBall.gd" type="Script" id=1]
 [ext_resource path="res://loading-room/Bossa-Antigua.mp3" type="AudioStream" id=2]
 
 [sub_resource type="SphereShape" id=12]
