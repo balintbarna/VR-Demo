@@ -23,5 +23,4 @@ valign = 1
 autowrap = true
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-use_in_baked_light = true
 texture = SubResource( 9 )

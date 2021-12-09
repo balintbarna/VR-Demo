@@ -35,14 +35,12 @@ audio_stream = ExtResource( 2 )
 shape = SubResource( 12 )
 
 [node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
-use_in_baked_light = true
 mesh = SubResource( 11 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 15 )
 
 [node name="MeshInstance" type="MeshInstance" parent="CollisionShape/MeshInstance"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.095, 0, 0 )
-use_in_baked_light = true
 mesh = SubResource( 13 )
 material/0 = SubResource( 14 )
 

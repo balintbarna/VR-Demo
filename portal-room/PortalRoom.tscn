@@ -42,11 +42,9 @@ shadow_enabled = true
 omni_range = 10.0
 
 [node name="RoomBox" type="CSGCombiner" parent="World/Room"]
-use_in_baked_light = true
 use_collision = true
 
 [node name="RoomBox" type="CSGBox" parent="World/Room/RoomBox"]
-use_in_baked_light = true
 use_collision = true
 invert_faces = true
 width = 10.0

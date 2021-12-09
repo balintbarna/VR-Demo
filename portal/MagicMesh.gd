@@ -9,8 +9,7 @@ onready var p = $MagicParticles
 
 func set_portal_color(c: Color):
     var mesh_material = get_active_material(0) as SpatialMaterial
-    mesh_material.albedo_color = Color(c.r, c.g, c.b, 0.04)
-    mesh_material.emission = c
+    mesh_material.albedo_color = Color(c.r, c.g, c.b, 0.7)
     if "portal_color" in p:
         p.portal_color = c
     else:

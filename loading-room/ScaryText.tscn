@@ -23,7 +23,6 @@ valign = 1
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 0, 0 )
-use_in_baked_light = true
 modulate = Color( 0.733333, 0.0901961, 0.0901961, 1 )
 billboard = 2
 double_sided = false

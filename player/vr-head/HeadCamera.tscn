@@ -149,3 +149,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0 )
 [node name="MeshInstance" type="MeshInstance" parent="HeadCenterPoint/NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint/KneeHeight/FeetHeight"]
 mesh = ExtResource( 1 )
 material/0 = SubResource( 26 )
+
+[connection signal="body_entered" from="Character/WakeUpArea" to="Character/WakeUpArea" method="wake_up"]
+[connection signal="body_exited" from="Character/WakeUpArea" to="Character/WakeUpArea" method="let_sleep"]

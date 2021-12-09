@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://portal/MagicPortal.gd" type="Script" id=1]
 [ext_resource path="res://portal/MagicArea.gd" type="Script" id=2]
@@ -12,19 +12,6 @@
 [sub_resource type="CubeMesh" id=26]
 size = Vector3( 1, 1, 1 )
 
-[sub_resource type="ParticlesMaterial" id=30]
-lifetime_randomness = 1.0
-emission_shape = 2
-emission_box_extents = Vector3( 0.2, 0.2, 0.2 )
-direction = Vector3( 0, 0, 0 )
-spread = 20.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 1.0
-initial_velocity_random = 0.2
-damping = 0.2
-damping_random = 0.2
-scale_random = 1.0
-
 [sub_resource type="BoxShape" id=27]
 extents = Vector3( 0.5, 0.5, 0.2 )
 
@@ -37,17 +24,14 @@ script = ExtResource( 1 )
 portal_color = Color( 1, 1, 1, 1 )
 
 [node name="FullBody" type="CSGCombiner" parent="."]
-use_in_baked_light = true
 use_collision = true
 
 [node name="Base" type="CSGBox" parent="FullBody"]
-use_in_baked_light = true
 height = 3.0
 depth = 1.0
 material = ExtResource( 5 )
 
 [node name="Cutout" type="CSGBox" parent="FullBody"]
-use_in_baked_light = true
 operation = 2
 width = 1.0
 depth = 1.0
@@ -55,7 +39,6 @@ material = ExtResource( 5 )
 
 [node name="Ramp" type="CSGPolygon" parent="FullBody"]
 transform = Transform( -4.37114e-08, 0, 1.5, 0, 0.5, 0, -1, 0, -6.55671e-08, 0.75, -1.5, 1.5 )
-use_in_baked_light = true
 polygon = PoolVector2Array( 0, 0, 1, 0, 1, 1 )
 material = ExtResource( 5 )
 
@@ -64,20 +47,29 @@ transform = Transform( 0.99, 0, 0, 0, 1.99, 0, 0, 0, 0.69, 0, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="MagicMesh" type="MeshInstance" parent="MagicArea"]
-use_in_baked_light = true
 mesh = SubResource( 26 )
 material/0 = ExtResource( 3 )
 script = ExtResource( 6 )
 
-[node name="MagicParticles" type="Particles" parent="MagicArea/MagicMesh"]
+[node name="MagicParticles" type="CPUParticles" parent="MagicArea/MagicMesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.131085 )
-amount = 10
+amount = 20
 lifetime = 2.0
 preprocess = 0.1
 explosiveness = 0.1
 randomness = 1.0
-process_material = SubResource( 30 )
-draw_pass_1 = ExtResource( 8 )
+lifetime_randomness = 1.0
+mesh = ExtResource( 8 )
+emission_shape = 2
+emission_box_extents = Vector3( 0.2, 0.2, 0.2 )
+direction = Vector3( 0, 0, 0 )
+spread = 20.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+initial_velocity_random = 0.2
+damping = 0.2
+damping_random = 0.2
+scale_amount_random = 1.0
 script = ExtResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="MagicArea"]
@@ -103,6 +95,5 @@ script = ExtResource( 4 )
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0.51 )
-use_in_baked_light = true
 double_sided = false
 texture = SubResource( 38 )
