@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://general/sword/Sword.gd" type="Script" id=1]
 [ext_resource path="res://general/sword/Steel.tres" type="Material" id=2]
 [ext_resource path="res://general/sword/Wood.tres" type="Material" id=3]
+[ext_resource path="res://general/grabbing/RigidBodyGrabHandler.gd" type="Script" id=4]
 
 [sub_resource type="CylinderShape" id=6]
 radius = 0.0205562
@@ -65,5 +66,6 @@ shape = SubResource( 4 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.339437, 0 )
 shape = SubResource( 7 )
 
-[node name="GrabPoint" type="Spatial" parent="."]
+[node name="RigidBodyGrabHandler" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0 )
+script = ExtResource( 4 )
