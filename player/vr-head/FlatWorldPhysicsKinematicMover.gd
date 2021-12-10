@@ -1,4 +1,4 @@
-extends KinematicBodyMover
+extends KinematicVrBodyMover
 class_name FlatWorldPhysicsKinematicMover
 
 
@@ -32,30 +32,34 @@ var max_acceleration = NORMAL_ACCELERATION_MPS2
 var velocity = Vector3()
 
 
-func process(delta: float, body: KinematicBody):
+func _physics_process(delta: float):
     var origin = Globals.origin as VrOrigin
     apply_rotation_and_fix_offset(delta, origin)
-    apply_movement(delta, origin, body)
-    follow_body_with_origin(origin, body)
+    apply_movement(delta, origin)
+    follow_body_with_origin(origin)
 
 
-func follow_body_with_origin(origin: VrOrigin, body: KinematicBody) -> void:
-    var offset = body.global_transform.origin - (body.get_parent() as Spatial).global_transform.origin
-    body.translation = Vector3()
-    origin.global_translate(offset)
+func follow_body_with_origin(origin: VrOrigin) -> void:
+    var kinematic_body_parent = kinematic_body.get_parent()
+    if kinematic_body_parent is Spatial:
+        var offset = kinematic_body.global_transform.origin - kinematic_body_parent.global_transform.origin
+        kinematic_body.translation = Vector3()
+        origin.global_translate(offset)
+    else:
+        push_error("kinematic body parent is not Spatial")
 
 
-func apply_movement(dt: float, origin: VrOrigin, body) -> void:
+func apply_movement(dt: float, origin: VrOrigin) -> void:
     calculate_sprint()
-    apply_dampening(dt, body)
+    apply_dampening(dt)
     velocity.y -= GRAVITY_ACCELERATION_MPS2 * dt # apply gravity
-    accelerate_from_inputs(dt, origin, body)
-    velocity = body.move_and_slide_with_snap(velocity, SNAP_VECTOR, UP_DIRECTION, STOP_ON_SLOPE, MAX_SLIDES, FLOOR_MAX_ANGLE, INFINITE_INERTIA)
+    accelerate_from_inputs(dt, origin)
+    velocity = kinematic_body.move_and_slide_with_snap(velocity, SNAP_VECTOR, UP_DIRECTION, STOP_ON_SLOPE, MAX_SLIDES, FLOOR_MAX_ANGLE, INFINITE_INERTIA)
 
 
-func accelerate_from_inputs(dt: float, origin: VrOrigin, body: KinematicBody) -> void:
-    if body.is_on_floor():
-        var input_vector = get_velocity_input_vector(body, origin.left)
+func accelerate_from_inputs(dt: float, origin: VrOrigin) -> void:
+    if kinematic_body.is_on_floor():
+        var input_vector = get_velocity_input_vector(origin.left)
         input_vector.y = 0
         if input_vector.length() > 1:
             input_vector = input_vector.normalized()
@@ -74,9 +78,9 @@ func accelerate_from_inputs(dt: float, origin: VrOrigin, body: KinematicBody) ->
             velocity.y = JUMP_SPEED_MPS
 
 
-func apply_dampening(dt: float, body: KinematicBody) -> void:
+func apply_dampening(dt: float) -> void:
     if velocity.length() > CUTOFF_VELOCITY_MPS:
-        var coeffs = DAMPING_COEFFICIENT_AIR_NSPM + (DAMPING_COEFFICIENT_GROUND_NSPM if body.is_on_floor() else 0)
+        var coeffs = DAMPING_COEFFICIENT_AIR_NSPM + (DAMPING_COEFFICIENT_GROUND_NSPM if kinematic_body.is_on_floor() else 0)
         # F = c*v
         # F = m*a -> a = F/m
         # dV = a*dt
@@ -109,17 +113,17 @@ func apply_rotation(delta: float, origin) -> void:
     origin.rotate_y(get_player_rotation_amount(delta, origin.right))
 
 
-func get_velocity_input_vector(body, left) -> Vector3:
-    return get_forward_velocity_input_vector(body, left) + get_rightward_velocity_input_vector(body, left)
+func get_velocity_input_vector(controller) -> Vector3:
+    return get_forward_velocity_input_vector(controller) + get_rightward_velocity_input_vector(controller)
 
 
-func get_forward_velocity_input_vector(body, left) -> Vector3:
-    return -body.global_transform.basis.z * left.get_biaxial_analog_input_vector().y
+func get_forward_velocity_input_vector(controller) -> Vector3:
+    return -kinematic_body.global_transform.basis.z * controller.get_biaxial_analog_input_vector().y
 
 
-func get_rightward_velocity_input_vector(body, left) -> Vector3:
-    return body.global_transform.basis.x * left.get_biaxial_analog_input_vector().x
+func get_rightward_velocity_input_vector(controller) -> Vector3:
+    return kinematic_body.global_transform.basis.x * controller.get_biaxial_analog_input_vector().x
 
 
-func get_player_rotation_amount(delta: float, right) -> float:
-    return -right.get_biaxial_analog_input_vector().x * delta * ROTATION_SPEED_RPS
+func get_player_rotation_amount(delta: float, controller) -> float:
+    return -controller.get_biaxial_analog_input_vector().x * delta * ROTATION_SPEED_RPS

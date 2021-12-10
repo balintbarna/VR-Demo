@@ -14,12 +14,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://general/ExtraMath.gd"
 }, {
-"base": "KinematicBodyMover",
+"base": "KinematicVrBodyMover",
 "class": "FlatWorldPhysicsKinematicMover",
 "language": "GDScript",
 "path": "res://player/vr-head/FlatWorldPhysicsKinematicMover.gd"
 }, {
-"base": "KinematicBodyMover",
+"base": "KinematicVrBodyMover",
 "class": "FreeLookKinematicMover",
 "language": "GDScript",
 "path": "res://player/vr-head/FreeLookKinematicMover.gd"
@@ -34,10 +34,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/vr-controllers/Joypad.gd"
 }, {
-"base": "Resource",
-"class": "KinematicBodyMover",
+"base": "VrBodyManipulator",
+"class": "KinematicVrBodyMover",
 "language": "GDScript",
-"path": "res://player/vr-head/KinematicBodyMover.gd"
+"path": "res://player/vr-head/KinematicVrBodyMover.gd"
 }, {
 "base": "Resource",
 "class": "NumericAngularDerivator",
@@ -110,7 +110,7 @@ _global_script_class_icons={
 "FreeLookKinematicMover": "",
 "HeadCamera": "",
 "Joypad": "",
-"KinematicBodyMover": "",
+"KinematicVrBodyMover": "",
 "NumericAngularDerivator": "",
 "NumericDerivator": "",
 "OculusHandTracker": "",

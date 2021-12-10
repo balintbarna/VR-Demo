@@ -1,4 +1,4 @@
-extends KinematicBodyMover
+extends KinematicVrBodyMover
 class_name FreeLookKinematicMover
 
 
@@ -6,7 +6,7 @@ export var LINEAR_SPEED_MPS = 3
 export var ROTATION_SPEED_RPS = 2*PI
 
 
-func process(delta: float, _body: KinematicBody):
+func _physics_process(delta: float):
     var origin = Globals.origin as VrOrigin
     apply_rotation_and_fix_offset(delta, origin)
     apply_movement(delta, origin)

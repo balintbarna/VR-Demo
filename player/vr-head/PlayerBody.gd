@@ -1,19 +1,22 @@
 extends KinematicBody
 
 
-export var kinematic_handler: Resource
+onready var kinematic_handler = $KinematicHandler
 onready var collision_shape = $PlayerCollision
 
 
-func _physics_process(delta: float):
-    (kinematic_handler as KinematicBodyMover).process(delta, self)
-
-
 func swap_mover():
+    var new_node = pick_new_mover_based_on_current()
+    kinematic_handler.queue_free()
+    kinematic_handler = new_node
+    call_deferred("add_child", kinematic_handler)
+
+
+func pick_new_mover_based_on_current():
     if kinematic_handler is FreeLookKinematicMover:
-        kinematic_handler = FlatWorldPhysicsKinematicMover.new()
+        return FlatWorldPhysicsKinematicMover.new()
     else:
-        kinematic_handler = FreeLookKinematicMover.new()
+        return FreeLookKinematicMover.new()
 
 
 func set_height(value):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://player/vr-head/BodyBall.tres" type="SphereMesh" id=1]
 [ext_resource path="res://player/vr-head/HeadCamera.gd" type="Script" id=2]
@@ -8,20 +8,6 @@
 [ext_resource path="res://player/WakeUpArea.gd" type="Script" id=6]
 [ext_resource path="res://player/vr-head/OriginToHeadHeightScaler.gd" type="Script" id=7]
 [ext_resource path="res://player/vr-head/NeckPoint.gd" type="Script" id=8]
-
-[sub_resource type="Resource" id=11]
-script = ExtResource( 4 )
-GRAVITY_ACCELERATION_MPS2 = 9.81
-NORMAL_ACCELERATION_MPS2 = 9
-SPRINT_ACCELERATION_MPS2 = 15
-NORMAL_MAX_SPEED_MPS = 3
-SPRINT_MAX_SPEED_MPS = 5
-CUTOFF_VELOCITY_MPS = 0.02
-DAMPING_COEFFICIENT_GROUND_NSPM = 1
-DAMPING_COEFFICIENT_AIR_NSPM = 9
-JUMP_SPEED_MPS = 50
-MASS_KG = 70
-ROTATION_SPEED_RPS = 6.28319
 
 [sub_resource type="CapsuleShape" id=10]
 radius = 0.15
@@ -73,7 +59,6 @@ script = ExtResource( 2 )
 [node name="PlayerBody" type="KinematicBody" parent="."]
 collision_layer = 0
 script = ExtResource( 3 )
-kinematic_handler = SubResource( 11 )
 
 [node name="PlayerCollision" type="CollisionShape" parent="PlayerBody"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.825, 0.08 )
@@ -91,6 +76,9 @@ script = ExtResource( 5 )
 
 [node name="OriginToHeadHeightScaler" type="Node" parent="PlayerBody"]
 script = ExtResource( 7 )
+
+[node name="KinematicHandler" type="Node" parent="PlayerBody"]
+script = ExtResource( 4 )
 
 [node name="HeadCenterPoint" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.08 )
