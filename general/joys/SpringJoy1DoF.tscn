@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://general/joys/SpringJoy1DoF.gd" type="Script" id=1]
+[ext_resource path="res://general/joys/SpringJoy1DoFBody.gd" type="Script" id=1]
 [ext_resource path="res://general/joys/JoyGrabHandler.gd" type="Script" id=2]
 
 [sub_resource type="CylinderMesh" id=9]
@@ -10,6 +10,8 @@ height = 0.2
 radial_segments = 16
 
 [sub_resource type="SpatialMaterial" id=13]
+params_diffuse_mode = 4
+params_specular_mode = 4
 albedo_color = Color( 1, 0.498039, 0.498039, 1 )
 
 [sub_resource type="SphereMesh" id=14]
@@ -19,6 +21,8 @@ radial_segments = 16
 rings = 16
 
 [sub_resource type="SpatialMaterial" id=15]
+params_diffuse_mode = 4
+params_specular_mode = 3
 albedo_color = Color( 1, 0.729412, 0.380392, 1 )
 metallic = 1.0
 roughness = 0.0
@@ -26,24 +30,31 @@ roughness = 0.0
 [sub_resource type="BoxShape" id=16]
 extents = Vector3( 0.02, 0.11, 0.02 )
 
-[node name="SpringJoy1DoF" type="StaticBody"]
+[node name="SpringJoy1DoF" type="Spatial"]
+
+[node name="SpringJoy1DoFBody" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0, 0 )
 script = ExtResource( 1 )
 
-[node name="Rod" type="MeshInstance" parent="."]
+[node name="Rod" type="MeshInstance" parent="SpringJoy1DoFBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
 mesh = SubResource( 9 )
 material/0 = SubResource( 13 )
 
-[node name="Ball" type="MeshInstance" parent="."]
+[node name="Ball" type="MeshInstance" parent="SpringJoy1DoFBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0 )
 mesh = SubResource( 14 )
 material/0 = SubResource( 15 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="CollisionShape" type="CollisionShape" parent="SpringJoy1DoFBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 0 )
 shape = SubResource( 16 )
 
-[node name="JoyGrabHandler" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.198867, 0 )
+[node name="JoyGrabHandler" type="Spatial" parent="SpringJoy1DoFBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0 )
 script = ExtResource( 2 )
+x_linear_enabled = false
+y_linear_enabled = false
+z_linear_enabled = false
+x_angular_enabled = false
+y_angular_enabled = false
