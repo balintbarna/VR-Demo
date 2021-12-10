@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://player/VrPlayerScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://general/sword/SwordOnRack.tscn" type="PackedScene" id=2]
 [ext_resource path="res://general/joys/SpringJoy1DoF.tscn" type="PackedScene" id=3]
+[ext_resource path="res://worlds/crane-world/DAF_fabriek,_algemene_sfeer_-_SoundCloud_-_Beeld_en_Geluid.ogg" type="AudioStream" id=4]
 
 [sub_resource type="ProceduralSky" id=1]
 ground_bottom_color = Color( 0.290196, 0.443137, 0.0862745, 1 )
@@ -27,6 +28,8 @@ extents = Vector3( 10, 0.02, 10 )
 size = Vector3( 0.2, 1, 0.2 )
 
 [sub_resource type="SpatialMaterial" id=11]
+params_diffuse_mode = 4
+params_specular_mode = 4
 albedo_color = Color( 0.368627, 0.2, 0.0235294, 1 )
 
 [sub_resource type="BoxShape" id=7]
@@ -39,6 +42,8 @@ height = 0.05
 radial_segments = 16
 
 [sub_resource type="SpatialMaterial" id=12]
+params_diffuse_mode = 4
+params_specular_mode = 4
 albedo_color = Color( 0.541176, 0.541176, 0.541176, 1 )
 
 [node name="CraneWorld" type="Spatial"]
@@ -81,6 +86,11 @@ skeleton = NodePath("")
 material/0 = SubResource( 12 )
 
 [node name="SpringJoy1DoF" parent="World/Warehouse/Desk/JoystickBase" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, 0.999999, 0, -1, -4.37113e-08, 0, 0, 0, 1, 0, 0, 0 )
+transform = Transform( -4.37114e-08, 0.999999, -4.37114e-08, 0, -4.37113e-08, -1, -1, -4.37113e-08, 1.91069e-15, 0, 0, 0 )
 
 [node name="SwordOnRack" parent="World/Warehouse" instance=ExtResource( 2 )]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World"]
+stream = ExtResource( 4 )
+volume_db = -15.0
+autoplay = true
