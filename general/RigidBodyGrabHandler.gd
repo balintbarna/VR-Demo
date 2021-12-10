@@ -42,7 +42,7 @@ func on_grab(point):
         old_collision_mask = body.collision_mask
     body.mode = RigidBody.MODE_STATIC
     body.collision_layer = 0
-    body.collision_mask = 0
+    # body.collision_mask = 0
     hand_point = point
     velocity_calculator = NumericDerivator.new()
     angular_velocity_calculator = NumericAngularDerivator.new()

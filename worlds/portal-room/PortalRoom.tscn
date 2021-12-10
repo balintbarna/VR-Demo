@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://worlds/portal-room/Room.gd" type="Script" id=1]
 [ext_resource path="res://player/VrPlayerScene.tscn" type="PackedScene" id=2]
 [ext_resource path="res://general/portal/MagicPortal.tscn" type="PackedScene" id=3]
 [ext_resource path="res://general/audio-ball/AudioBall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://worlds/portal-room/Mozart - Piano Sonata.mp3" type="AudioStream" id=5]
+[ext_resource path="res://general/sword/Sword.tscn" type="PackedScene" id=6]
 
 [sub_resource type="PanoramaSky" id=1]
 
@@ -57,7 +58,18 @@ transform = Transform( 0.0671098, 0, -0.997746, 0, 1, 0, 0.997746, 0, 0.0671098,
 sphere_color = Color( 0.560784, 0.831373, 0.164706, 1 )
 audio_stream = ExtResource( 5 )
 
+[node name="CranePortal" parent="World/Room" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.95146, -0.53951, -4.05824 )
+portal_name = "Crane World"
+portal_color = Color( 0.419608, 0.490196, 0.490196, 1 )
+
 [node name="GoldenBoxPortal" parent="World/Room" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.35524, -0.456766, -4.04123 )
 portal_name = "Golden Box"
 portal_color = Color( 1, 0.890196, 0, 1 )
+
+[node name="Sword" parent="World/Room" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -0.0317597, 0.999496, 0, -0.999496, -0.0317597, 0.104439, -1.57448, -3.12299 )
+
+[connection signal="body_entered" from="World/Room/CranePortal" to="World/Room" method="_on_CranePortal_body_entered"]
+[connection signal="body_entered" from="World/Room/GoldenBoxPortal" to="World/Room" method="_gold_box_portal_entered"]

@@ -80,6 +80,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
 script = ExtResource( 2 )
 
 [node name="Character" type="KinematicBody" parent="."]
+collision_layer = 2
 script = ExtResource( 3 )
 orientation_guesser = SubResource( 30 )
 scaling_fixer = SubResource( 31 )
