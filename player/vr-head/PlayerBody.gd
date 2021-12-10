@@ -8,7 +8,7 @@ onready var collision_shape = $CharacterCollision
 
 
 func _physics_process(delta: float):
-    (orientation_guesser as VrCharacterOrientationGuesser).process(delta, self)
+    (orientation_guesser as VrBodyOrientationGuesser).process(delta, self)
     (scaling_fixer as VrBodyScaler).process(delta, self)
     (kinematic_handler as KinematicBodyMover).process(delta, self)
 
