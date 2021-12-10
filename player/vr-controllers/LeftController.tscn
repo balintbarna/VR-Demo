@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://player/vr-controllers/GrabArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/vr-controllers/DebugDisplay.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player/vr-controllers/VrController.gd" type="Script" id=3]
-[ext_resource path="res://player/WakeUpArea.gd" type="Script" id=4]
 [ext_resource path="res://player/vr-controllers/HandDebugMesh.tres" type="CubeMesh" id=5]
 [ext_resource path="res://player/vr-controllers/assets/LeftControllerMesh.tscn" type="PackedScene" id=6]
 
@@ -11,9 +10,6 @@
 params_diffuse_mode = 4
 params_specular_mode = 3
 albedo_color = Color( 0.596078, 0.8, 0.32549, 1 )
-
-[sub_resource type="SphereShape" id=29]
-radius = 0.1
 
 [node name="LeftController" type="ARVRController"]
 script = ExtResource( 3 )
@@ -31,12 +27,6 @@ transform = Transform( -4.37114e-09, -8.74228e-09, -0.01, 0, -0.1, 8.74228e-10, 
 
 [node name="GrabArea" parent="." instance=ExtResource( 1 )]
 transform = Transform( -3.09086e-08, 3.09086e-08, -1, 0.707107, 0.707107, 0, 0.707107, -0.707107, -4.37114e-08, 0, -0.03, 0.03 )
-
-[node name="WakeUpArea" type="Area" parent="."]
-script = ExtResource( 4 )
-
-[node name="CollisionShape" type="CollisionShape" parent="WakeUpArea"]
-shape = SubResource( 29 )
 
 [connection signal="grip_pressed" from="." to="GrabArea" method="try_grab"]
 [connection signal="grip_released" from="." to="GrabArea" method="release"]
