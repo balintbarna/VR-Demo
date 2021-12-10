@@ -35,6 +35,7 @@ material/0 = null
 script = ExtResource( 3 )
 
 [node name="MagicParticles" type="CPUParticles" parent="MagicArea/MagicMesh"]
+cast_shadow = 0
 amount = 14
 lifetime = 2.0
 lifetime_randomness = 1.0

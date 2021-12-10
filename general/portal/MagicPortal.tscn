@@ -55,6 +55,7 @@ script = ExtResource( 6 )
 
 [node name="MagicParticles" type="CPUParticles" parent="MagicArea/MagicMesh"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.131085 )
+cast_shadow = 0
 amount = 20
 lifetime = 2.0
 preprocess = 0.1
