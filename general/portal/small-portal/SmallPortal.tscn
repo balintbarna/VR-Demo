@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://general/portal/MagicAreaMaterial.tres" type="Material" id=1]
 [ext_resource path="res://general/portal/MagicParticles.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://general/portal/PortalLabel.gd" type="Script" id=6]
 [ext_resource path="res://general/portal/small-portal/MagicAreaLight.gd" type="Script" id=7]
 [ext_resource path="res://general/portal/PortalParticlePointMesh.tres" type="PointMesh" id=8]
+[ext_resource path="res://general/portal/portal_sound.ogg" type="AudioStream" id=9]
 
 [sub_resource type="SphereMesh" id=1]
 resource_local_to_scene = true
@@ -59,6 +60,9 @@ transform = Transform( 1, 0, 0, 0, 2.5, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 2 )
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MagicArea"]
+stream = ExtResource( 9 )
+pitch_scale = 0.7
+autoplay = true
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 200, 100 )
