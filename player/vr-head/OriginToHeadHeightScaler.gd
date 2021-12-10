@@ -1,4 +1,4 @@
-extends VrBodyScaler
+extends VrBodyManipulator
 class_name OriginToHeadHeightScaler
 
 

@@ -1,4 +1,4 @@
-extends VrBodyOrientationGuesser
+extends VrBodyManipulator
 class_name TripleMethodOrientationGuesser
 
 

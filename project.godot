@@ -64,7 +64,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot_ovrmobile/example_scenes/oculus_tracker.gd"
 }, {
-"base": "VrBodyScaler",
+"base": "VrBodyManipulator",
 "class": "OriginToHeadHeightScaler",
 "language": "GDScript",
 "path": "res://player/vr-head/OriginToHeadHeightScaler.gd"
@@ -84,20 +84,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://general/RigidBodyGrabHandler.gd"
 }, {
-"base": "VrBodyOrientationGuesser",
+"base": "VrBodyManipulator",
 "class": "TripleMethodOrientationGuesser",
 "language": "GDScript",
 "path": "res://player/vr-head/TripleMethodOrientationGuesser.gd"
 }, {
 "base": "Node",
-"class": "VrBodyOrientationGuesser",
+"class": "VrBodyManipulator",
 "language": "GDScript",
-"path": "res://player/vr-head/VrBodyOrientationGuesser.gd"
-}, {
-"base": "Node",
-"class": "VrBodyScaler",
-"language": "GDScript",
-"path": "res://player/vr-head/VrBodyScaler.gd"
+"path": "res://player/vr-head/VrBodyManipulator.gd"
 }, {
 "base": "ARVRController",
 "class": "VrController",
@@ -126,8 +121,7 @@ _global_script_class_icons={
 "QuestConfig": "",
 "RigidBodyGrabHandler": "",
 "TripleMethodOrientationGuesser": "",
-"VrBodyOrientationGuesser": "",
-"VrBodyScaler": "",
+"VrBodyManipulator": "",
 "VrController": "",
 "VrOrigin": ""
 }
