@@ -28,6 +28,7 @@ skeleton = NodePath("../../LeftController")
 material/0 = SubResource( 4 )
 
 [node name="GrabArea" parent="." instance=ExtResource( 3 )]
+transform = Transform( -3.09086e-08, -3.09086e-08, 1, -0.707107, 0.707107, 0, -0.707107, -0.707107, -4.37114e-08, 0, -0.03, 0.03 )
 
 [node name="WakeUpArea" type="Area" parent="."]
 script = ExtResource( 2 )
