@@ -32,7 +32,7 @@ func _physics_process(_delta):
             var body_scale = body.scale
             body.global_transform = processed_body_in_global_frame
             body.scale = body_scale
-            var diff_to_limit_ratio = get_diff_to_limit_ratio(body_in_ref_frame, processed_body_in_ref_frame)
+            var diff_to_limit_ratio = get_diff_to_limit_ratio()
             buzz_controller(diff_to_limit_ratio/10)
             if diff_to_limit_ratio > 1:
                 on_release(null, hand_point)
@@ -40,8 +40,8 @@ func _physics_process(_delta):
             push_error("BODY NOT SET")
 
 
-func get_diff_to_limit_ratio(unprocessed: Transform, processed: Transform):
-    var diff_transform = unprocessed.inverse() * processed
+func get_diff_to_limit_ratio():
+    var diff_transform = hand_point.global_transform.inverse() * grab_point.global_transform
     var displacement_ratio = diff_transform.origin.length() / displacement_limit
     var rotation_ratio = ExtraMath.basis2axis_angle(diff_transform.basis).length() / angle_limit
     return max(displacement_ratio, rotation_ratio)
