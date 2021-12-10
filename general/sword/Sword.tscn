@@ -2,12 +2,7 @@
 
 [ext_resource path="res://general/sword/Sword.gd" type="Script" id=1]
 [ext_resource path="res://general/sword/Steel.tres" type="Material" id=2]
-
-[sub_resource type="SpatialMaterial" id=5]
-params_diffuse_mode = 4
-params_specular_mode = 3
-albedo_color = Color( 0.32549, 0.286275, 0.164706, 1 )
-roughness = 0.75
+[ext_resource path="res://general/sword/Wood.tres" type="Material" id=3]
 
 [sub_resource type="CylinderShape" id=6]
 radius = 0.0205562
@@ -33,7 +28,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0 )
 [node name="Handle" type="CSGCylinder" parent="CSGCombiner"]
 radius = 0.02
 height = 0.2
-material = SubResource( 5 )
+material = ExtResource( 3 )
 
 [node name="BottomSphere" type="CSGSphere" parent="CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13, 0 )
