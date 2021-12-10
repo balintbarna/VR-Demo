@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://general/joys/SpringJoy1DoF.gd" type="Script" id=1]
+[ext_resource path="res://general/joys/JoyGrabHandler.gd" type="Script" id=2]
+
+[sub_resource type="CylinderMesh" id=9]
+top_radius = 0.01
+bottom_radius = 0.01
+height = 0.2
+radial_segments = 16
+
+[sub_resource type="SpatialMaterial" id=13]
+albedo_color = Color( 1, 0.498039, 0.498039, 1 )
+
+[sub_resource type="SphereMesh" id=14]
+radius = 0.02
+height = 0.04
+radial_segments = 16
+rings = 16
+
+[sub_resource type="SpatialMaterial" id=15]
+albedo_color = Color( 1, 0.729412, 0.380392, 1 )
+metallic = 1.0
+roughness = 0.0
+
+[sub_resource type="BoxShape" id=16]
+extents = Vector3( 0.02, 0.11, 0.02 )
+
+[node name="SpringJoy1DoF" type="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0, 0 )
+script = ExtResource( 1 )
+
+[node name="Rod" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 13 )
+
+[node name="Ball" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0 )
+mesh = SubResource( 14 )
+material/0 = SubResource( 15 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 0 )
+shape = SubResource( 16 )
+
+[node name="JoyGrabHandler" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.198867, 0 )
+script = ExtResource( 2 )
