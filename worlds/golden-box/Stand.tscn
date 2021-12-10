@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://golden-box/StandMaterial.tres" type="Material" id=1]
+[ext_resource path="res://worlds/golden-box/StandMaterial.tres" type="Material" id=1]
 
 [node name="CSGCombiner" type="CSGCombiner"]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )

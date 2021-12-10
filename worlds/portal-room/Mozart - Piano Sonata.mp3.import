@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Mozart - Piano Sonata.mp3-cc2eb9a6696d5b992199e17b8e088be7.mp3str"
+
+[deps]
+
+source_file="res://worlds/portal-room/Mozart - Piano Sonata.mp3"
+dest_files=[ "res://.import/Mozart - Piano Sonata.mp3-cc2eb9a6696d5b992199e17b8e088be7.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
