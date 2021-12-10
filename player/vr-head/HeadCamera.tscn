@@ -2,7 +2,7 @@
 
 [ext_resource path="res://player/vr-head/BodyBall.tres" type="SphereMesh" id=1]
 [ext_resource path="res://player/vr-head/HeadCamera.gd" type="Script" id=2]
-[ext_resource path="res://player/vr-head/Character.gd" type="Script" id=3]
+[ext_resource path="res://player/vr-head/PlayerBody.gd" type="Script" id=3]
 [ext_resource path="res://player/vr-head/FlatWorldPhysicsKinematicMover.gd" type="Script" id=4]
 [ext_resource path="res://player/vr-head/TripleMethodOrientationGuesser.gd" type="Script" id=5]
 [ext_resource path="res://player/WakeUpArea.gd" type="Script" id=6]
@@ -23,8 +23,8 @@ SPRINT_ACCELERATION_MPS2 = 15
 NORMAL_MAX_SPEED_MPS = 3
 SPRINT_MAX_SPEED_MPS = 5
 CUTOFF_VELOCITY_MPS = 0.02
-DAMPING_COEFFICIENT_NSPM = 10
-AIR_THICKNESS = 0.9
+DAMPING_COEFFICIENT_GROUND_NSPM = 1
+DAMPING_COEFFICIENT_AIR_NSPM = 9
 JUMP_SPEED_MPS = 50
 MASS_KG = 70
 ROTATION_SPEED_RPS = 6.28319
@@ -79,22 +79,22 @@ albedo_color = Color( 0.898039, 0, 0, 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
 script = ExtResource( 2 )
 
-[node name="Character" type="KinematicBody" parent="."]
+[node name="PlayerBody" type="KinematicBody" parent="."]
 collision_layer = 0
 script = ExtResource( 3 )
 orientation_guesser = SubResource( 30 )
 scaling_fixer = SubResource( 31 )
 kinematic_handler = SubResource( 11 )
 
-[node name="CharacterCollision" type="CollisionShape" parent="Character"]
+[node name="CharacterCollision" type="CollisionShape" parent="PlayerBody"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.825, 0.08 )
 shape = SubResource( 10 )
 
-[node name="WakeUpArea" type="Area" parent="Character"]
+[node name="WakeUpArea" type="Area" parent="PlayerBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0 )
 script = ExtResource( 6 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Character/WakeUpArea"]
+[node name="CollisionShape" type="CollisionShape" parent="PlayerBody/WakeUpArea"]
 shape = SubResource( 28 )
 
 [node name="HeadCenterPoint" type="Spatial" parent="."]
@@ -107,7 +107,7 @@ material/0 = SubResource( 33 )
 [node name="NeckPoint" type="Spatial" parent="HeadCenterPoint"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
 script = ExtResource( 8 )
-orientation_giver_path = NodePath("../../Character")
+orientation_giver_path = NodePath("../../PlayerBody")
 body_scaler = SubResource( 34 )
 
 [node name="MeshInstance" type="MeshInstance" parent="HeadCenterPoint/NeckPoint"]
@@ -151,5 +151,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0 )
 mesh = ExtResource( 1 )
 material/0 = SubResource( 26 )
 
-[connection signal="body_entered" from="Character/WakeUpArea" to="Character/WakeUpArea" method="wake_up"]
-[connection signal="body_exited" from="Character/WakeUpArea" to="Character/WakeUpArea" method="let_sleep"]
+[connection signal="body_entered" from="PlayerBody/WakeUpArea" to="PlayerBody/WakeUpArea" method="wake_up"]
+[connection signal="body_exited" from="PlayerBody/WakeUpArea" to="PlayerBody/WakeUpArea" method="let_sleep"]
