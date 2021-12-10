@@ -16,8 +16,8 @@ export var SPRINT_ACCELERATION_MPS2 = 15
 export var NORMAL_MAX_SPEED_MPS = 3
 export var SPRINT_MAX_SPEED_MPS = 5
 export var CUTOFF_VELOCITY_MPS = 0.02
-export var DAMPING_COEFFICIENT_NSPM = 10
-export var AIR_THICKNESS = 0.9 # affects in-air damping
+export var DAMPING_COEFFICIENT_GROUND_NSPM = 1
+export var DAMPING_COEFFICIENT_AIR_NSPM = 9
 export var JUMP_SPEED_MPS = 50 # overrides vertical speed
 export var MASS_KG = 70
 export var ROTATION_SPEED_RPS = 2*PI
@@ -76,12 +76,11 @@ func accelerate_from_inputs(dt: float, origin: VrOrigin, body: KinematicBody) ->
 
 func apply_dampening(dt: float, body: KinematicBody) -> void:
     if velocity.length() > CUTOFF_VELOCITY_MPS:
+        var coeffs = DAMPING_COEFFICIENT_AIR_NSPM + (DAMPING_COEFFICIENT_GROUND_NSPM if body.is_on_floor() else 0)
         # F = c*v
         # F = m*a -> a = F/m
         # dV = a*dt
-        var damping_ratio = DAMPING_COEFFICIENT_NSPM * dt / MASS_KG
-        if not body.is_on_floor():
-            damping_ratio *= AIR_THICKNESS
+        var damping_ratio = coeffs * dt / MASS_KG
         if damping_ratio < 1:
             velocity *= (1 - damping_ratio)
         else:
