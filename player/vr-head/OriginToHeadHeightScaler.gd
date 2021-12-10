@@ -2,7 +2,7 @@ extends VrBodyScaler
 class_name OriginToHeadHeightScaler
 
 
-func process(_delta, body: Spatial):
+func _physics_process(_delta):
         var origin_frame_inversed = get_origin_frame().inverse()
         var head_in_origin_frame = origin_frame_inversed * body.global_transform.origin
         var target_height = head_in_origin_frame.y
@@ -19,4 +19,3 @@ func get_origin_frame():
 
 func get_origin():
     return Globals.origin
-
