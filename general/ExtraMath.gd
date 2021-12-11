@@ -50,18 +50,18 @@ static func basis2euler(b: Basis, order = DEFAULT_EULER_ORDER) -> Vector3:
         # rot =  cz*cy             -sy             cz*sy
         #        sx*sy+cx*cy*sz    cx*cz           cx*sz*sy-cy*sx
         #        cy*sx*sz          cz*sx           cx*cy+sx*sz*sy
-        euler.x = atan2(b.z.y, b.y.y)
-        euler.y = atan2(b.x.z, b.x.x)
-        var sz = -b.x.y
+        euler.x = atan2(b.y.z, b.y.y)
+        euler.y = atan2(b.z.x, b.x.x)
+        var sz = -b.y.x
         var cz = b.y.y / cos(euler.x)
         euler.z = atan2(sz, cz)
     elif order == "xyz":
         # rot =  cy*cz          -cy*sz           sy
         #        cz*sx*sy+cx*sz  cx*cz-sx*sy*sz -cy*sx
         #       -cx*cz*sy+sx*sz  cz*sx+cx*sy*sz  cx*cy
-        euler.x = atan2(-b.y.z, b.z.z)
-        euler.z = atan2(-b.x.y, b.x.x)
-        var sy = b.x.z
+        euler.x = atan2(-b.z.y, b.z.z)
+        euler.z = atan2(-b.y.x, b.x.x)
+        var sy = b.z.x
         var cy = b.x.x / cos(euler.z)
         euler.y = atan2(sy, cy)
     elif order == "yxz":
@@ -77,27 +77,27 @@ static func basis2euler(b: Basis, order = DEFAULT_EULER_ORDER) -> Vector3:
         # rot =  cy*cz             sy*sx-cy*cx*sz     cx*sy+cy*sz*sx
         #        sz                cz*cx              -cz*sx
         #        -cz*sy            cy*sx+cx*sy*sz     cy*cx-sy*sz*sx
-        euler.x = atan2(-b.y.z, b.y.y)
-        euler.y = atan2(-b.z.x, b.x.x)
-        var sz = b.y.x
+        euler.x = atan2(-b.z.y, b.y.y)
+        euler.y = atan2(-b.x.z, b.x.x)
+        var sz = b.x.y
         var cz = b.y.y / cos(euler.x)
         euler.z = atan2(sz, cz)
     elif order == "zxy":
         # rot =  cz*cy-sz*sx*sy    -cx*sz                cz*sy+cy*sz*sx
         #        cy*sz+cz*sx*sy    cz*cx                 sz*sy-cz*cy*sx
         #        -cx*sy            sx                    cx*cy
-        euler.y = atan2(-b.z.x, b.z.z)
-        euler.z = atan2(-b.x.y, b.y.y)
-        var sx = b.z.y
+        euler.y = atan2(-b.x.z, b.z.z)
+        euler.z = atan2(-b.y.x, b.y.y)
+        var sx = b.y.z
         var cx = b.y.y / cos(euler.z)
         euler.x = atan2(sx, cx)
     elif order == "zyx":
         # rot =  cz*cy             cz*sy*sx-cx*sz        sz*sx+cz*cx*cy
         #        cy*sz             cz*cx+sz*sy*sx        cx*sz*sy-cz*sx
         #        -sy               cy*sx                 cy*cx
-        euler.x = atan2(b.z.y, b.z.z)
-        euler.z = atan2(b.y.x, b.x.x)
-        var sy = -b.z.x
+        euler.x = atan2(b.y.z, b.z.z)
+        euler.z = atan2(b.x.y, b.x.x)
+        var sy = -b.x.z
         var cy = b.x.x / cos(euler.z)
         euler.y = atan2(sy, cy)
     else:
