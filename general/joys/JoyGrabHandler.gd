@@ -102,6 +102,8 @@ func calculate_grab_point():
     var hand_vector = hand_point.global_transform.origin - body.global_transform.origin
     var dot = hand_vector.dot(direction_vector) # dot = |a|×|b|× cos(fi)
     var projected_hand_vector = dot * direction_vector
+    if projected_hand_vector.length() == 0:
+        projected_hand_vector = hand_vector
     grab_point = Spatial.new()
     add_child(grab_point)
     grab_point.global_transform.basis = hand_point.global_transform.basis
