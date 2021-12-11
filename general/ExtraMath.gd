@@ -68,9 +68,9 @@ static func basis2euler(b: Basis, order = DEFAULT_EULER_ORDER) -> Vector3:
         # rot =  cy*cz+sy*sx*sz    cz*sy*sx-cy*sz        cx*sy
         #        cx*sz             cx*cz                 -sx
         #        cy*sx*sz-cz*sy    cy*cz*sx+sy*sz        cy*cx
-        euler.y = atan2(b.x.z, b.z.z)
-        euler.z = atan2(b.y.x, b.y.y)
-        var sx = -b.y.z
+        euler.y = atan2(b.z.x, b.z.z)
+        euler.z = atan2(b.x.y, b.y.y)
+        var sx = -b.z.y
         var cx = b.y.y / cos(euler.z)
         euler.x = atan2(sx, cx)
     elif order == "yzx":
