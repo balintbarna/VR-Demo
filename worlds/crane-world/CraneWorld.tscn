@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://player/VrPlayerScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://general/sword/SwordOnRack.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://general/predefined-portals/PortalRoomLoaderPortal.tscn" type="PackedScene" id=6]
 [ext_resource path="res://general/joys/Dial.tscn" type="PackedScene" id=7]
 [ext_resource path="res://general/joys/LinearJoy3DoF.tscn" type="PackedScene" id=8]
+[ext_resource path="res://general/joys/LinearArm.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ProceduralSky" id=1]
 ground_bottom_color = Color( 0.290196, 0.443137, 0.0862745, 1 )
@@ -233,6 +234,23 @@ shape = SubResource( 7 )
 
 [node name="LinearJoy3DoF" parent="World/Warehouse/DisplacerDesk" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0 )
+
+[node name="ScalerDesk" type="StaticBody" parent="World/Warehouse"]
+transform = Transform( 1, 0, 0, 0, 0.995692, -0.0927182, 0, 0.0927182, 0.995692, -1.11018, 0.247544, 4.15224 )
+
+[node name="CollisionShape" type="CollisionShape" parent="World/Warehouse/ScalerDesk"]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0 )
+shape = SubResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="World/Warehouse/ScalerDesk/CollisionShape"]
+transform = Transform( 1, 0, 0, 0, 1, -7.45058e-09, 0, 7.45058e-09, 1, 0, 0, 0 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 11 )
+
+[node name="LinearArm" parent="World/Warehouse/ScalerDesk" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 0.6, 0 )
+displacement = 0.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World"]
 stream = ExtResource( 4 )
