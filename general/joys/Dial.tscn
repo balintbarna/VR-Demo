@@ -61,6 +61,7 @@ y_linear_enabled = false
 z_linear_enabled = false
 x_angular_enabled = false
 z_angular_enabled = false
+angle_limit = 1.5
 
 [node name="Base" type="StaticBody" parent="."]
 transform = Transform( 0.1, 0, 0, 0, 0.01, 0, 0, 0, 0.1, 0, -0.015, 0 )
