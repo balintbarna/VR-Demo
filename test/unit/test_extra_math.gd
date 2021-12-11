@@ -28,6 +28,15 @@ func test_euler2basis_default():
         assert_mats_almost_eq(b_calc, b, ExtraMath.EPSILON)
 
 
+func test_basis2euler2basis_all_orders():
+    var orders = ["xzy", "xyz", "yxz", "yzx", "zxy", "zyx"]
+    for b in mats:
+        for order in orders:
+            var e_calc = ExtraMath.basis2euler(b, order)
+            var b_calc = ExtraMath.euler2basis(e_calc, order)
+            assert_mats_almost_eq(b_calc, b, ExtraMath.EPSILON)
+
+
 func test_basis2axis_angle():
     for b in mats:
         var v = ExtraMath.basis2axis_angle(b)
