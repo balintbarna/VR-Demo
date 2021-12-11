@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://player/VrPlayerScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://general/sword/SwordOnRack.tscn" type="PackedScene" id=2]
 [ext_resource path="res://general/joys/SpringJoy1DoF.tscn" type="PackedScene" id=3]
 [ext_resource path="res://worlds/crane-world/DAF_fabriek,_algemene_sfeer_-_SoundCloud_-_Beeld_en_Geluid.ogg" type="AudioStream" id=4]
+[ext_resource path="res://worlds/crane-world/Warehouse.gd" type="Script" id=5]
+[ext_resource path="res://general/predefined-portals/PortalRoomLoaderPortal.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ProceduralSky" id=1]
 ground_bottom_color = Color( 0.290196, 0.443137, 0.0862745, 1 )
@@ -35,9 +37,24 @@ albedo_color = Color( 0.368627, 0.2, 0.0235294, 1 )
 [sub_resource type="BoxShape" id=7]
 extents = Vector3( 0.1, 0.5, 0.1 )
 
+[sub_resource type="CubeMesh" id=12]
+
+[sub_resource type="SpatialMaterial" id=15]
+params_diffuse_mode = 4
+params_specular_mode = 3
+albedo_color = Color( 1, 0.992157, 0.866667, 1 )
+
+[sub_resource type="BoxShape" id=13]
+
+[sub_resource type="SpatialMaterial" id=14]
+params_diffuse_mode = 4
+params_specular_mode = 3
+albedo_color = Color( 1, 0.54902, 0.282353, 1 )
+
 [node name="CraneWorld" type="Spatial"]
 
 [node name="StartingPoint" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.20363 )
 
 [node name="VrOrigin" parent="StartingPoint" instance=ExtResource( 1 )]
 
@@ -47,6 +64,7 @@ extents = Vector3( 0.1, 0.5, 0.1 )
 environment = SubResource( 2 )
 
 [node name="Warehouse" type="Spatial" parent="World"]
+script = ExtResource( 5 )
 
 [node name="Floor" type="StaticBody" parent="World/Warehouse"]
 
@@ -59,7 +77,7 @@ material/0 = SubResource( 4 )
 shape = SubResource( 5 )
 
 [node name="Desk" type="StaticBody" parent="World/Warehouse"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.441544, -1.005 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.441544, 4.11203 )
 
 [node name="MeshInstance" type="MeshInstance" parent="World/Warehouse/Desk"]
 mesh = SubResource( 6 )
@@ -72,6 +90,121 @@ shape = SubResource( 7 )
 transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0.5, 0 )
 
 [node name="SwordOnRack" parent="World/Warehouse" instance=ExtResource( 2 )]
+transform = Transform( -0.339296, -0.909948, -0.238483, 0, 0.253522, -0.96733, 0.94068, -0.328211, -0.086019, 5.24486, 1.0701, 8.50803 )
+
+[node name="Wall1" type="StaticBody" parent="World/Warehouse"]
+transform = Transform( 0.1, 0, 0, 0, 3, 0, 0, 0, 10, 10, 1, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="World/Warehouse/Wall1"]
+mesh = SubResource( 12 )
+material/0 = SubResource( 15 )
+
+[node name="CollisionShape" type="CollisionShape" parent="World/Warehouse/Wall1"]
+shape = SubResource( 13 )
+
+[node name="Wall2" type="StaticBody" parent="World/Warehouse"]
+transform = Transform( 10, 0, 0, 0, 3, 0, 0, 0, 0.1, 0, 1, 10 )
+
+[node name="MeshInstance" type="MeshInstance" parent="World/Warehouse/Wall2"]
+mesh = SubResource( 12 )
+skeleton = NodePath("../../Wall2")
+material/0 = SubResource( 15 )
+
+[node name="CollisionShape" type="CollisionShape" parent="World/Warehouse/Wall2"]
+shape = SubResource( 13 )
+
+[node name="Wall3" type="StaticBody" parent="World/Warehouse"]
+transform = Transform( 10, 0, 0, 0, 3, 0, 0, 0, 0.1, 0, 1, -10.009 )
+
+[node name="MeshInstance" type="MeshInstance" parent="World/Warehouse/Wall3"]
+mesh = SubResource( 12 )
+skeleton = NodePath("../../Wall2")
+material/0 = SubResource( 15 )
+
+[node name="CollisionShape" type="CollisionShape" parent="World/Warehouse/Wall3"]
+shape = SubResource( 13 )
+
+[node name="Wall4" type="StaticBody" parent="World/Warehouse"]
+transform = Transform( 0.1, 0, 0, 0, 3, 0, 0, 0, 10, -10, 1, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="World/Warehouse/Wall4"]
+mesh = SubResource( 12 )
+material/0 = SubResource( 15 )
+
+[node name="CollisionShape" type="CollisionShape" parent="World/Warehouse/Wall4"]
+shape = SubResource( 13 )
+
+[node name="Ceiling" type="StaticBody" parent="World/Warehouse"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.80598, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="World/Warehouse/Ceiling"]
+mesh = SubResource( 3 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="World/Warehouse/Ceiling"]
+shape = SubResource( 5 )
+
+[node name="SpotLight" type="SpotLight" parent="World/Warehouse/Ceiling"]
+transform = Transform( 1, 0, 0, 0, 0.00881382, 0.999961, 0, -0.999961, 0.00881382, 0, -0.186159, 0 )
+light_color = Color( 0.741176, 1, 1, 1 )
+light_bake_mode = 2
+
+[node name="SpotLight2" type="SpotLight" parent="World/Warehouse/Ceiling"]
+transform = Transform( 1, 0, 0, 0, 0.00881382, 0.999961, 0, -0.999961, 0.00881382, 3.51981, -0.186159, 0 )
+light_color = Color( 0.741176, 1, 1, 1 )
+light_bake_mode = 2
+
+[node name="SpotLight3" type="SpotLight" parent="World/Warehouse/Ceiling"]
+transform = Transform( 1, 0, 0, 0, 0.00881382, 0.999961, 0, -0.999961, 0.00881382, -5.33117, -0.186159, 0 )
+light_color = Color( 0.741176, 1, 1, 1 )
+light_bake_mode = 2
+
+[node name="SpotLight4" type="SpotLight" parent="World/Warehouse/Ceiling"]
+transform = Transform( 1, 0, 0, 0, 0.00881382, 0.999961, 0, -0.999961, 0.00881382, 0, -0.186159, -4.00961 )
+light_color = Color( 0.741176, 1, 1, 1 )
+light_bake_mode = 2
+
+[node name="SpotLight5" type="SpotLight" parent="World/Warehouse/Ceiling"]
+transform = Transform( 1, 0, 0, 0, 0.00881382, 0.999961, 0, -0.999961, 0.00881382, 0, -0.186159, 5.04913 )
+light_color = Color( 0.741176, 1, 1, 1 )
+light_bake_mode = 2
+
+[node name="SpotLight6" type="SpotLight" parent="World/Warehouse/Ceiling"]
+transform = Transform( 1, 0, 0, 0, 0.00881382, 0.999961, 0, -0.999961, 0.00881382, 5.25701, -0.186159, -4.78519 )
+light_color = Color( 1, 0.329412, 0.909804, 1 )
+light_bake_mode = 2
+
+[node name="SpotLight7" type="SpotLight" parent="World/Warehouse/Ceiling"]
+transform = Transform( 1, 0, 0, 0, 0.00881382, 0.999961, 0, -0.999961, 0.00881382, -4.32651, -0.186159, -4.46318 )
+light_color = Color( 0, 0.623529, 1, 1 )
+light_bake_mode = 2
+
+[node name="Target" type="Spatial" parent="World/Warehouse"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20678, -4.70744 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="World/Warehouse/Target"]
+use_collision = true
+
+[node name="CSGBox" type="CSGBox" parent="World/Warehouse/Target/CSGCombiner"]
+width = 0.357175
+height = 1.64737
+depth = 0.316551
+material = SubResource( 14 )
+
+[node name="CSGSphere" type="CSGSphere" parent="World/Warehouse/Target/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.801293, 0 )
+radius = 0.304013
+material = SubResource( 14 )
+
+[node name="CSGTorus" type="CSGTorus" parent="World/Warehouse/Target/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77576, 0 )
+inner_radius = 0.13988
+outer_radius = 0.323128
+material = SubResource( 14 )
+
+[node name="PortalRoomLoaderPortal" parent="World/Warehouse" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.4, 0.6, 8.5 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World"]
 stream = ExtResource( 4 )
