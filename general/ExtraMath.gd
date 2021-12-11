@@ -40,11 +40,11 @@ static func quat2axis_angle(q: Quat):
 
 
 static func quat2euler(q: Quat, order = DEFAULT_EULER_ORDER) -> Vector3:
-    return rotmat2euler(Basis(q), order)
+    return basis2euler(Basis(q), order)
 
 
 # based on https://en.wikipedia.org/wiki/Euler_angles#Rotation_matrix
-static func rotmat2euler(b: Basis, order = DEFAULT_EULER_ORDER) -> Vector3:
+static func basis2euler(b: Basis, order = DEFAULT_EULER_ORDER) -> Vector3:
     var euler = Vector3()
     if order == "xzy":
         # rot =  cz*cy             -sy             cz*sy
@@ -106,11 +106,11 @@ static func rotmat2euler(b: Basis, order = DEFAULT_EULER_ORDER) -> Vector3:
 
 
 static func euler2quat(angles: Vector3, order = DEFAULT_EULER_ORDER) -> Quat:
-        return Quat(euler2rotmat(angles, order))
+        return Quat(euler2basis(angles, order))
 
 
 # xyz values in `angles` vector denote rotation around the respective local axis
-static func euler2rotmat(angles: Vector3, order = DEFAULT_EULER_ORDER) -> Basis:
+static func euler2basis(angles: Vector3, order = DEFAULT_EULER_ORDER) -> Basis:
     if not (order.length() == 3 and "x" in order and "y" in order and "z" in order):
         push_error("Euler order must contain exactly one of X, Y, and Z axes in lowercase, e.g. 'xyz'. Proper Euler orders, such as 'zxz' are not supported.")
         return Basis()
@@ -120,4 +120,3 @@ static func euler2rotmat(angles: Vector3, order = DEFAULT_EULER_ORDER) -> Basis:
         "z": Basis(Vector3.BACK, angles.z),
     }
     return rots[order[0]] * rots[order[1]] * rots[order[2]]
-
