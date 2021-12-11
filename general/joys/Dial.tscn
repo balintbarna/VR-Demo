@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://general/joys/JoyGrabHandler.gd" type="Script" id=1]
+[ext_resource path="res://general/joys/JoyBody.gd" type="Script" id=2]
+[ext_resource path="res://general/joys/Dial.gd" type="Script" id=3]
+
+[sub_resource type="CylinderMesh" id=3]
+top_radius = 0.07
+bottom_radius = 0.08
+height = 0.01
+
+[sub_resource type="SpatialMaterial" id=5]
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 0.917647, 1, 0.988235, 1 )
+
+[sub_resource type="CylinderShape" id=4]
+radius = 0.05
+height = 0.01
+
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 0.01, 0.01, 0.06 )
+
+[sub_resource type="SpatialMaterial" id=7]
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 0.188235, 0.188235, 0.188235, 1 )
+
+[sub_resource type="SpatialMaterial" id=8]
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 0.796078, 0.796078, 0.796078, 1 )
+
+[sub_resource type="CubeMesh" id=1]
+material = SubResource( 8 )
+
+[sub_resource type="BoxShape" id=2]
+
+[node name="Dial" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="JoyBody" type="StaticBody" parent="."]
+script = ExtResource( 2 )
+
+[node name="Knob" type="MeshInstance" parent="JoyBody"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="JoyBody"]
+shape = SubResource( 4 )
+
+[node name="Handle" type="MeshInstance" parent="JoyBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00828303, -0.0225251 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
+
+[node name="JoyGrabHandler" type="Spatial" parent="JoyBody"]
+script = ExtResource( 1 )
+x_linear_enabled = false
+y_linear_enabled = false
+z_linear_enabled = false
+x_angular_enabled = false
+z_angular_enabled = false
+
+[node name="Base" type="StaticBody" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.01, 0, 0, 0, 0.1, 0, -0.015, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Base"]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Base"]
+shape = SubResource( 2 )
