@@ -2,7 +2,7 @@
 
 [ext_resource path="res://player/VrPlayerScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://general/sword/SwordOnRack.tscn" type="PackedScene" id=2]
-[ext_resource path="res://general/joys/SpringJoy1DoF.tscn" type="PackedScene" id=3]
+[ext_resource path="res://general/joys/Joy1DoF.tscn" type="PackedScene" id=3]
 [ext_resource path="res://worlds/crane-world/DAF_fabriek,_algemene_sfeer_-_SoundCloud_-_Beeld_en_Geluid.ogg" type="AudioStream" id=4]
 [ext_resource path="res://worlds/crane-world/Warehouse.gd" type="Script" id=5]
 [ext_resource path="res://general/predefined-portals/PortalRoomLoaderPortal.tscn" type="PackedScene" id=6]
