@@ -42,8 +42,8 @@ func _physics_process(_delta):
 
 func get_diff_to_limit_ratio():
     var diff_transform = hand_point.global_transform.inverse() * grab_point.global_transform
-    var displacement_ratio = diff_transform.origin.length() / displacement_limit
-    var rotation_ratio = ExtraMath.basis2axis_angle(diff_transform.basis).length() / angle_limit
+    var displacement_ratio = (diff_transform.origin.length() / displacement_limit) if displacement_limit > 0 else 0
+    var rotation_ratio = (ExtraMath.basis2axis_angle(diff_transform.basis).length() / angle_limit) if angle_limit > 0 else 0
     return max(displacement_ratio, rotation_ratio)
 
 
