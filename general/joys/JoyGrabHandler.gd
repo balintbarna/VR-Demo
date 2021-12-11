@@ -1,15 +1,13 @@
 extends Spatial
 class_name JoyGrabHandler
 
-
-export var x_linear_enabled = true
-export var y_linear_enabled = true
-export var z_linear_enabled = true
-export var x_angular_enabled = true
-export var y_angular_enabled = true
-export var z_angular_enabled = true
-export var displacement_limit = 0.05
-export var angle_limit = PI / 3
+# Set a rotation sequence for the Euler angles calculation.
+# Empty String means disabled, in which case the calculation uses axis-angle vectors, which are 'sequence-less'.
+# Enable for joys that 'feel' better with sequentially applied rotations, such as a flight stick that rotates around its own Y axis.
+# Disable for 'sequence-less' dual axis rotation, such as controller joystick.
+export var euler_sequence_order = ""
+export var linear_limit = Vector3()
+export var angular_limit = Vector3()
 var old_collision_layer: int
 var grab_point: Spatial
 var hand_point: Spatial
@@ -27,57 +25,91 @@ func _physics_process(_delta):
             var body_in_global_frame = hand_point.global_transform * body_in_hand_frame
             var ref_frame = ref_frame_node.global_transform.orthonormalized()
             var body_in_ref_frame = ref_frame.inverse() * body_in_global_frame
-            var processed_body_in_ref_frame = block_axes_and_apply_limits(body_in_ref_frame)
+            # var processed_body_in_ref_frame = block_axes_and_apply_limits(body_in_ref_frame)
+            var processed_body_in_ref_frame = limit_axes(body_in_ref_frame)
             var processed_body_in_global_frame = ref_frame * processed_body_in_ref_frame
             var body_scale = body.scale
             body.global_transform = processed_body_in_global_frame
             body.scale = body_scale
             var diff_to_limit_ratio = get_diff_to_limit_ratio()
-            buzz_controller(diff_to_limit_ratio/10)
+            buzz_controller(pow(diff_to_limit_ratio, 4))
             if diff_to_limit_ratio > 1:
                 on_release(null, hand_point)
         else:
             push_error("BODY NOT SET")
 
 
-func get_diff_to_limit_ratio():
+func get_diff_to_limit_ratio() -> float:
     var diff_transform = hand_point.global_transform.inverse() * grab_point.global_transform
     var displacement_ratio = diff_transform.origin.length() / 0.1
     var rotation_ratio = ExtraMath.basis2axis_angle(diff_transform.basis).length() / (PI/2)
     return max(displacement_ratio, rotation_ratio)
 
 
-func block_axes_and_apply_limits(t: Transform):
-    var origin = block_axes_and_limit_displacement(t.origin)
-    var basis = block_axes_and_limit_rotation(t.basis)
+func limit_axes(t: Transform) -> Transform:
+    var origin = limit_either_axes(t.origin, linear_limit)
+    var basis = limit_angular_axes(t.basis)
     return Transform(basis, origin)
 
 
-func block_axes_and_limit_displacement(v: Vector3):
-    var blocked = block_xyz(v, x_linear_enabled, y_linear_enabled, z_linear_enabled)
-    return limit_vector_length(blocked, displacement_limit)
+func limit_angular_axes(b: Basis) -> Basis:
+    var rot_xyz = vectorify_rotation(b)
+    var limited = limit_either_axes(rot_xyz, angular_limit)
+    return basify_xyz_rotatin(limited)
 
 
-func block_axes_and_limit_rotation(b: Basis):
-    var rot_vec = ExtraMath.basis2axis_angle(b)
-    var blocked = block_xyz(rot_vec, x_angular_enabled, y_angular_enabled, z_angular_enabled)
-    var blocked_and_limited = limit_vector_length(blocked, angle_limit)
-    return Basis(blocked_and_limited.normalized(), blocked_and_limited.length())
+func limit_either_axes(v: Vector3, limits: Vector3) -> Vector3:
+    var x = v.x if limits.x > abs(v.x) else limits.x * sign(v.x)
+    var y = v.y if limits.y > abs(v.y) else limits.y * sign(v.y)
+    var z = v.z if limits.z > abs(v.z) else limits.z * sign(v.z)
+    return Vector3(x, y, z)
 
 
-func limit_vector_length(vec: Vector3, limit: float):
-    if vec.length() > limit:
-        return limit * vec.normalized()
+# func block_axes_and_apply_limits(t: Transform):
+#     var origin = block_axes_and_limit_displacement(t.origin)
+#     var basis = block_axes_and_limit_rotation(t.basis)
+#     return Transform(basis, origin)
+
+
+# func block_axes_and_limit_displacement(v: Vector3):
+#     var blocked = block_xyz(v, x_linear_enabled, y_linear_enabled, z_linear_enabled)
+#     return limit_vector_length(blocked, displacement_limit)
+
+
+# func block_axes_and_limit_rotation(b: Basis):
+#     var rot_xyz = vectorify_rotation(b)
+#     var blocked = block_xyz(rot_xyz, x_angular_enabled, y_angular_enabled, z_angular_enabled)
+#     var blocked_and_limited = limit_vector_length(blocked, angle_limit)
+#     return basify_xyz_rotatin(blocked_and_limited)
+
+
+func basify_xyz_rotatin(v: Vector3):
+    if euler_sequence_order:
+        return ExtraMath.euler2basis(v, euler_sequence_order)
     else:
-        return vec
+        return Basis(v.normalized(), v.length())
 
 
-func block_xyz(v: Vector3, x_enable: bool, y_enable: bool, z_enable: bool):
-    return Vector3(
-        v.x if x_enable else 0.0,
-        v.y if y_enable else 0.0,
-        v.z if z_enable else 0.0
-    )
+func vectorify_rotation(b: Basis) -> Vector3:
+    if euler_sequence_order:
+        return ExtraMath.basis2euler(b, euler_sequence_order)
+    else:
+        return ExtraMath.basis2axis_angle(b)
+
+
+# func limit_vector_length(vec: Vector3, limit: float):
+#     if vec.length() > limit:
+#         return limit * vec.normalized()
+#     else:
+#         return vec
+
+
+# func block_xyz(v: Vector3, x_enable: bool, y_enable: bool, z_enable: bool):
+#     return Vector3(
+#         v.x if x_enable else 0.0,
+#         v.y if y_enable else 0.0,
+#         v.z if z_enable else 0.0
+#     )
 
 
 func calculate_body_in_grab_frame():

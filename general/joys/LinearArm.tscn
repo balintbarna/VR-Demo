@@ -9,8 +9,8 @@ radius = 0.02
 height = 0.1
 
 [sub_resource type="CylinderMesh" id=3]
-top_radius = 0.02
-bottom_radius = 0.02
+top_radius = 0.015
+bottom_radius = 0.015
 height = 0.1
 radial_segments = 16
 
@@ -24,8 +24,8 @@ radius = 0.03
 height = 0.15
 
 [sub_resource type="CylinderMesh" id=8]
-top_radius = 0.03
-bottom_radius = 0.03
+top_radius = 0.025
+bottom_radius = 0.025
 height = 0.15
 radial_segments = 16
 
@@ -34,8 +34,11 @@ params_diffuse_mode = 4
 params_specular_mode = 3
 albedo_color = Color( 0.498039, 0, 0, 1 )
 
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.025, 0.025, 0.2 )
+
 [sub_resource type="CubeMesh" id=1]
-size = Vector3( 0.2, 0.1, 0.6 )
+size = Vector3( 0.05, 0.05, 0.4 )
 
 [sub_resource type="SpatialMaterial" id=5]
 params_diffuse_mode = 4
@@ -43,21 +46,17 @@ params_specular_mode = 4
 albedo_color = Color( 0.137255, 0.137255, 0.137255, 1 )
 
 [sub_resource type="CubeMesh" id=11]
-size = Vector3( 0.02, 0.01, 0.58 )
+size = Vector3( 0.03, 0.001, 0.38 )
 
 [sub_resource type="SpatialMaterial" id=12]
 flags_unshaded = true
 albedo_color = Color( 0, 0, 0, 1 )
-
-[sub_resource type="BoxShape" id=2]
-extents = Vector3( 0.1, 0.05, 0.3 )
 
 [sub_resource type="ViewportTexture" id=10]
 viewport_path = NodePath("Base/Viewport")
 
 [node name="LinearArm" type="Spatial"]
 script = ExtResource( 3 )
-displacement = 0.0
 
 [node name="JoyBody" type="StaticBody" parent="."]
 script = ExtResource( 1 )
@@ -82,28 +81,26 @@ skeleton = NodePath("../..")
 material/0 = SubResource( 9 )
 
 [node name="JoyGrabHandler" type="Spatial" parent="JoyBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.113879, 0 )
 script = ExtResource( 2 )
-x_linear_enabled = false
-y_linear_enabled = false
-x_angular_enabled = false
-y_angular_enabled = false
-z_angular_enabled = false
-displacement_limit = 0.26
+linear_limit = Vector3( 0, 0, 0.16 )
 
 [node name="Base" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Base"]
+[node name="CollisionShape" type="CollisionShape" parent="Base"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0359695, 0 )
+shape = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Base/CollisionShape"]
 mesh = SubResource( 1 )
+skeleton = NodePath("../..")
 material/0 = SubResource( 5 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Base/MeshInstance"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0459528, 0 )
+[node name="MeshInstance" type="MeshInstance" parent="Base/CollisionShape/MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.026095, 0 )
 mesh = SubResource( 11 )
 material/0 = SubResource( 12 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Base"]
-shape = SubResource( 2 )
 
 [node name="Viewport" type="Viewport" parent="Base"]
 size = Vector2( 40, 120 )
@@ -179,5 +176,6 @@ valign = 2
 
 [node name="Sprite3D" type="Sprite3D" parent="Base"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.051, 0 )
+visible = false
 pixel_size = 0.005
 texture = SubResource( 10 )

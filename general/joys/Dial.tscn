@@ -55,13 +55,9 @@ mesh = SubResource( 6 )
 material/0 = SubResource( 7 )
 
 [node name="JoyGrabHandler" type="Spatial" parent="JoyBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0281581 )
 script = ExtResource( 1 )
-x_linear_enabled = false
-y_linear_enabled = false
-z_linear_enabled = false
-x_angular_enabled = false
-z_angular_enabled = false
-angle_limit = 1.5
+angular_limit = Vector3( 0, 1.571, 0 )
 
 [node name="Base" type="StaticBody" parent="."]
 transform = Transform( 0.1, 0, 0, 0, 0.01, 0, 0, 0, 0.1, 0, -0.015, 0 )

@@ -174,9 +174,9 @@ transform = Transform( -0.339296, -0.909948, -0.238483, 0, 0.253522, -0.96733, 0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.4, 0.6, 8.5 )
 
 [node name="TargetRoot" type="Spatial" parent="World/Warehouse"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20678, -4.70744 )
 
 [node name="Target" type="CSGCombiner" parent="World/Warehouse/TargetRoot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20678, -4.70744 )
 use_collision = true
 
 [node name="CSGBox" type="CSGBox" parent="World/Warehouse/TargetRoot/Target"]
@@ -236,10 +236,10 @@ shape = SubResource( 7 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0 )
 
 [node name="ScalerDesk" type="StaticBody" parent="World/Warehouse"]
-transform = Transform( 1, 0, 0, 0, 0.995692, -0.0927182, 0, 0.0927182, 0.995692, -1.11018, 0.247544, 4.15224 )
+transform = Transform( 1, 0, 0, 0, 0.932947, -0.360013, 0, 0.360013, 0.932947, -1.43657, 0.247544, 4.15224 )
 
 [node name="CollisionShape" type="CollisionShape" parent="World/Warehouse/ScalerDesk"]
-transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2.8, 0, 0, 0 )
 shape = SubResource( 7 )
 
 [node name="MeshInstance" type="MeshInstance" parent="World/Warehouse/ScalerDesk/CollisionShape"]
@@ -249,8 +249,7 @@ skeleton = NodePath("../..")
 material/0 = SubResource( 11 )
 
 [node name="LinearArm" parent="World/Warehouse/ScalerDesk" instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 0.6, 0 )
-displacement = 0.0
+transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 0.496837, 0.0335326 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World"]
 stream = ExtResource( 4 )

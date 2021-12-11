@@ -70,11 +70,8 @@ shape = SubResource( 16 )
 [node name="JoyGrabHandler" type="Spatial" parent="JoyBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0 )
 script = ExtResource( 2 )
-x_linear_enabled = false
-y_linear_enabled = false
-z_linear_enabled = false
-x_angular_enabled = false
-y_angular_enabled = false
+euler_sequence_order = "xzy"
+angular_limit = Vector3( 0, 3.142, 1.571 )
 
 [node name="Base" type="StaticBody" parent="."]
 

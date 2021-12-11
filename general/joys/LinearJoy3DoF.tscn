@@ -4,11 +4,8 @@
 [ext_resource path="res://general/joys/JoyGrabHandler.gd" type="Script" id=2]
 [ext_resource path="res://general/joys/LinearJoy3DoF.gd" type="Script" id=3]
 
-[sub_resource type="SphereMesh" id=1]
-radius = 0.1
-height = 0.2
-radial_segments = 16
-rings = 8
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 0.2, 0.2, 0.2 )
 
 [sub_resource type="SpatialMaterial" id=2]
 flags_transparent = true
@@ -32,7 +29,7 @@ radius = 0.01
 script = ExtResource( 3 )
 
 [node name="Base" type="MeshInstance" parent="."]
-mesh = SubResource( 1 )
+mesh = SubResource( 6 )
 material/0 = SubResource( 2 )
 
 [node name="JoyBody" type="StaticBody" parent="."]
@@ -47,8 +44,4 @@ shape = SubResource( 5 )
 
 [node name="JoyGrabHandler" type="Spatial" parent="JoyBody"]
 script = ExtResource( 2 )
-x_angular_enabled = false
-y_angular_enabled = false
-z_angular_enabled = false
-displacement_limit = 0.1
-angle_limit = 0.0
+linear_limit = Vector3( 0.1, 0.1, 0.1 )
