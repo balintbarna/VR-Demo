@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://player/VrPlayerScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://general/sword/SwordOnRack.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://worlds/crane-world/Warehouse.gd" type="Script" id=5]
 [ext_resource path="res://general/predefined-portals/PortalRoomLoaderPortal.tscn" type="PackedScene" id=6]
 [ext_resource path="res://general/joys/Dial.tscn" type="PackedScene" id=7]
+[ext_resource path="res://general/joys/LinearJoy3DoF.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ProceduralSky" id=1]
 ground_bottom_color = Color( 0.290196, 0.443137, 0.0862745, 1 )
@@ -165,34 +166,34 @@ transform = Transform( 1, 0, 0, 0, 0.00881382, 0.999961, 0, -0.999961, 0.0088138
 light_color = Color( 0, 0.623529, 1, 1 )
 light_bake_mode = 2
 
-[node name="Target" type="Spatial" parent="World/Warehouse"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20678, -4.70744 )
-
-[node name="CSGCombiner" type="CSGCombiner" parent="World/Warehouse/Target"]
-use_collision = true
-
-[node name="CSGBox" type="CSGBox" parent="World/Warehouse/Target/CSGCombiner"]
-width = 0.357175
-height = 1.64737
-depth = 0.316551
-material = SubResource( 14 )
-
-[node name="CSGSphere" type="CSGSphere" parent="World/Warehouse/Target/CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.801293, 0 )
-radius = 0.304013
-material = SubResource( 14 )
-
-[node name="CSGTorus" type="CSGTorus" parent="World/Warehouse/Target/CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77576, 0 )
-inner_radius = 0.13988
-outer_radius = 0.323128
-material = SubResource( 14 )
-
 [node name="SwordOnRack" parent="World/Warehouse" instance=ExtResource( 2 )]
 transform = Transform( -0.339296, -0.909948, -0.238483, 0, 0.253522, -0.96733, 0.94068, -0.328211, -0.086019, 5.24486, 1.0701, 8.50803 )
 
 [node name="PortalRoomLoaderPortal" parent="World/Warehouse" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.4, 0.6, 8.5 )
+
+[node name="TargetRoot" type="Spatial" parent="World/Warehouse"]
+
+[node name="Target" type="CSGCombiner" parent="World/Warehouse/TargetRoot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20678, -4.70744 )
+use_collision = true
+
+[node name="CSGBox" type="CSGBox" parent="World/Warehouse/TargetRoot/Target"]
+width = 0.357175
+height = 1.64737
+depth = 0.316551
+material = SubResource( 14 )
+
+[node name="CSGSphere" type="CSGSphere" parent="World/Warehouse/TargetRoot/Target"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.801293, 0 )
+radius = 0.304013
+material = SubResource( 14 )
+
+[node name="CSGTorus" type="CSGTorus" parent="World/Warehouse/TargetRoot/Target"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77576, 0 )
+inner_radius = 0.13988
+outer_radius = 0.323128
+material = SubResource( 14 )
 
 [node name="SimpleJoyDesk" type="StaticBody" parent="World/Warehouse"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.441544, 4.11203 )
@@ -219,6 +220,19 @@ shape = SubResource( 7 )
 
 [node name="Dial" parent="World/Warehouse/DialDesk" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53, 0 )
+
+[node name="DisplacerDesk" type="StaticBody" parent="World/Warehouse"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.514363, 0.247544, 4.15224 )
+
+[node name="MeshInstance" type="MeshInstance" parent="World/Warehouse/DisplacerDesk"]
+mesh = SubResource( 6 )
+material/0 = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="World/Warehouse/DisplacerDesk"]
+shape = SubResource( 7 )
+
+[node name="LinearJoy3DoF" parent="World/Warehouse/DisplacerDesk" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World"]
 stream = ExtResource( 4 )
