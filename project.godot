@@ -159,6 +159,10 @@ gdscript/warnings/unsafe_method_access=true
 gdscript/warnings/unsafe_cast=true
 gdscript/warnings/unsafe_call_argument=true
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
+
 [gdnative]
 
 singletons=[ "res://addons/godot_ovrmobile/godot_ovrmobile.gdnlib" ]
