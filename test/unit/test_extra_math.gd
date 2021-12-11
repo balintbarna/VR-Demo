@@ -14,6 +14,20 @@ func before_all():
         mats.append(Basis(v.normalized(), v.length()))
 
 
+func test_basis2euler_default():
+    for b in mats:
+        var euler = ExtraMath.basis2euler(b)
+        var euler_built_in = b.get_euler()
+        assert_vecs_almost_eq(euler, euler_built_in, ExtraMath.EPSILON)
+
+
+func test_euler2basis_default():
+    for b in mats:
+        var euler = b.get_euler()
+        var b_calc = ExtraMath.euler2basis(euler)
+        assert_mats_almost_eq(b_calc, b, ExtraMath.EPSILON)
+
+
 func test_basis2axis_angle():
     for b in mats:
         var v = ExtraMath.basis2axis_angle(b)
