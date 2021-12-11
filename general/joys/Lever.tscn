@@ -2,7 +2,7 @@
 
 [ext_resource path="res://general/joys/JoyBody.gd" type="Script" id=1]
 [ext_resource path="res://general/joys/JoyGrabHandler.gd" type="Script" id=2]
-[ext_resource path="res://general/joys/Joy1DoF.gd" type="Script" id=3]
+[ext_resource path="res://general/joys/Lever.gd" type="Script" id=3]
 
 [sub_resource type="CylinderMesh" id=9]
 top_radius = 0.01
@@ -46,7 +46,7 @@ albedo_color = Color( 0.541176, 0.541176, 0.541176, 1 )
 radius = 0.1
 height = 0.05
 
-[node name="Joy1DoF" type="Spatial"]
+[node name="Lever" type="Spatial"]
 script = ExtResource( 3 )
 
 [node name="JoyBody" type="StaticBody" parent="."]
@@ -71,7 +71,7 @@ shape = SubResource( 16 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0 )
 script = ExtResource( 2 )
 euler_sequence_order = "xzy"
-angular_limit = Vector3( 0, 3.142, 1.571 )
+angular_limit = Vector3( 0, 0, 1.571 )
 
 [node name="Base" type="StaticBody" parent="."]
 
