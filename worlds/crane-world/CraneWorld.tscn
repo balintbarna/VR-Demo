@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://player/VrPlayerScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://general/sword/SwordOnRack.tscn" type="PackedScene" id=2]
@@ -35,17 +35,6 @@ albedo_color = Color( 0.368627, 0.2, 0.0235294, 1 )
 [sub_resource type="BoxShape" id=7]
 extents = Vector3( 0.1, 0.5, 0.1 )
 
-[sub_resource type="CylinderMesh" id=8]
-top_radius = 0.1
-bottom_radius = 0.1
-height = 0.05
-radial_segments = 16
-
-[sub_resource type="SpatialMaterial" id=12]
-params_diffuse_mode = 4
-params_specular_mode = 4
-albedo_color = Color( 0.541176, 0.541176, 0.541176, 1 )
-
 [node name="CraneWorld" type="Spatial"]
 
 [node name="StartingPoint" type="Spatial" parent="."]
@@ -79,14 +68,8 @@ material/0 = SubResource( 11 )
 [node name="CollisionShape" type="CollisionShape" parent="World/Warehouse/Desk"]
 shape = SubResource( 7 )
 
-[node name="JoystickBase" type="MeshInstance" parent="World/Warehouse/Desk"]
-transform = Transform( 1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0.5, 0 )
-mesh = SubResource( 8 )
-skeleton = NodePath("")
-material/0 = SubResource( 12 )
-
-[node name="SpringJoy1DoF" parent="World/Warehouse/Desk/JoystickBase" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, 0.999999, -4.37114e-08, 0, -4.37113e-08, -1, -1, -4.37113e-08, 1.91069e-15, 0, 0, 0 )
+[node name="SpringJoy1DoF" parent="World/Warehouse/Desk" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0.5, 0 )
 
 [node name="SwordOnRack" parent="World/Warehouse" instance=ExtResource( 2 )]
 
