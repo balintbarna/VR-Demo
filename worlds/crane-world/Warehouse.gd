@@ -1,11 +1,13 @@
 extends Spatial
 
 
+onready var target_root = $TargetRoot
 onready var target = $TargetRoot/Target
 onready var joy = $SimpleJoyDesk/SimpleJoy
 onready var dial = $DialDesk/Dial
 onready var displacer = $DisplacerDesk/LinearJoy3DoF
 onready var scaler = $ScalerDesk/LinearArm
+onready var full_joy = $Joy6DoF
 
 
 func _physics_process(_delta):

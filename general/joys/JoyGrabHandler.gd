@@ -8,6 +8,7 @@ class_name JoyGrabHandler
 export var euler_sequence_order = ""
 export var linear_limit = Vector3()
 export var angular_limit = Vector3()
+export var spring = false
 var old_collision_layer: int
 var grab_point: Spatial
 var hand_point: Spatial
@@ -55,7 +56,7 @@ func limit_axes(t: Transform) -> Transform:
 func limit_angular_axes(b: Basis) -> Basis:
     var rot_xyz = vectorify_rotation(b)
     var limited = limit_either_axes(rot_xyz, angular_limit)
-    return basify_xyz_rotatin(limited)
+    return basify_xyz_rotation(limited)
 
 
 func limit_either_axes(v: Vector3, limits: Vector3) -> Vector3:
@@ -80,10 +81,10 @@ func limit_either_axes(v: Vector3, limits: Vector3) -> Vector3:
 #     var rot_xyz = vectorify_rotation(b)
 #     var blocked = block_xyz(rot_xyz, x_angular_enabled, y_angular_enabled, z_angular_enabled)
 #     var blocked_and_limited = limit_vector_length(blocked, angle_limit)
-#     return basify_xyz_rotatin(blocked_and_limited)
+#     return basify_xyz_rotation(blocked_and_limited)
 
 
-func basify_xyz_rotatin(v: Vector3):
+func basify_xyz_rotation(v: Vector3):
     if euler_sequence_order:
         return ExtraMath.euler2basis(v, euler_sequence_order)
     else:
@@ -146,6 +147,8 @@ func on_release(sender, point):
     if sender:
         sender.disconnect("releasing", self, "on_release")
     if hand_point == point:
+        if spring:
+            body.transform = Transform.IDENTITY
         body.collision_layer = old_collision_layer
         hand_point = null
         set_physics_process(false)

@@ -1,0 +1,168 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://general/joys/JoyGrabHandler.gd" type="Script" id=1]
+[ext_resource path="res://general/joys/Joy6DoF.gd" type="Script" id=2]
+[ext_resource path="res://general/joys/JoyBody.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape" id=8]
+radius = 0.03
+height = 0.1
+
+[sub_resource type="CapsuleMesh" id=9]
+radius = 0.02
+mid_height = 0.1
+radial_segments = 16
+
+[sub_resource type="SpatialMaterial" id=10]
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 0.337255, 0.337255, 0.337255, 1 )
+
+[sub_resource type="SphereMesh" id=11]
+radius = 0.026
+height = 0.04
+radial_segments = 16
+rings = 16
+
+[sub_resource type="CylinderMesh" id=12]
+top_radius = 0.01
+bottom_radius = 0.02
+height = 0.01
+
+[sub_resource type="SpatialMaterial" id=13]
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 1, 0.470588, 0.298039, 1 )
+
+[sub_resource type="CylinderMesh" id=14]
+top_radius = 0.001
+bottom_radius = 0.003
+height = 0.01
+
+[sub_resource type="SpatialMaterial" id=15]
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.03, 0.03, 0.03 )
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 0.06, 0.06, 0.06 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 0.615686, 0.909804, 1, 0.392157 )
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 0.055, 0.055, 0.001 )
+
+[sub_resource type="SpatialMaterial" id=5]
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=6]
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 0, 1, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=7]
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 0, 0, 1, 1 )
+
+[node name="Joy6DoF" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="JoyBody" type="StaticBody" parent="."]
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="JoyBody"]
+transform = Transform( 1, 0, 0, 0, -0.173648, 0.984808, 0, -0.984808, -0.173648, 0, 0.1184, -0.0173571 )
+shape = SubResource( 8 )
+
+[node name="StickMesh" type="CSGCombiner" parent="JoyBody/CollisionShape"]
+
+[node name="Shaft" type="CSGMesh" parent="JoyBody/CollisionShape/StickMesh"]
+mesh = SubResource( 9 )
+material = SubResource( 10 )
+
+[node name="GrabHelper" type="CSGMesh" parent="JoyBody/CollisionShape/StickMesh"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0, 0.02 )
+mesh = SubResource( 11 )
+material = SubResource( 10 )
+
+[node name="FrontInterface" type="CSGCombiner" parent="JoyBody/CollisionShape/StickMesh"]
+transform = Transform( 1, 0, 0, 0, 0.788741, 0.614726, 0, -0.614726, 0.788741, 0, -0.0142894, 0.0567121 )
+
+[node name="Base" type="CSGMesh" parent="JoyBody/CollisionShape/StickMesh/FrontInterface"]
+transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0 )
+mesh = SubResource( 12 )
+material = SubResource( 10 )
+
+[node name="Button" type="CSGBox" parent="JoyBody/CollisionShape/StickMesh/FrontInterface"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007, -0.007, -0.007 )
+width = 0.007
+height = 0.001
+depth = 0.007
+material = SubResource( 13 )
+
+[node name="JoyStick" type="CSGCombiner" parent="JoyBody/CollisionShape/StickMesh/FrontInterface"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, -0.012, 0.008 )
+
+[node name="Cone" type="CSGMesh" parent="JoyBody/CollisionShape/StickMesh/FrontInterface/JoyStick"]
+transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0.004, 0 )
+mesh = SubResource( 14 )
+material = SubResource( 15 )
+
+[node name="Top" type="CSGSphere" parent="JoyBody/CollisionShape/StickMesh/FrontInterface/JoyStick"]
+radius = 0.004
+material = SubResource( 15 )
+
+[node name="BackInterface" type="CSGCombiner" parent="JoyBody/CollisionShape/StickMesh"]
+transform = Transform( 1, 0, 0, 0, -0.990362, 0.138499, 0, -0.138499, -0.990362, 0, 0.0182523, 0.0494555 )
+
+[node name="Base" type="CSGMesh" parent="JoyBody/CollisionShape/StickMesh/BackInterface"]
+transform = Transform( 0.7, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0 )
+mesh = SubResource( 12 )
+material = SubResource( 10 )
+
+[node name="Trigger" type="CSGBox" parent="JoyBody/CollisionShape/StickMesh/BackInterface"]
+transform = Transform( 1, 0, 0, 0, 0.938783, -0.344512, 0, 0.344512, 0.938783, 0, -0.00280734, -9.99421e-05 )
+width = 0.01
+height = 0.01
+depth = 0.02
+material = SubResource( 13 )
+
+[node name="JoyGrabHandler" type="Spatial" parent="JoyBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0604896, -0.00687247 )
+script = ExtResource( 1 )
+linear_limit = Vector3( 0.02, 0.02, 0.02 )
+angular_limit = Vector3( 1.047, 1.047, 1.047 )
+spring = true
+
+[node name="Base" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Base"]
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Base/CollisionShape"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="Red" type="MeshInstance" parent="Base"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="Green" type="MeshInstance" parent="Base"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 6 )
+
+[node name="Blue" type="MeshInstance" parent="Base"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )

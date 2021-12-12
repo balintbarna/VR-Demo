@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://player/VrPlayerScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://general/sword/SwordOnRack.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://general/joys/Dial.tscn" type="PackedScene" id=7]
 [ext_resource path="res://general/joys/LinearJoy3DoF.tscn" type="PackedScene" id=8]
 [ext_resource path="res://general/joys/LinearArm.tscn" type="PackedScene" id=9]
+[ext_resource path="res://general/joys/Joy6DoF.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ProceduralSky" id=1]
 ground_bottom_color = Color( 0.290196, 0.443137, 0.0862745, 1 )
@@ -250,6 +251,9 @@ material/0 = SubResource( 11 )
 
 [node name="LinearArm" parent="World/Warehouse/ScalerDesk" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 0.496837, 0.0335326 )
+
+[node name="Joy6DoF" parent="World/Warehouse" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00043, 0.695141, 4.47559 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World"]
 stream = ExtResource( 4 )
