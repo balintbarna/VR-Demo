@@ -1,7 +1,5 @@
 extends Spatial
 
-export var joy_displacement: Vector3 setget , get_joy_displacement
-export var joy_rotation: Vector3 setget , get_joy_rotation
 onready var joy = $JoyBody
 onready var red = $Base/Red
 onready var green = $Base/Green
@@ -22,3 +20,10 @@ func get_joy_displacement():
     )
 
 
+func get_joy_rotation():
+    var euler = joy.grab_handler.vectorify_rotation(joy.transform.basis)
+    return Vector3(
+        euler.x / joy.grab_handler.angular_limit.x,
+        euler.y / joy.grab_handler.angular_limit.y,
+        euler.z / joy.grab_handler.angular_limit.z
+    )

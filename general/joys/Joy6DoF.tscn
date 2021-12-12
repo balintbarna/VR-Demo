@@ -104,7 +104,7 @@ mesh = SubResource( 12 )
 material = SubResource( 10 )
 
 [node name="Button" type="CSGBox" parent="JoyBody/CollisionShape/StickMesh/FrontInterface"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007, -0.007, -0.007 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007, -0.008, -0.007 )
 width = 0.007
 height = 0.001
 depth = 0.007
@@ -114,7 +114,7 @@ material = SubResource( 13 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008, -0.012, 0.008 )
 
 [node name="Cone" type="CSGMesh" parent="JoyBody/CollisionShape/StickMesh/FrontInterface/JoyStick"]
-transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0.004, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0.005, 0 )
 mesh = SubResource( 14 )
 material = SubResource( 15 )
 

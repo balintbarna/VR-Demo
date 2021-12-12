@@ -28,9 +28,8 @@ func _physics_process(_delta):
             var body_in_ref_frame = ref_frame.inverse() * body_in_global_frame
             # var processed_body_in_ref_frame = block_axes_and_apply_limits(body_in_ref_frame)
             var processed_body_in_ref_frame = limit_axes(body_in_ref_frame)
-            var processed_body_in_global_frame = ref_frame * processed_body_in_ref_frame
             var body_scale = body.scale
-            body.global_transform = processed_body_in_global_frame
+            body.transform = processed_body_in_ref_frame
             body.scale = body_scale
             var diff_to_limit_ratio = get_diff_to_limit_ratio()
             buzz_controller(pow(diff_to_limit_ratio, 4))
