@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://player/vr-controllers/GrabArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/vr-controllers/DebugDisplay.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player/vr-controllers/VrController.gd" type="Script" id=3]
+[ext_resource path="res://player/vr-controllers/ThumbBase.tscn" type="PackedScene" id=4]
 [ext_resource path="res://player/vr-controllers/HandDebugMesh.tres" type="CubeMesh" id=5]
 [ext_resource path="res://player/vr-controllers/assets/LeftControllerMesh.tscn" type="PackedScene" id=6]
+[ext_resource path="res://player/vr-controllers/IndexBase.tscn" type="PackedScene" id=7]
 
 [sub_resource type="SpatialMaterial" id=3]
 params_diffuse_mode = 4
@@ -28,5 +30,15 @@ transform = Transform( -4.37114e-09, -8.74228e-09, -0.01, 0, -0.1, 8.74228e-10, 
 [node name="GrabArea" parent="." instance=ExtResource( 1 )]
 transform = Transform( -3.09086e-08, 3.09086e-08, -1, 0.707107, 0.707107, 0, 0.707107, -0.707107, -4.37114e-08, 0, -0.03, 0.03 )
 
+[node name="ThumbBase" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024, 0.006 )
+
+[node name="IndexBase" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, -0.055 )
+
 [connection signal="grip_pressed" from="." to="GrabArea" method="try_grab"]
 [connection signal="grip_released" from="." to="GrabArea" method="release"]
+[connection signal="index_pointing" from="." to="IndexBase" method="_on_index_pointing"]
+[connection signal="index_rest" from="." to="IndexBase" method="_on_index_rest"]
+[connection signal="thumb_rest" from="." to="ThumbBase" method="_on_thumb_rest"]
+[connection signal="thumb_up" from="." to="ThumbBase" method="_on_thumb_up"]

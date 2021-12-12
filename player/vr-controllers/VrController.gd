@@ -4,6 +4,10 @@ class_name VrController
 
 signal grip_pressed
 signal grip_released
+signal thumb_up
+signal thumb_rest
+signal index_pointing
+signal index_rest
 
 
 const CONTROLLER_RUMBLE_FADE_SPEED = 2.0
@@ -31,13 +35,23 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_button_pressed(button: int):
-    if button == buttons.GRIP:
-        emit_signal("grip_pressed")
+    match button:
+        buttons.GRIP:
+            emit_signal("grip_pressed")
+        buttons.THUMB_POINTING_UP:
+            emit_signal("thumb_up")
+        buttons.INDEX_POINTING:
+            emit_signal("index_pointing")
 
 
 func _on_button_released(button: int):
-    if button == buttons.GRIP:
-        emit_signal("grip_released")
+    match button:
+        buttons.GRIP:
+            emit_signal("grip_released")
+        buttons.THUMB_POINTING_UP:
+            emit_signal("thumb_rest")
+        buttons.INDEX_POINTING:
+            emit_signal("index_rest")
 
 
 func _set_controller_mesh():

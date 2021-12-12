@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://player/vr-controllers/ThumbBase.gd" type="Script" id=1]
+
+[sub_resource type="SphereMesh" id=4]
+radius = 0.01
+height = 0.02
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SpatialMaterial" id=5]
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 0.435294, 0.690196, 0.341176, 1 )
+
+[sub_resource type="SphereShape" id=6]
+radius = 0.01
+
+[node name="ThumbBase" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Thumb" type="Area" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Thumb"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="CollisionPolygon" type="CollisionShape" parent="Thumb"]
+shape = SubResource( 6 )
+
+[node name="AXPoint" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00536878, -0.0226885, 0.00826548 )
+
+[node name="BYPoint" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0114349, -0.0249557, -0.00729807 )
+
+[node name="RestPoint" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0244226, -0.00566837 )

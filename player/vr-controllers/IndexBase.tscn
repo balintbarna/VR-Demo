@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://player/vr-controllers/IndexBase.gd" type="Script" id=1]
+
+[sub_resource type="SphereMesh" id=4]
+radius = 0.01
+height = 0.02
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SpatialMaterial" id=5]
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 0.317647, 0.505882, 0.768627, 1 )
+
+[sub_resource type="SphereShape" id=6]
+radius = 0.01
+
+[node name="IndexBase" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Index" type="Area" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Index"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="CollisionPolygon" type="CollisionShape" parent="Index"]
+shape = SubResource( 6 )
+
+[node name="TriggerPoint" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.03 )
