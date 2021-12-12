@@ -1,23 +1,16 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://player/VrPlayerScene.tscn" type="PackedScene" id=1]
-[ext_resource path="res://general/sword/SwordOnRack.tscn" type="PackedScene" id=2]
+[ext_resource path="res://general/joys/LinearArm.tscn" type="PackedScene" id=2]
 [ext_resource path="res://general/joys/Lever.tscn" type="PackedScene" id=3]
-[ext_resource path="res://worlds/crane-world/DAF_fabriek,_algemene_sfeer_-_SoundCloud_-_Beeld_en_Geluid.ogg" type="AudioStream" id=4]
-[ext_resource path="res://worlds/crane-world/Warehouse.gd" type="Script" id=5]
-[ext_resource path="res://general/predefined-portals/PortalRoomLoaderPortal.tscn" type="PackedScene" id=6]
-[ext_resource path="res://general/joys/Dial.tscn" type="PackedScene" id=7]
-[ext_resource path="res://general/joys/LinearJoy3DoF.tscn" type="PackedScene" id=8]
-[ext_resource path="res://general/joys/LinearArm.tscn" type="PackedScene" id=9]
-[ext_resource path="res://general/joys/Joy6DoF.tscn" type="PackedScene" id=10]
-
-[sub_resource type="ProceduralSky" id=1]
-ground_bottom_color = Color( 0.290196, 0.443137, 0.0862745, 1 )
-ground_horizon_color = Color( 0.615686, 0.694118, 0.282353, 1 )
-
-[sub_resource type="Environment" id=2]
-background_mode = 2
-background_sky = SubResource( 1 )
+[ext_resource path="res://general/joys/LinearJoy3DoF.tscn" type="PackedScene" id=4]
+[ext_resource path="res://general/joys/Dial.tscn" type="PackedScene" id=5]
+[ext_resource path="res://general/sword/SwordOnRack.tscn" type="PackedScene" id=6]
+[ext_resource path="res://general/predefined-portals/PortalRoomLoaderPortal.tscn" type="PackedScene" id=7]
+[ext_resource path="res://general/joys/Joy6DoF.tscn" type="PackedScene" id=8]
+[ext_resource path="res://worlds/joy-factory/DAF_fabriek,_algemene_sfeer_-_SoundCloud_-_Beeld_en_Geluid.ogg" type="AudioStream" id=9]
+[ext_resource path="res://worlds/joy-factory/Warehouse.gd" type="Script" id=10]
+[ext_resource path="res://general/environments/DaylightSkyAndGrass.tres" type="Environment" id=11]
 
 [sub_resource type="CubeMesh" id=3]
 size = Vector3( 20, 0.04, 20 )
@@ -55,7 +48,7 @@ albedo_color = Color( 0.368627, 0.2, 0.0235294, 1 )
 [sub_resource type="BoxShape" id=7]
 extents = Vector3( 0.1, 0.5, 0.1 )
 
-[node name="CraneWorld" type="Spatial"]
+[node name="JoyFactory" type="Spatial"]
 
 [node name="StartingPoint" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.20363 )
@@ -65,10 +58,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.20363 )
 [node name="World" type="Spatial" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
-environment = SubResource( 2 )
+environment = ExtResource( 11 )
 
 [node name="Warehouse" type="Spatial" parent="World"]
-script = ExtResource( 5 )
+script = ExtResource( 10 )
 
 [node name="Floor" type="StaticBody" parent="World/Warehouse"]
 
@@ -95,7 +88,6 @@ transform = Transform( 10, 0, 0, 0, 3, 0, 0, 0, 0.1, 0, 1, 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="World/Warehouse/Wall2"]
 mesh = SubResource( 12 )
-skeleton = NodePath("../../Wall2")
 material/0 = SubResource( 15 )
 
 [node name="CollisionShape" type="CollisionShape" parent="World/Warehouse/Wall2"]
@@ -168,10 +160,10 @@ transform = Transform( 1, 0, 0, 0, 0.00881382, 0.999961, 0, -0.999961, 0.0088138
 light_color = Color( 0, 0.623529, 1, 1 )
 light_bake_mode = 2
 
-[node name="SwordOnRack" parent="World/Warehouse" instance=ExtResource( 2 )]
+[node name="SwordOnRack" parent="World/Warehouse" instance=ExtResource( 6 )]
 transform = Transform( -0.339296, -0.909948, -0.238483, 0, 0.253522, -0.96733, 0.94068, -0.328211, -0.086019, 5.24486, 1.0701, 8.50803 )
 
-[node name="PortalRoomLoaderPortal" parent="World/Warehouse" instance=ExtResource( 6 )]
+[node name="PortalRoomLoaderPortal" parent="World/Warehouse" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.4, 0.6, 8.5 )
 
 [node name="TargetRoot" type="Spatial" parent="World/Warehouse"]
@@ -220,7 +212,7 @@ material/0 = SubResource( 11 )
 [node name="CollisionShape" type="CollisionShape" parent="World/Warehouse/DialDesk"]
 shape = SubResource( 7 )
 
-[node name="Dial" parent="World/Warehouse/DialDesk" instance=ExtResource( 7 )]
+[node name="Dial" parent="World/Warehouse/DialDesk" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53, 0 )
 
 [node name="DisplacerDesk" type="StaticBody" parent="World/Warehouse"]
@@ -233,7 +225,7 @@ material/0 = SubResource( 11 )
 [node name="CollisionShape" type="CollisionShape" parent="World/Warehouse/DisplacerDesk"]
 shape = SubResource( 7 )
 
-[node name="LinearJoy3DoF" parent="World/Warehouse/DisplacerDesk" instance=ExtResource( 8 )]
+[node name="LinearJoy3DoF" parent="World/Warehouse/DisplacerDesk" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0 )
 
 [node name="ScalerDesk" type="StaticBody" parent="World/Warehouse"]
@@ -249,13 +241,16 @@ mesh = SubResource( 6 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 11 )
 
-[node name="LinearArm" parent="World/Warehouse/ScalerDesk" instance=ExtResource( 9 )]
+[node name="LinearArm" parent="World/Warehouse/ScalerDesk" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 0.496837, 0.0335326 )
 
-[node name="Joy6DoF" parent="World/Warehouse" instance=ExtResource( 10 )]
+[node name="Joy6DoF" parent="World/Warehouse" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00043, 0.695141, 4.47559 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World"]
-stream = ExtResource( 4 )
+stream = ExtResource( 9 )
 volume_db = -15.0
 autoplay = true
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="World"]
+extents = Vector3( 10.5108, 4.59984, 11.2066 )

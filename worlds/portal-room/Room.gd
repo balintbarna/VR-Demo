@@ -16,11 +16,11 @@ func _gold_box_portal_entered(body):
         load_golden_box_scene()
 
 
-func _on_CranePortal_body_entered(body) -> void:
+func _on_JoyPortal_body_entered(body) -> void:
     if body is KinematicBody:
         load_loading_room_scene()
-        load_crane_world()
+        load_joy_factory()
 
 
-func load_crane_world():
-    SceneLoader.start_loading(SceneLibrary.get_crane_world_scene())
+func load_joy_factory():
+    SceneLoader.start_loading(SceneLibrary.get_joy_factory_scene())

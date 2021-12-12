@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/DAF_fabriek,_algemene_sfeer_-_SoundCloud_-_Beeld_en_Geluid.ogg-bb3804219c004200e7ac0eb11bb6584f.oggstr"
+
+[deps]
+
+source_file="res://worlds/joy-factory/DAF_fabriek,_algemene_sfeer_-_SoundCloud_-_Beeld_en_Geluid.ogg"
+dest_files=[ "res://.import/DAF_fabriek,_algemene_sfeer_-_SoundCloud_-_Beeld_en_Geluid.ogg-bb3804219c004200e7ac0eb11bb6584f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

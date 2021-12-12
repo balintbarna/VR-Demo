@@ -58,9 +58,9 @@ transform = Transform( 0.0671098, 0, -0.997746, 0, 1, 0, 0.997746, 0, 0.0671098,
 sphere_color = Color( 0.560784, 0.831373, 0.164706, 1 )
 audio_stream = ExtResource( 5 )
 
-[node name="CranePortal" parent="World/Room" instance=ExtResource( 3 )]
+[node name="JoyFactoryPortal" parent="World/Room" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.95146, -0.53951, -4.05824 )
-portal_name = "Crane World"
+portal_name = "Joy Factory"
 portal_color = Color( 0.419608, 0.490196, 0.490196, 1 )
 
 [node name="GoldenBoxPortal" parent="World/Room" instance=ExtResource( 3 )]
@@ -71,5 +71,5 @@ portal_color = Color( 1, 0.890196, 0, 1 )
 [node name="Sword" parent="World/Room" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, -0.0317597, 0.999496, 0, -0.999496, -0.0317597, 0.104439, -1.57448, -3.12299 )
 
-[connection signal="body_entered" from="World/Room/CranePortal" to="World/Room" method="_on_CranePortal_body_entered"]
+[connection signal="body_entered" from="World/Room/JoyFactoryPortal" to="World/Room" method="_on_JoyPortal_body_entered"]
 [connection signal="body_entered" from="World/Room/GoldenBoxPortal" to="World/Room" method="_gold_box_portal_entered"]

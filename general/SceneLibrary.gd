@@ -13,5 +13,5 @@ func get_gold_box_scene() -> ResourceInteractiveLoader:
     return ResourceLoader.load_interactive("res://worlds/golden-box/GoldenBox.tscn")
 
 
-func get_crane_world_scene() -> ResourceInteractiveLoader:
-    return ResourceLoader.load_interactive("res://worlds/crane-world/CraneWorld.tscn")
+func get_joy_factory_scene() -> ResourceInteractiveLoader:
+    return ResourceLoader.load_interactive("res://worlds/joy-factory/JoyFactory.tscn")
