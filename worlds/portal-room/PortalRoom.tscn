@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://worlds/portal-room/Room.gd" type="Script" id=1]
 [ext_resource path="res://player/VrPlayerScene.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://general/audio-ball/AudioBall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://worlds/portal-room/Mozart - Piano Sonata.mp3" type="AudioStream" id=5]
 [ext_resource path="res://general/sword/Sword.tscn" type="PackedScene" id=6]
+[ext_resource path="res://general/portal/small-portal/SmallPortal.tscn" type="PackedScene" id=7]
 
 [sub_resource type="PanoramaSky" id=1]
 
@@ -68,8 +69,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.35524, -0.456766, -4.04123 
 portal_name = "Golden Box"
 portal_color = Color( 1, 0.890196, 0, 1 )
 
+[node name="StartPortPortal" parent="World/Room" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.268717, -0.922995, -3.38541 )
+portal_name = "Star Port"
+portal_color = Color( 0, 0.368627, 1, 1 )
+
 [node name="Sword" parent="World/Room" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, -0.0317597, 0.999496, 0, -0.999496, -0.0317597, 0.104439, -1.57448, -3.12299 )
+transform = Transform( 1, 0, 0, 0, -0.0317597, 0.999496, 0, -0.999496, -0.0317597, 0.104439, -0.978948, 0.00900102 )
 
 [connection signal="body_entered" from="World/Room/JoyFactoryPortal" to="World/Room" method="_on_JoyPortal_body_entered"]
 [connection signal="body_entered" from="World/Room/GoldenBoxPortal" to="World/Room" method="_gold_box_portal_entered"]
+[connection signal="body_entered" from="World/Room/StartPortPortal" to="World/Room" method="_on_StartPortPortal_body_entered"]

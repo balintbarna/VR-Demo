@@ -16,7 +16,7 @@ func _gold_box_portal_entered(body):
         load_golden_box_scene()
 
 
-func _on_JoyPortal_body_entered(body) -> void:
+func _on_JoyPortal_body_entered(body):
     if body is KinematicBody:
         load_loading_room_scene()
         load_joy_factory()
@@ -24,3 +24,9 @@ func _on_JoyPortal_body_entered(body) -> void:
 
 func load_joy_factory():
     SceneLoader.start_loading(SceneLibrary.get_joy_factory_scene())
+
+
+func _on_StartPortPortal_body_entered(body):
+    if body is KinematicBody:
+        load_loading_room_scene()
+        SceneLoader.start_loading(SceneLibrary.get_star_port_scene())
