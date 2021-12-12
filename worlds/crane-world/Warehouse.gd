@@ -23,4 +23,5 @@ func _physics_process(delta):
 func apply_incremental_transformation_from_spring_joys(delta):
     target_root.translate(full_joy.get_joy_displacement() * delta * displacement_speed)
     var relative_rotations = full_joy.get_joy_rotation()
-    target_root.rotate_object_local(relative_rotations.normalized(), relative_rotations.length() * delta * rotation_speed)
+    if relative_rotations.length() > 0:
+        target_root.rotate_object_local(relative_rotations.normalized(), relative_rotations.length() * delta * rotation_speed)
