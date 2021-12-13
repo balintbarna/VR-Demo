@@ -1,8 +1,11 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://worlds/starport/ScreenContent.gd" type="Script" id=1]
 
 [node name="ScreenContent" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -13,36 +16,33 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -90.0
 margin_right = 90.0
-custom_constants/separation = 30
+custom_constants/separation = 60
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 238.0
+[node name="Title" type="Label" parent="VBoxContainer"]
+margin_top = 201.0
 margin_right = 180.0
-margin_bottom = 252.0
-
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer"]
-margin_right = 180.0
-margin_bottom = 14.0
+margin_bottom = 215.0
 text = "Want to get your spaceship?"
 align = 1
 valign = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
-margin_top = 282.0
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_top = 275.0
 margin_right = 180.0
-margin_bottom = 282.0
-
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 312.0
-margin_right = 180.0
-margin_bottom = 362.0
-
-[node name="Button" type="Button" parent="VBoxContainer/MarginContainer2"]
-margin_right = 180.0
-margin_bottom = 50.0
+margin_bottom = 325.0
 rect_min_size = Vector2( 0, 50 )
 text = "Get Ship!"
+
+[node name="Result" type="Label" parent="VBoxContainer"]
+margin_top = 385.0
+margin_right = 180.0
+margin_bottom = 399.0
+text = "Not pressed yet"
+align = 1
+valign = 1
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_get_ship_button_press"]
