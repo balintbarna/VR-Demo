@@ -36,3 +36,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0114349, -0.0249557, -0.0072
 
 [node name="RestPoint" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0244226, -0.00566837 )
+
+[connection signal="area_entered" from="Thumb" to="." method="_on_touching_area"]
+[connection signal="area_exited" from="Thumb" to="." method="_on_leaving_area"]
