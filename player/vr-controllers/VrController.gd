@@ -54,6 +54,18 @@ func _on_button_released(button: int):
             emit_signal("index_rest")
 
 
+func is_pointing():
+    return is_button_pressed(buttons.INDEX_POINTING)
+
+
+func is_gripping():
+    return is_button_pressed(buttons.GRIP)
+
+
+func is_thumb_up():
+    return is_button_pressed(buttons.THUMB_POINTING_UP)
+
+
 func _set_controller_mesh():
     var mesh = get_mesh()
     if mesh:

@@ -30,3 +30,6 @@ shape = SubResource( 6 )
 
 [node name="TriggerPoint" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.03 )
+
+[connection signal="area_entered" from="Index" to="." method="_on_touching_area"]
+[connection signal="area_exited" from="Index" to="." method="_on_leaving_area"]
