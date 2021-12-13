@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://player/vr-head/FreeLookKinematicMover.gd"
 }, {
 "base": "Spatial",
+"class": "GrabHandler",
+"language": "GDScript",
+"path": "res://general/grabbing/GrabHandler.gd"
+}, {
+"base": "Spatial",
 "class": "GrabPointsGenerator",
 "language": "GDScript",
 "path": "res://general/grabbing/GrabPointsGenerator.gd"
@@ -34,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/vr-head/HeadCamera.gd"
 }, {
-"base": "Spatial",
+"base": "GrabHandler",
 "class": "JoyGrabHandler",
 "language": "GDScript",
 "path": "res://general/joys/JoyGrabHandler.gd"
@@ -89,7 +94,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://vr-intergration/QuestConfig.gd"
 }, {
-"base": "Spatial",
+"base": "GrabHandler",
 "class": "RigidBodyGrabHandler",
 "language": "GDScript",
 "path": "res://general/grabbing/RigidBodyGrabHandler.gd"
@@ -123,6 +128,7 @@ _global_script_class_icons={
 "ExtraMath": "",
 "FlatWorldPhysicsKinematicMover": "",
 "FreeLookKinematicMover": "",
+"GrabHandler": "",
 "GrabPointsGenerator": "",
 "HeadCamera": "",
 "JoyGrabHandler": "",

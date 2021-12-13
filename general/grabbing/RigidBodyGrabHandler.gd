@@ -1,4 +1,4 @@
-extends Spatial
+extends GrabHandler
 class_name RigidBodyGrabHandler
 
 
@@ -34,7 +34,7 @@ func calculate_grab_point_offset():
     return point_in_body_frame.inverse()
 
 
-func on_grab(point):
+func on_grab(_sender, point):
     if not is_grabbed():
         old_mode = body.mode
         old_collision_layer = body.collision_layer

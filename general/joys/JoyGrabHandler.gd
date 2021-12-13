@@ -1,4 +1,4 @@
-extends Spatial
+extends GrabHandler
 class_name JoyGrabHandler
 
 # Set a rotation sequence for the Euler angles calculation.
@@ -119,7 +119,7 @@ func calculate_body_in_grab_frame():
     return point_in_body_frame.inverse()
 
 
-func on_grab(point):
+func on_grab(_sender, point):
     if not is_grabbed():
         old_collision_layer = body.collision_layer
     body.collision_layer = 0
