@@ -23,26 +23,50 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="VBoxContainer"]
-margin_top = 201.0
+margin_top = 89.0
 margin_right = 180.0
-margin_bottom = 215.0
+margin_bottom = 103.0
 text = "Want to get your spaceship?"
 align = 1
 valign = 1
 
 [node name="Button" type="Button" parent="VBoxContainer"]
-margin_top = 275.0
+margin_top = 163.0
 margin_right = 180.0
-margin_bottom = 325.0
+margin_bottom = 213.0
 rect_min_size = Vector2( 0, 50 )
 text = "Get Ship!"
 
 [node name="Result" type="Label" parent="VBoxContainer"]
-margin_top = 385.0
+margin_top = 273.0
 margin_right = 180.0
-margin_bottom = 399.0
+margin_bottom = 287.0
 text = "Not pressed yet"
 align = 1
 valign = 1
 
+[node name="SliderTitle" type="Label" parent="VBoxContainer"]
+margin_top = 347.0
+margin_right = 180.0
+margin_bottom = 361.0
+text = "Slide to the right"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer"]
+margin_top = 421.0
+margin_right = 180.0
+margin_bottom = 437.0
+
+[node name="SliderResult" type="Label" parent="VBoxContainer"]
+margin_top = 497.0
+margin_right = 180.0
+margin_bottom = 511.0
+text = "Waiting for slide"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_get_ship_button_press"]
+[connection signal="value_changed" from="VBoxContainer/HSlider" to="." method="_on_ship_slider_sliding"]

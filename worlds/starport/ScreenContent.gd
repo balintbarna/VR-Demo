@@ -5,7 +5,17 @@ signal get_ship_pressed
 
 
 var counter = 0
+var slider_counter = 0
 onready var result_label = $VBoxContainer/Result
+onready var slider = $VBoxContainer/HSlider
+onready var slider_result_label = $VBoxContainer/SliderResult
+
+
+func _process(delta):
+    if Input.is_mouse_button_pressed(BUTTON_LEFT):
+        set_process(false)
+    else:
+        slider.value -= 100 * delta
 
 
 func _on_get_ship_button_press():
@@ -15,8 +25,18 @@ func _on_get_ship_button_press():
 
 
 func _input(event: InputEvent) -> void:
-    var e = event as InputEventScreenTouch
-    if e and not e.pressed:
-        var rect = TouchRipple.new()
-        rect.set_position(e.position)
-        add_child(rect)
+    if event is InputEventScreenTouch:
+        if not event.pressed:
+            var rect = TouchRipple.new()
+            rect.set_position(event.position)
+            add_child(rect)
+    elif event is InputEventMouseButton:
+        if not event.pressed:
+            set_process(true)
+
+
+func _on_ship_slider_sliding(value):
+    if value > 99:
+        slider_counter += 1
+        slider_result_label.text = "slider activated {} times".format([slider_counter], "{}")
+        emit_signal("get_ship_pressed")
