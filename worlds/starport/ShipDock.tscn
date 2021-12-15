@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="CubeMesh" id=7]
+size = Vector3( 10, 1, 10 )
+
+[sub_resource type="PrismMesh" id=8]
+left_to_right = 0.0
+size = Vector3( 2, 1, 2 )
+
+[sub_resource type="ConvexPolygonShape" id=9]
+points = PoolVector3Array( 0.984052, -0.452294, 1.01587, -0.985089, -0.5, -0.985089, -0.985089, -0.5, 0.985089, -1.01587, 0.531746, -1.01587, 1.01587, -0.484084, -1.01587, -1.01587, 0.531746, 1.01587, 0.985282, -0.5, 0.985282, -0.984052, 0.531746, -1.01587, -0.984052, 0.531746, 1.01587, 0.984052, -0.452294, -1.01587, 0.985282, -0.5, -0.985282, 1.01587, -0.484084, 1.01587, -0.666443, 0.373003, 1.01587, -0.666443, 0.373003, -1.01587 )
+
+[sub_resource type="BoxShape" id=10]
+extents = Vector3( 5, 0.5, 5 )
+
+[node name="ShipDock" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="Stairs" type="MeshInstance" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="CollisionShape2" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 10 )
