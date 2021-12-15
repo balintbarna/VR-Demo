@@ -7,6 +7,13 @@ onready var viewport = get_node("../Viewport") as Viewport
 onready var sprite = get_node("../Sprite3D") as Sprite3D
 
 
+func _ready():
+    if not sprite:
+        push_error("Must have Sprite3D sibling for displaying GUI")
+    if not viewport:
+        push_error("Must have viewport sibling which renders GUI")
+
+
 func _process(delta):
     if len(touchers) > 0:
         for sender in touchers:

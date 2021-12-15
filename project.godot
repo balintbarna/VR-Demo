@@ -117,12 +117,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "TouchHandler",
 "language": "GDScript",
-"path": "res://general/touchscreen/TouchHandler.gd"
+"path": "res://general/touch/TouchHandler.gd"
 }, {
 "base": "ColorRect",
 "class": "TouchRipple",
 "language": "GDScript",
-"path": "res://general/touchscreen/TouchRipple.gd"
+"path": "res://general/touch/TouchRipple.gd"
 }, {
 "base": "VrBodyManipulator",
 "class": "TripleMethodOrientationGuesser",
