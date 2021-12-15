@@ -7,5 +7,3 @@ ground_horizon_color = Color( 0.615686, 0.694118, 0.282353, 1 )
 [resource]
 background_mode = 2
 background_sky = SubResource( 1 )
-glow_enabled = true
-glow_bloom = 0.33
