@@ -42,12 +42,12 @@ func get_velocity_input_vector(head, left) -> Vector3:
 
 
 func get_forward_velocity_input_vector(head, left) -> Vector3:
-    return head.get_forward_direction() * left.get_biaxial_analog_input_vector().y
+    return head.get_forward_direction() * left.get_stick_vector().y
 
 
 func get_rightward_velocity_input_vector(head, left) -> Vector3:
-    return head.get_right_direction() * left.get_biaxial_analog_input_vector().x
+    return head.get_right_direction() * left.get_stick_vector().x
 
 
 func get_player_rotation_amount(delta: float, right) -> float:
-    return -right.get_biaxial_analog_input_vector().x * delta * ROTATION_SPEED_RPS
+    return -right.get_stick_vector().x * delta * ROTATION_SPEED_RPS

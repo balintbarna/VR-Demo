@@ -14,20 +14,9 @@ const CONTROLLER_RUMBLE_FADE_SPEED = 2.0
 const CONTROLLER_DEADZONE = 0.1
 
 
-onready var mesh_instance: MeshInstance = $MeshInstance
-
-
-var buttons = QuestButtons.new()
-
-
 func _ready():
     var __ = connect("button_pressed", self, "_on_button_pressed")
     __ = connect("button_release", self, "_on_button_released")
-
-
-func _input(event):
-    if event is InputEventAction:
-        print(str(event))
 
 
 func _physics_process(delta: float) -> void:
@@ -39,55 +28,53 @@ func _physics_process(delta: float) -> void:
 
 func _on_button_pressed(button: int):
     match button:
-        buttons.GRIP:
+        Globals.mapping.GRIP:
             emit_signal("grip_pressed")
-        buttons.THUMB_POINTING_UP:
+        Globals.mapping.THUMB_POINTING_UP:
             emit_signal("thumb_up")
-        buttons.INDEX_POINTING:
+        Globals.mapping.INDEX_POINTING:
             emit_signal("index_pointing")
 
 
 func _on_button_released(button: int):
     match button:
-        buttons.GRIP:
+        Globals.mapping.GRIP:
             emit_signal("grip_released")
-        buttons.THUMB_POINTING_UP:
+        Globals.mapping.THUMB_POINTING_UP:
             emit_signal("thumb_rest")
-        buttons.INDEX_POINTING:
+        Globals.mapping.INDEX_POINTING:
             emit_signal("index_rest")
 
 
 func is_pointing():
-    return is_button_pressed(buttons.INDEX_POINTING)
+    if "INDEX_POINTING" in Globals.mapping:
+        return is_button_pressed(Globals.mapping.INDEX_POINTING)
+    elif "INDEX_TOUCHING" in Globals.mapping:
+        return not is_button_pressed(Globals.mapping.INDEX_TOUCHING)
+    else:
+        push_error("NO BUTTON MAPPING FOR INDEX TOUCH")
 
 
 func is_gripping():
-    return is_button_pressed(buttons.GRIP)
+    return is_button_pressed(Globals.mapping.GRIP)
 
 
 func is_thumb_up():
-    return is_button_pressed(buttons.THUMB_POINTING_UP)
+    if "THUMB_POINTING_UP" in Globals.mapping:
+        return is_button_pressed(Globals.mapping.THUMB_POINTING_UP)
+    elif "THUMBSTICK_TOUCHING" in Globals.mapping:
+        return not is_button_pressed(Globals.mapping.THUMBSTICK_TOUCHING) and not is_ax_by_touching()
 
 
-func get_biaxial_analog_input_vector() -> Vector2:
-    return get_trackpad_vector() + get_joystick_vector()
+func is_ax_by_touching():
+    return is_button_pressed(Globals.mapping.AX_TOUCHING) or is_button_pressed(Globals.mapping.BY_TOUCHING)
 
 
-func get_trackpad_vector() -> Vector2:
-    return Joypad.apply_deadzone(get_trackpad_vector_raw(), CONTROLLER_DEADZONE)
+func get_stick_vector() -> Vector2:
+    return Joypad.apply_deadzone(get_stick_vector_raw(), CONTROLLER_DEADZONE)
 
 
-func get_joystick_vector() -> Vector2:
-    return Joypad.apply_deadzone(get_joystick_vector_raw(), CONTROLLER_DEADZONE)
-
-
-func get_trackpad_vector_raw() -> Vector2:
-    var leftright = get_joystick_axis(JOY_OPENVR_TOUCHPADX) # [-1; 1]
-    var backforward = get_joystick_axis(JOY_OPENVR_TOUCHPADY) # [-1; 1]
-    return Vector2(leftright, backforward) # (X, Y)
-
-
-func get_joystick_vector_raw() -> Vector2:
-    var leftright = get_joystick_axis(4) # [-1; 1]
-    var backforward = get_joystick_axis(5) # [-1; 1]
+func get_stick_vector_raw() -> Vector2:
+    var leftright = get_joystick_axis(Globals.mapping.STICK_X) # [-1; 1]
+    var backforward = get_joystick_axis(Globals.mapping.STICK_Y) # [-1; 1]
     return Vector2(leftright, backforward) # (X, Y)

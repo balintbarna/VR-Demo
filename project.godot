@@ -69,6 +69,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot_ovrmobile/example_scenes/oculus_hand_tracker.gd"
 }, {
+"base": "Reference",
+"class": "OculusMobileConfig",
+"language": "GDScript",
+"path": "res://vr-intergration/OculusMobileConfig.gd"
+}, {
+"base": "Resource",
+"class": "OculusMobileInputMapping",
+"language": "GDScript",
+"path": "res://vr-intergration/OculusMobileInputMapping.gd"
+}, {
 "base": "OculusTracker",
 "class": "OculusTouchController",
 "language": "GDScript",
@@ -79,20 +89,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot_ovrmobile/example_scenes/oculus_tracker.gd"
 }, {
+"base": "Reference",
+"class": "OpenXrConfig",
+"language": "GDScript",
+"path": "res://vr-intergration/OpenXrConfig.gd"
+}, {
+"base": "Resource",
+"class": "OpenXrInputMapping",
+"language": "GDScript",
+"path": "res://vr-intergration/OpenXrInputMapping.gd"
+}, {
 "base": "VrBodyManipulator",
 "class": "OriginToHeadHeightScaler",
 "language": "GDScript",
 "path": "res://player/vr-head/OriginToHeadHeightScaler.gd"
-}, {
-"base": "Resource",
-"class": "QuestButtons",
-"language": "GDScript",
-"path": "res://vr-intergration/QuestButtons.gd"
-}, {
-"base": "Reference",
-"class": "QuestConfig",
-"language": "GDScript",
-"path": "res://vr-intergration/QuestConfig.gd"
 }, {
 "base": "GrabHandler",
 "class": "RigidBodyGrabHandler",
@@ -142,11 +152,13 @@ _global_script_class_icons={
 "NumericAngularDerivator": "",
 "NumericDerivator": "",
 "OculusHandTracker": "",
+"OculusMobileConfig": "",
+"OculusMobileInputMapping": "",
 "OculusTouchController": "",
 "OculusTracker": "",
+"OpenXrConfig": "",
+"OpenXrInputMapping": "",
 "OriginToHeadHeightScaler": "",
-"QuestButtons": "",
-"QuestConfig": "",
 "RigidBodyGrabHandler": "",
 "TouchHandler": "",
 "TouchRipple": "",
@@ -183,7 +195,7 @@ enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
 
 [gdnative]
 
-singletons=[ "res://addons/godot_ovrmobile/godot_ovrmobile.gdnlib" ]
+singletons=[ "res://addons/godot-openxr/config/godot_openxr.gdnlib", "res://addons/godot_ovrmobile/godot_ovrmobile.gdnlib" ]
 
 [input]
 

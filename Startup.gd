@@ -22,9 +22,17 @@ func load_vr_interfaces():
     print("VR interfaces: " + str(ARVRServer.get_interfaces()))
     if osname == "Android":
         load_android_vr_interfaces()
+    else:
+        load_openxr()
+
+
+func load_openxr():
+    var oxr_success: bool = OpenXrConfig.new().config(get_viewport())
+    if not oxr_success:
+        push_error("Failed to register VR interfaces for Android")
 
 
 func load_android_vr_interfaces():
-    var oq_success: bool = QuestConfig.new().config(get_viewport())
+    var oq_success: bool = OculusMobileConfig.new().config(get_viewport())
     if not oq_success:
         push_error("Failed to register VR interfaces for Android")

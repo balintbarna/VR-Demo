@@ -1,5 +1,5 @@
 extends Reference
-class_name QuestConfig
+class_name OculusMobileConfig
 
 func config(viewport: Viewport) -> bool:
     var interface = ARVRServer.find_interface("OVRMobile")
@@ -26,5 +26,6 @@ func config(viewport: Viewport) -> bool:
 
         viewport.arvr = true
         OS.vsync_enabled = false
+        Globals.mapping = OculusMobileInputMapping.new()
         return true
     return false

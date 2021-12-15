@@ -118,12 +118,12 @@ func get_velocity_input_vector(controller) -> Vector3:
 
 
 func get_forward_velocity_input_vector(controller) -> Vector3:
-    return -kinematic_body.global_transform.basis.z * controller.get_biaxial_analog_input_vector().y
+    return -kinematic_body.global_transform.basis.z * controller.get_stick_vector().y
 
 
 func get_rightward_velocity_input_vector(controller) -> Vector3:
-    return kinematic_body.global_transform.basis.x * controller.get_biaxial_analog_input_vector().x
+    return kinematic_body.global_transform.basis.x * controller.get_stick_vector().x
 
 
 func get_player_rotation_amount(delta: float, controller) -> float:
-    return -controller.get_biaxial_analog_input_vector().x * delta * ROTATION_SPEED_RPS
+    return -controller.get_stick_vector().x * delta * ROTATION_SPEED_RPS
