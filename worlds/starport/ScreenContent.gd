@@ -19,4 +19,4 @@ func _input(event: InputEvent) -> void:
 func _on_ship_slider_confirmed():
     first_container.visible = false
     second_container.visible = true
-    emit_signal("get_ship_pressed")
+    emit_signal("get_ship_confirmed")
