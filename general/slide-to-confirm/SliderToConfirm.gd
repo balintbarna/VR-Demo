@@ -1,6 +1,9 @@
 extends HSlider
 
 
+onready var occluder = $TouchOccluder
+
+
 func _process(delta):
     if value < 0:
         set_process(false)
@@ -15,6 +18,6 @@ func _input(event):
             set_process(true)
 
 
-func _on_HSlider_gui_input(event: InputEvent) -> void:
-    pass
-	# event.
+func _on_HSlider_value_changed(value: float) -> void:
+    occluder.anchor_left = value / 100
+    occluder.margin_left = 100 - value

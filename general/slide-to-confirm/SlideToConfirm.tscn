@@ -65,5 +65,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="gui_input" from="HSlider" to="HSlider" method="_on_HSlider_gui_input"]
+[node name="Control" type="Control" parent="HSlider"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="value_changed" from="HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="HSlider" to="HSlider" method="_on_HSlider_value_changed"]
