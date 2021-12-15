@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://worlds/starport/ScreenContent.tscn" type="PackedScene" id=1]
-[ext_resource path="res://general/touchscreen/TouchScreen.gd" type="Script" id=2]
-[ext_resource path="res://general/touchscreen/TouchHandler.gd" type="Script" id=3]
+[ext_resource path="res://worlds/starport/touchscreen/TouchScreen.gd" type="Script" id=2]
+[ext_resource path="res://general/touch/TouchHandler.gd" type="Script" id=3]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
@@ -31,3 +31,5 @@ shape = SubResource( 2 )
 
 [node name="TouchHandler" type="Node" parent="."]
 script = ExtResource( 3 )
+
+[connection signal="get_ship_confirmed" from="Viewport/ScreenContent" to="." method="_on_gui_ship_confirmed"]
