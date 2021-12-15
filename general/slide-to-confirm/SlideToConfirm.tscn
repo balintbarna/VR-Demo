@@ -65,4 +65,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="gui_input" from="HSlider" to="HSlider" method="_on_HSlider_gui_input"]
 [connection signal="value_changed" from="HSlider" to="." method="_on_HSlider_value_changed"]

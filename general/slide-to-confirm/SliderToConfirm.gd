@@ -13,3 +13,8 @@ func _input(event):
             set_process(false)
         else:
             set_process(true)
+
+
+func _on_HSlider_gui_input(event: InputEvent) -> void:
+    pass
+	# event.
