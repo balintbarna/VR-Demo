@@ -1,6 +1,7 @@
 [gd_resource type="Environment" load_steps=2 format=2]
 
 [sub_resource type="ProceduralSky" id=1]
+radiance_size = 0
 ground_bottom_color = Color( 0.109804, 0.294118, 0.47451, 1 )
 ground_horizon_color = Color( 0.411765, 0.627451, 1, 1 )
 
