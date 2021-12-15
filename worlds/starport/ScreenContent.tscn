@@ -38,4 +38,24 @@ margin_top = 287.0
 margin_right = 300.0
 margin_bottom = 387.0
 
+[node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer"]
+margin_left = 467.0
+margin_top = 267.0
+margin_right = 557.0
+margin_bottom = 332.0
+text = "Getting Ship...
+
+
+Please wait!"
+align = 1
+valign = 1
+
 [connection signal="confirmed" from="VBoxContainer/SlideToConfirm" to="." method="_on_ship_slider_confirmed"]
