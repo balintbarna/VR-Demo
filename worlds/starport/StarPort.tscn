@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://player/VrPlayerScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://general/environments/DaylightSkyAndGrass.tres" type="Environment" id=2]
@@ -43,6 +43,37 @@ points = PoolVector3Array( 0.984052, -0.452294, 1.01587, -0.985089, -0.5, -0.985
 
 [sub_resource type="BoxShape" id=10]
 extents = Vector3( 5, 0.5, 5 )
+
+[sub_resource type="Animation" id=11]
+resource_name = "PlatformMover"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ShipDock:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3, 6, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 3.20503, -4.9135, 0 ), Vector3( 19.5602, -4.9135, 0 ), Vector3( 20, 0.5, 0 ), Vector3( 10, 0.5, 5 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ShipDock:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 33.7475, -15.1652, 0 ) ]
+}
 
 [node name="StarPort" type="Spatial"]
 
@@ -126,5 +157,9 @@ shape = SubResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="World/ShipDock/StaticBody"]
 shape = SubResource( 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="World"]
+anims/PlatformMover = SubResource( 11 )
+anims/RESET = SubResource( 12 )
 
 [connection signal="get_ship_confirmed" from="World/Ground/StandingScreen/Screen/TouchScreen" to="World" method="_on_ship_requested"]
