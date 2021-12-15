@@ -27,14 +27,12 @@ func on_touch(sender, point):
         "touch_index": len(touchers),
         "touch_node": point,
     }
-    # send_touch_event(sender, point, true)
     send_mouse_click_event(sender, true)
     set_process(true)
 
 
 func on_leave(sender, _point):
     if sender in touchers:
-        # send_touch_event(sender, point, false)
         send_mouse_click_event(sender, false)
         touchers.erase(sender)
 
@@ -43,10 +41,9 @@ func send_mouse_click_event(sender, pressed):
     var event = InputEventMouseButton.new()
     event.button_index = 1
     event.pressed = pressed
-    var pos = calculate_screen_coordinate_of_touch(touchers[sender]["touch_node"])
-    touchers[sender]["last_pos"] = pos
-    event.global_position = pos
-    event.position = pos
+    event.position = calculate_screen_coordinate_of_touch(touchers[sender]["touch_node"])
+    touchers[sender]["last_pos"] = event.position
+    event.global_position = event.position
     viewport.input(event)
 
 
@@ -62,10 +59,11 @@ func send_mouse_move_event(delta, sender):
     viewport.input(event)
 
 
-func send_touch_event(sender, point, pressed):
+func send_touch_event(sender, pressed):
     var event = InputEventScreenTouch.new()
     event.index = touchers[sender]["touch_index"]
-    event.position = calculate_screen_coordinate_of_touch(point)
+    event.position = calculate_screen_coordinate_of_touch(touchers[sender]["touch_node"])
+    touchers[sender]["last_pos"] = event.position
     event.pressed = pressed
     viewport.input(event)
 
