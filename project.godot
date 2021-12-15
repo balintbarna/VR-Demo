@@ -216,6 +216,10 @@ movement_jump={
  ]
 }
 
+[input_devices]
+
+pointing/emulate_mouse_from_touch=false
+
 [physics]
 
 common/physics_fps=120
