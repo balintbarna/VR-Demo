@@ -11,7 +11,7 @@ func _physics_process(_delta):
 func get_compound_frame(reference_body_global_position: Vector3):
     var flattened_direction_in_global_frame = get_compound_direction(reference_body_global_position)
     var rotation = ExtraMath.get_vectors_rotation(Vector3.FORWARD, flattened_direction_in_global_frame)
-    return Basis(rotation.normalized(), rotation.length())
+    return Basis(rotation.normalized(), rotation.length()) if rotation.length() > 0 else Basis()
 
 
 func get_compound_direction(reference_body_global_position: Vector3):
