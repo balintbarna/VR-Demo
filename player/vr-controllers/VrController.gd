@@ -2,8 +2,8 @@ extends ARVRController
 class_name VrController
 
 
-signal grip_pressed
-signal grip_released
+signal gripping
+signal loose
 signal thumb_up
 signal thumb_rest
 signal index_pointing
@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 func _on_button_pressed(button: int):
     match button:
         Globals.mapping.GRIP:
-            emit_signal("grip_pressed")
+            emit_signal("gripping")
         Globals.mapping.THUMB_POINTING_UP:
             emit_signal("thumb_up")
         Globals.mapping.INDEX_POINTING:
@@ -39,7 +39,7 @@ func _on_button_pressed(button: int):
 func _on_button_released(button: int):
     match button:
         Globals.mapping.GRIP:
-            emit_signal("grip_released")
+            emit_signal("loose")
         Globals.mapping.THUMB_POINTING_UP:
             emit_signal("thumb_rest")
         Globals.mapping.INDEX_POINTING:
