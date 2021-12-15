@@ -21,10 +21,13 @@ var buttons = QuestButtons.new()
 
 
 func _ready():
-    var _r = connect("mesh_updated", self, "_set_controller_mesh")
-    _r = connect("button_pressed", self, "_on_button_pressed")
-    _r = connect("button_release", self, "_on_button_released")
-    _set_controller_mesh()
+    var __ = connect("button_pressed", self, "_on_button_pressed")
+    __ = connect("button_release", self, "_on_button_released")
+
+
+func _input(event):
+    if event is InputEventAction:
+        print(str(event))
 
 
 func _physics_process(delta: float) -> void:
@@ -64,12 +67,6 @@ func is_gripping():
 
 func is_thumb_up():
     return is_button_pressed(buttons.THUMB_POINTING_UP)
-
-
-func _set_controller_mesh():
-    var mesh = get_mesh()
-    if mesh:
-        mesh_instance.set_mesh(mesh)
 
 
 func get_biaxial_analog_input_vector() -> Vector2:
