@@ -57,7 +57,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 3, 6, 10 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 3.20503, -4.9135, 0 ), Vector3( 19.5602, -4.9135, 0 ), Vector3( 20, 0.5, 0 ), Vector3( 10, 0.5, 5 ) ]
+"values": [ Vector3( 0, -5, 0 ), Vector3( 20, -5, 0 ), Vector3( 20, 0.5, 0 ), Vector3( 10, 0.5, 5 ) ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -72,7 +72,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 33.7475, -15.1652, 0 ) ]
+"values": [ Vector3( 0, -5, 0 ) ]
 }
 
 [node name="StarPort" type="Spatial"]
@@ -137,7 +137,7 @@ material = ExtResource( 7 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.001 )
 
 [node name="ShipDock" type="Spatial" parent="World"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7475, -15.1652, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0 )
 
 [node name="StaticBody" type="StaticBody" parent="World/ShipDock"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
