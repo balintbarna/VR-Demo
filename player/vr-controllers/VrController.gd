@@ -32,8 +32,12 @@ func _on_button_pressed(button: int):
             emit_signal("gripping")
         Globals.mapping.THUMB_POINTING_UP:
             emit_signal("thumb_up")
+        Globals.mapping.THUMBSTICK_TOUCHING, Globals.mapping.AX_TOUCHING, Globals.mapping.BY_TOUCHING:
+            emit_signal("thumb_rest")
         Globals.mapping.INDEX_POINTING:
             emit_signal("index_pointing")
+        Globals.mapping.INDEX_TOUCHING:
+            emit_signal("index_rest")
 
 
 func _on_button_released(button: int):
@@ -42,14 +46,18 @@ func _on_button_released(button: int):
             emit_signal("loose")
         Globals.mapping.THUMB_POINTING_UP:
             emit_signal("thumb_rest")
+        Globals.mapping.THUMBSTICK_TOUCHING, Globals.mapping.AX_TOUCHING, Globals.mapping.BY_TOUCHING:
+            emit_signal("thumb_up")
         Globals.mapping.INDEX_POINTING:
             emit_signal("index_rest")
+        Globals.mapping.INDEX_TOUCHING:
+            emit_signal("index_pointing")
 
 
 func is_pointing():
-    if "INDEX_POINTING" in Globals.mapping:
+    if not Globals.mapping.INDEX_POINTING == JOY_INVALID_OPTION:
         return is_button_pressed(Globals.mapping.INDEX_POINTING)
-    elif "INDEX_TOUCHING" in Globals.mapping:
+    elif not Globals.mapping.INDEX_TOUCHING == JOY_INVALID_OPTION:
         return not is_button_pressed(Globals.mapping.INDEX_TOUCHING)
     else:
         push_error("NO BUTTON MAPPING FOR INDEX TOUCH")
@@ -60,10 +68,12 @@ func is_gripping():
 
 
 func is_thumb_up():
-    if "THUMB_POINTING_UP" in Globals.mapping:
+    if not Globals.mapping.THUMB_POINTING_UP == JOY_INVALID_OPTION:
         return is_button_pressed(Globals.mapping.THUMB_POINTING_UP)
-    elif "THUMBSTICK_TOUCHING" in Globals.mapping:
+    elif not Globals.mapping.THUMBSTICK_TOUCHING == JOY_INVALID_OPTION:
         return not is_button_pressed(Globals.mapping.THUMBSTICK_TOUCHING) and not is_ax_by_touching()
+    else:
+        push_error("NO BUTTON MAPPING FOR THUMB TOUCH")
 
 
 func is_ax_by_touching():

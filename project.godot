@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "BaseMapping",
+"language": "GDScript",
+"path": "res://vr-intergration/BaseMapping.gd"
+}, {
 "base": "Reference",
 "class": "ExtraMath",
 "language": "GDScript",
@@ -74,7 +79,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://vr-intergration/OculusMobileConfig.gd"
 }, {
-"base": "Resource",
+"base": "BaseMapping",
 "class": "OculusMobileInputMapping",
 "language": "GDScript",
 "path": "res://vr-intergration/OculusMobileInputMapping.gd"
@@ -94,7 +99,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://vr-intergration/OpenXrConfig.gd"
 }, {
-"base": "Resource",
+"base": "BaseMapping",
 "class": "OpenXrInputMapping",
 "language": "GDScript",
 "path": "res://vr-intergration/OpenXrInputMapping.gd"
@@ -140,6 +145,7 @@ _global_script_classes=[ {
 "path": "res://player/VrOrigin.gd"
 } ]
 _global_script_class_icons={
+"BaseMapping": "",
 "ExtraMath": "",
 "FlatWorldPhysicsKinematicMover": "",
 "FreeLookKinematicMover": "",
