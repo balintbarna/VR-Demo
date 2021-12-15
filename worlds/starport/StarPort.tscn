@@ -54,6 +54,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.256731, 0 )
 [node name="World" type="Spatial" parent="."]
 script = ExtResource( 9 )
 
+[node name="DirectionalLight" type="DirectionalLight" parent="World"]
+transform = Transform( 1, 0, 0, 0, -0.902593, 0.430495, 0, -0.430495, -0.902593, -0.762815, 7.89539, -11.2752 )
+shadow_enabled = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = ExtResource( 2 )
 
