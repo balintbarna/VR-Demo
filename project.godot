@@ -197,7 +197,7 @@ gdscript/warnings/unsafe_call_argument=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/godot-openxr/plugin.cfg", "res://addons/gut/plugin.cfg" )
 
 [gdnative]
 
