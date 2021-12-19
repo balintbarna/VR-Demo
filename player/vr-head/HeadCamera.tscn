@@ -8,7 +8,7 @@
 [ext_resource path="res://player/WakeUpArea.gd" type="Script" id=6]
 [ext_resource path="res://player/vr-head/OriginToHeadHeightScaler.gd" type="Script" id=7]
 [ext_resource path="res://player/vr-head/NeckPoint.gd" type="Script" id=8]
-[ext_resource path="res://player/vr-head/ReferenceOffsetCorrectingRotator.gd" type="Script" id=9]
+[ext_resource path="res://player/vr-head/ReferenceOffsetCompensatingRotator.gd" type="Script" id=9]
 
 [sub_resource type="CapsuleShape" id=10]
 radius = 0.15
