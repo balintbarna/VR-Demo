@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://player/vr-head/BodyBall.tres" type="SphereMesh" id=1]
 [ext_resource path="res://player/vr-head/HeadCamera.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://player/WakeUpArea.gd" type="Script" id=6]
 [ext_resource path="res://player/vr-head/OriginToHeadHeightScaler.gd" type="Script" id=7]
 [ext_resource path="res://player/vr-head/NeckPoint.gd" type="Script" id=8]
+[ext_resource path="res://player/vr-head/ReferenceOffsetCorrectingRotator.gd" type="Script" id=9]
 
 [sub_resource type="CapsuleShape" id=10]
 radius = 0.15
@@ -15,6 +16,10 @@ height = 1.65
 
 [sub_resource type="SphereShape" id=28]
 radius = 0.9
+
+[sub_resource type="Resource" id=34]
+script = ExtResource( 9 )
+ROTATION_SPEED_RPS = 6.28319
 
 [sub_resource type="SpatialMaterial" id=33]
 albedo_color = Color( 1, 0.92549, 0.305882, 1 )
@@ -79,6 +84,7 @@ script = ExtResource( 7 )
 
 [node name="KinematicHandler" type="Node" parent="PlayerBody"]
 script = ExtResource( 4 )
+rotator = SubResource( 34 )
 
 [node name="HeadCenterPoint" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.08 )

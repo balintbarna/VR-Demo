@@ -109,6 +109,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/vr-head/OriginToHeadHeightScaler.gd"
 }, {
+"base": "Resource",
+"class": "ReferenceOffsetCompensatingRotator",
+"language": "GDScript",
+"path": "res://player/vr-head/ReferenceOffsetCompensatingRotator.gd"
+}, {
 "base": "GrabHandler",
 "class": "RigidBodyGrabHandler",
 "language": "GDScript",
@@ -165,6 +170,7 @@ _global_script_class_icons={
 "OpenXrConfig": "",
 "OpenXrInputMapping": "",
 "OriginToHeadHeightScaler": "",
+"ReferenceOffsetCompensatingRotator": "",
 "RigidBodyGrabHandler": "",
 "TouchHandler": "",
 "TouchRipple": "",

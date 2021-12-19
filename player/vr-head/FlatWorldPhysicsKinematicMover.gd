@@ -10,6 +10,7 @@ const FLOOR_MAX_ANGLE = 0.785398
 const INFINITE_INERTIA = false
 
 
+export var rotator: Resource
 export var GRAVITY_ACCELERATION_MPS2 = 9.81
 export var NORMAL_ACCELERATION_MPS2 = 9
 export var SPRINT_ACCELERATION_MPS2 = 15
@@ -20,7 +21,6 @@ export var DAMPING_COEFFICIENT_GROUND_NSPM = 1
 export var DAMPING_COEFFICIENT_AIR_NSPM = 9
 export var JUMP_SPEED_MPS = 50 # overrides vertical speed
 export var MASS_KG = 70
-export var ROTATION_SPEED_RPS = 2*PI
 # export var MOUSE_SENSITIVITY = 0.5
 # export var JOYPAD_SENSITIVITY = 2
 # export var JOYPAD_DEADZONE = 0.15
@@ -32,9 +32,14 @@ var max_acceleration = NORMAL_ACCELERATION_MPS2
 var velocity = Vector3()
 
 
+func _ready():
+    if not rotator:
+        rotator = ReferenceOffsetCompensatingRotator.new()
+
+
 func _physics_process(delta: float):
     var origin = Globals.origin as VrOrigin
-    apply_rotation_and_fix_offset(delta, origin)
+    rotator.rotate_base_and_compensate_reference_offset(delta, origin, origin.head)
     apply_movement(delta, origin)
     follow_body_with_origin(origin)
 
@@ -97,22 +102,6 @@ func calculate_sprint() -> void:
     max_acceleration = NORMAL_ACCELERATION_MPS2 + sprint * (SPRINT_ACCELERATION_MPS2 - NORMAL_ACCELERATION_MPS2)
 
 
-func apply_rotation_and_fix_offset(delta: float, origin) -> void:
-    var offset_from_rotation = apply_rotation_and_calculate_offset(delta, origin)
-    origin.global_translate(-offset_from_rotation)
-
-
-func apply_rotation_and_calculate_offset(delta: float, origin) -> Vector3:
-    var old = origin.head.global_transform.origin
-    apply_rotation(delta, origin)
-    var new = origin.head.global_transform.origin
-    return new - old
-
-
-func apply_rotation(delta: float, origin) -> void:
-    origin.rotate_y(get_player_rotation_amount(delta, origin.right))
-
-
 func get_velocity_input_vector(controller) -> Vector3:
     return get_forward_velocity_input_vector(controller) + get_rightward_velocity_input_vector(controller)
 
@@ -123,7 +112,3 @@ func get_forward_velocity_input_vector(controller) -> Vector3:
 
 func get_rightward_velocity_input_vector(controller) -> Vector3:
     return kinematic_body.global_transform.basis.x * controller.get_stick_vector().x
-
-
-func get_player_rotation_amount(delta: float, controller) -> float:
-    return -controller.get_stick_vector().x * delta * ROTATION_SPEED_RPS
