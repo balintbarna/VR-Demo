@@ -5,6 +5,7 @@ signal new_mapping_set
 
 
 var mouse_motion_buffer = Vector2()
+var vr_origin: ARVROrigin
 var left_vr_controller: ARVRController
 var right_vr_controller: ARVRController
 var mapping = BaseMapping.new() setget set_mapping, get_mapping
@@ -16,12 +17,14 @@ func get_mapping():
 
 
 func _init():
+    vr_origin = ARVROrigin.new()
     left_vr_controller = ARVRController.new()
     left_vr_controller.controller_id = 1
-    add_child(left_vr_controller)
+    vr_origin.add_child(left_vr_controller)
     right_vr_controller = ARVRController.new()
     right_vr_controller.controller_id = 2
-    add_child(right_vr_controller)
+    vr_origin.add_child(right_vr_controller)
+    add_child(vr_origin)
 
 
 func _ready():
@@ -65,5 +68,7 @@ func is_arvr():
 
 
 func set_axis(negative_action: String, positive_action: String, value: float):
+    # warning-ignore:STANDALONE_TERNARY
     Input.action_press(negative_action, -value) if value < 0 else Input.action_release(negative_action)
+    # warning-ignore:STANDALONE_TERNARY
     Input.action_press(positive_action, value) if value > 0 else Input.action_release(positive_action)
