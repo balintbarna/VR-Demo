@@ -29,7 +29,7 @@ func load_vr_interfaces():
 func load_openxr():
     var oxr_success: bool = OpenXrConfig.new().config(get_viewport())
     if not oxr_success:
-        push_error("Failed to register VR interfaces for Android")
+        push_error("Failed to register VR interfaces for Desktop")
 
 
 func load_android_vr_interfaces():

@@ -26,6 +26,6 @@ func config(viewport: Viewport) -> bool:
 
         viewport.arvr = true
         OS.vsync_enabled = false
-        Globals.mapping = OculusMobileInputMapping.new()
+        InputMapper.mapping = OculusMobileInputMapping.new()
         return true
     return false

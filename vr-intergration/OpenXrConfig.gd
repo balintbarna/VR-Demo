@@ -17,6 +17,6 @@ func config(viewport: Viewport) -> bool:
         viewport.arvr = true
         viewport.keep_3d_linear = true
         OS.vsync_enabled = false
-        Globals.mapping = OpenXrInputMapping.new()
+        InputMapper.mapping = OpenXrInputMapping.new()
         return true
     return false

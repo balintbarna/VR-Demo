@@ -10,6 +10,10 @@ onready var right: VrController = $RightController
 onready var head: HeadCamera = $HeadCamera
 
 
+func _init():
+    Globals.origin = self
+
+
 func _ready() -> void:
     Globals.origin = self
 
