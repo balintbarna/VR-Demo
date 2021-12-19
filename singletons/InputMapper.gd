@@ -40,7 +40,7 @@ func create_rotation_action():
     else:
         val = mouse_motion_buffer.x / get_viewport().size.x
         mouse_motion_buffer = Vector2()
-    set_axis("yaw_right", "yaw_left", val)
+    set_axis("yaw_left", "yaw_right", val)
 
 
 func handle_mouse_capture():
@@ -54,7 +54,7 @@ func handle_mouse_capture():
 func _input(event):
     if is_rotate_event(event):
         mouse_motion_buffer += event.relative
-        
+
 
 func is_rotate_event(event):
     return (event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED) or event is InputEventScreenDrag
