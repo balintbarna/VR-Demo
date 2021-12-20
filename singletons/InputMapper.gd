@@ -37,6 +37,14 @@ func _physics_process(_delta):
     create_rotation_action()
 
 
+func create_move_action():
+    if is_arvr():
+        var leftright = left_vr_controller.get_joystick_axis(mapping.STICK_X) # [-1; 1]
+        var backforward = left_vr_controller.get_joystick_axis(mapping.STICK_Y) # [-1; 1]
+        var vector = Vector2(leftright, backforward) # (X, Y)
+        set_vector("movement_left", "movement_right", "movement_back", "movement_forward", vector)
+
+
 func create_rotation_action():
     var val = 0
     if is_arvr():
@@ -73,3 +81,8 @@ func set_axis(negative_action: String, positive_action: String, value: float):
     Input.action_press(negative_action, -value) if value < 0 else Input.action_release(negative_action)
     # warning-ignore:STANDALONE_TERNARY
     Input.action_press(positive_action, value) if value > 0 else Input.action_release(positive_action)
+
+
+func set_vector(negative_x: String, positive_x: String, negative_y: String, positive_y: String, vector: Vector2):
+    set_axis(negative_x, positive_x, vector.x)
+    set_axis(negative_y, positive_y, vector.y)

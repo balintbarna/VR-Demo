@@ -107,8 +107,8 @@ func get_velocity_input_vector(controller) -> Vector3:
 
 
 func get_forward_velocity_input_vector(controller) -> Vector3:
-    return -kinematic_body.global_transform.basis.z * controller.get_stick_vector().y
+    return -kinematic_body.global_transform.basis.z * Input.get_axis("movement_back", "movement_forward")
 
 
 func get_rightward_velocity_input_vector(controller) -> Vector3:
-    return kinematic_body.global_transform.basis.x * controller.get_stick_vector().x
+    return kinematic_body.global_transform.basis.x * Input.get_axis("movement_left", "movement_right")
