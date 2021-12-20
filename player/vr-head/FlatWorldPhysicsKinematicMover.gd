@@ -40,7 +40,7 @@ func _ready():
 func _physics_process(delta: float):
     var origin = Globals.origin as VrOrigin
     rotator.rotate_base_and_compensate_reference_offset(delta, origin, origin.head)
-    apply_movement(delta, origin)
+    apply_movement(delta)
     follow_body_with_origin(origin)
 
 
@@ -54,17 +54,17 @@ func follow_body_with_origin(origin: VrOrigin) -> void:
         push_error("kinematic body parent is not Spatial")
 
 
-func apply_movement(dt: float, origin: VrOrigin) -> void:
+func apply_movement(dt: float) -> void:
     calculate_sprint()
     apply_dampening(dt)
     velocity.y -= GRAVITY_ACCELERATION_MPS2 * dt # apply gravity
-    accelerate_from_inputs(dt, origin)
+    accelerate_from_inputs(dt)
     velocity = kinematic_body.move_and_slide_with_snap(velocity, SNAP_VECTOR, UP_DIRECTION, STOP_ON_SLOPE, MAX_SLIDES, FLOOR_MAX_ANGLE, INFINITE_INERTIA)
 
 
-func accelerate_from_inputs(dt: float, origin: VrOrigin) -> void:
+func accelerate_from_inputs(dt: float) -> void:
     if kinematic_body.is_on_floor():
-        var input_vector = get_velocity_input_vector(origin.left)
+        var input_vector = get_velocity_input_vector()
         input_vector.y = 0
         if input_vector.length() > 1:
             input_vector = input_vector.normalized()
@@ -102,13 +102,13 @@ func calculate_sprint() -> void:
     max_acceleration = NORMAL_ACCELERATION_MPS2 + sprint * (SPRINT_ACCELERATION_MPS2 - NORMAL_ACCELERATION_MPS2)
 
 
-func get_velocity_input_vector(controller) -> Vector3:
-    return get_forward_velocity_input_vector(controller) + get_rightward_velocity_input_vector(controller)
+func get_velocity_input_vector() -> Vector3:
+    return get_forward_velocity_input_vector() + get_rightward_velocity_input_vector()
 
 
-func get_forward_velocity_input_vector(controller) -> Vector3:
+func get_forward_velocity_input_vector() -> Vector3:
     return -kinematic_body.global_transform.basis.z * Input.get_axis("movement_back", "movement_forward")
 
 
-func get_rightward_velocity_input_vector(controller) -> Vector3:
+func get_rightward_velocity_input_vector() -> Vector3:
     return kinematic_body.global_transform.basis.x * Input.get_axis("movement_left", "movement_right")
