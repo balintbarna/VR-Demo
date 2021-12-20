@@ -21,10 +21,6 @@ export var DAMPING_COEFFICIENT_GROUND_NSPM = 1
 export var DAMPING_COEFFICIENT_AIR_NSPM = 9
 export var JUMP_SPEED_MPS = 50 # overrides vertical speed
 export var MASS_KG = 70
-# export var MOUSE_SENSITIVITY = 0.5
-# export var JOYPAD_SENSITIVITY = 2
-# export var JOYPAD_DEADZONE = 0.15
-# export var MOUSE_SENSITIVITY_SCROLL_WHEEL = 0.08
 
 
 var max_speed = NORMAL_MAX_SPEED_MPS
