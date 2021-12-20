@@ -4,6 +4,7 @@ extends Node
 signal new_mapping_set
 
 
+const MOUSE_ROTATION_MULTIPLIER = 10
 var mouse_motion_buffer = Vector2()
 var vr_origin: ARVROrigin
 var left_vr_controller: ARVRController
@@ -41,7 +42,7 @@ func create_rotation_action():
     if is_arvr():
         val = right_vr_controller.get_joystick_axis(mapping.STICK_X)
     else:
-        val = mouse_motion_buffer.x / get_viewport().size.x
+        val = MOUSE_ROTATION_MULTIPLIER * mouse_motion_buffer.x / get_viewport().size.x
         mouse_motion_buffer = Vector2()
     set_axis("yaw_left", "yaw_right", val)
 
