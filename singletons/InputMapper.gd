@@ -28,10 +28,6 @@ func _init():
     add_child(vr_origin)
 
 
-func _ready():
-    Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-
 func _physics_process(_delta):
     handle_mouse_capture()
     create_rotation_action()
