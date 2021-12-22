@@ -1,6 +1,7 @@
 extends KinematicBody
 
 
+onready var hmd = $VrOrigin/HeadCamera
 onready var neck = $NeckPoint as Spatial
 onready var mover = $KinematicHandler as KinematicBodyMover
 var puller: PullTransform
@@ -25,12 +26,17 @@ func swap_mover():
     mover = node
     mover.connect("ready", self, "on_new_mover_ready")
     puller = PullTransform.new()
+    puller.pull_position = false
+    puller.pull_scale = false
     mover.add_child(puller)
     call_deferred("add_child", mover)
 
 
 func on_new_mover_ready():
-    puller.reference_path = puller.get_path_to(neck)
+    if mover is FreeLookKinematicMover:
+        puller.reference_path = puller.get_path_to(hmd)
+    else:
+        puller.reference_path = puller.get_path_to(neck)
 
 
 func pick_new_mover_based_on_current():
