@@ -46,13 +46,16 @@ func create_move_action():
 
 
 func create_rotation_action():
-    var val = 0
+    var yaw = 0
     if is_arvr():
-        val = right_vr_controller.get_joystick_axis(mapping.STICK_X)
+        yaw = right_vr_controller.get_joystick_axis(mapping.STICK_X)
     else:
-        val = MOUSE_ROTATION_MULTIPLIER * mouse_motion_buffer.x / get_viewport().size.x
+        var vp_size = get_viewport().size
+        yaw = MOUSE_ROTATION_MULTIPLIER * mouse_motion_buffer.x / vp_size.x
+        var pitch = MOUSE_ROTATION_MULTIPLIER * mouse_motion_buffer.y / vp_size.y
         mouse_motion_buffer = Vector2()
-    set_axis("yaw_left", "yaw_right", val)
+        set_axis("pitch_up", "pitch_down", pitch)
+    set_axis("yaw_left", "yaw_right", yaw)
 
 
 func handle_mouse_capture():
