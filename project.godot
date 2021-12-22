@@ -22,12 +22,12 @@ _global_script_classes=[ {
 "base": "KinematicBodyMover",
 "class": "FlatWorldPhysicsKinematicMover",
 "language": "GDScript",
-"path": "res://player/vr-head/FlatWorldPhysicsKinematicMover.gd"
+"path": "res://player/helpers/FlatWorldPhysicsKinematicMover.gd"
 }, {
 "base": "KinematicBodyMover",
 "class": "FreeLookKinematicMover",
 "language": "GDScript",
-"path": "res://player/vr-head/FreeLookKinematicMover.gd"
+"path": "res://player/helpers/FreeLookKinematicMover.gd"
 }, {
 "base": "Spatial",
 "class": "GrabHandler",
@@ -57,7 +57,7 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "KinematicBodyMover",
 "language": "GDScript",
-"path": "res://player/vr-head/KinematicBodyMover.gd"
+"path": "res://player/helpers/KinematicBodyMover.gd"
 }, {
 "base": "Resource",
 "class": "NumericAngularDerivator",
@@ -112,7 +112,7 @@ _global_script_classes=[ {
 "base": "KinematicBodyMover",
 "class": "ReferenceOffsetCompensatingRotator",
 "language": "GDScript",
-"path": "res://player/vr-head/ReferenceOffsetCompensatingRotator.gd"
+"path": "res://player/helpers/ReferenceOffsetCompensatingRotator.gd"
 }, {
 "base": "GrabHandler",
 "class": "RigidBodyGrabHandler",
@@ -132,12 +132,12 @@ _global_script_classes=[ {
 "base": "VrBodyManipulator",
 "class": "TripleMethodOrientationGuesser",
 "language": "GDScript",
-"path": "res://player/vr-head/TripleMethodOrientationGuesser.gd"
+"path": "res://player/helpers/TripleMethodOrientationGuesser.gd"
 }, {
 "base": "Node",
 "class": "VrBodyManipulator",
 "language": "GDScript",
-"path": "res://player/vr-head/VrBodyManipulator.gd"
+"path": "res://player/helpers/VrBodyManipulator.gd"
 }, {
 "base": "ARVRController",
 "class": "VrController",
@@ -147,12 +147,12 @@ _global_script_classes=[ {
 "base": "VrBodyManipulator",
 "class": "VrFrameHeightScaler",
 "language": "GDScript",
-"path": "res://player/vr-head/VrFrameHeightScaler.gd"
+"path": "res://player/helpers/VrFrameHeightScaler.gd"
 }, {
 "base": "ARVROrigin",
 "class": "VrOrigin",
 "language": "GDScript",
-"path": "res://player/VrOrigin.gd"
+"path": "res://player/vr-origin/VrOrigin.gd"
 } ]
 _global_script_class_icons={
 "BaseMapping": "",
