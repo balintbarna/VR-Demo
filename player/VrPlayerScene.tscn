@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://player/VrOrigin.gd" type="Script" id=1]
 [ext_resource path="res://player/vr-head/BodyBall.tres" type="SphereMesh" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://player/vr-head/VrFrameHeightScaler.gd" type="Script" id=11]
 [ext_resource path="res://player/vr-head/NeckPoint.gd" type="Script" id=12]
 [ext_resource path="res://player/WakeUpArea.tscn" type="PackedScene" id=13]
+[ext_resource path="res://general/PullTransform.gd" type="Script" id=14]
 
 [sub_resource type="CylinderMesh" id=5]
 top_radius = 0.05
@@ -64,14 +65,9 @@ albedo_color = Color( 0.898039, 0, 0, 1 )
 radius = 0.15
 height = 1.5
 
-[node name="PlayerBody" type="KinematicBody"]
+[node name="Player" type="KinematicBody"]
 collision_layer = 0
 script = ExtResource( 6 )
-
-[node name="ReferenceOffsetCompensatingRotator" type="Node" parent="."]
-script = ExtResource( 9 )
-origin_path = NodePath("../VrOrigin")
-reference_path = NodePath("../VrOrigin/HeadCamera")
 
 [node name="VrOrigin" type="ARVROrigin" parent="."]
 script = ExtResource( 1 )
@@ -84,9 +80,14 @@ material/0 = SubResource( 6 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, -0.08 )
 script = ExtResource( 5 )
 
-[node name="NeckPointRemote" type="RemoteTransform" parent="VrOrigin/HeadCamera"]
+[node name="NeckRemote" type="RemoteTransform" parent="VrOrigin/HeadCamera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.08 )
 remote_path = NodePath("../../../NeckPoint")
+update_rotation = false
+update_scale = false
+
+[node name="RotatorRemote" type="RemoteTransform" parent="VrOrigin/HeadCamera"]
+remote_path = NodePath("../../../ReferenceOffsetCompensatingRotator")
 update_rotation = false
 update_scale = false
 
@@ -95,6 +96,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.1, -0.5 )
 
 [node name="RightController" parent="VrOrigin" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.1, -0.5 )
+
+[node name="ReferenceOffsetCompensatingRotator" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, -0.08 )
+script = ExtResource( 9 )
 
 [node name="NeckPoint" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0 )
@@ -155,9 +160,9 @@ origin_path = NodePath("../../VrOrigin")
 [node name="VrFrameHeightScaler" type="Node" parent="NeckPoint"]
 script = ExtResource( 11 )
 origin_path = NodePath("../../VrOrigin")
-reference_path = NodePath("../../VrOrigin/HeadCamera/NeckPointRemote")
+reference_path = NodePath("../../VrOrigin/HeadCamera/NeckRemote")
 
-[node name="RemoteTransform" type="RemoteTransform" parent="NeckPoint"]
+[node name="CollisionPositionRemote" type="RemoteTransform" parent="NeckPoint"]
 remote_path = NodePath("../../PlayerCollision")
 update_rotation = false
 update_scale = false
@@ -172,9 +177,14 @@ script = ExtResource( 11 )
 origin_path = NodePath("../../VrOrigin")
 reference_path = NodePath("../../VrOrigin/HeadCamera")
 
-[node name="KinematicHandler" type="Node" parent="."]
+[node name="KinematicHandler" type="Spatial" parent="."]
 script = ExtResource( 8 )
-orientation_reference_node_path = NodePath("../NeckPoint")
+
+[node name="PullTransform" type="Node" parent="KinematicHandler"]
+script = ExtResource( 14 )
+reference_path = NodePath("../../NeckPoint")
+pull_position = false
+pull_scale = false
 
 [node name="WakeUpArea" parent="." instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )

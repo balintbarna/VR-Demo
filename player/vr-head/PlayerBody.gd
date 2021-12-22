@@ -1,7 +1,10 @@
 extends KinematicBody
 
 
-onready var kinematic_handler = $KinematicHandler
+onready var neck = $NeckPoint as Spatial
+onready var mover = $KinematicHandler as KinematicBodyMover
+var puller: PullTransform
+
 
 func _physics_process(_delta):
     if very_low_below_ground_level():
@@ -17,14 +20,21 @@ func very_low_below_ground_level():
 
 
 func swap_mover():
-    var new_node = pick_new_mover_based_on_current()
-    kinematic_handler.queue_free()
-    kinematic_handler = new_node
-    call_deferred("add_child", kinematic_handler)
+    var node = pick_new_mover_based_on_current()
+    mover.queue_free()
+    mover = node
+    mover.connect("ready", self, "on_new_mover_ready")
+    puller = PullTransform.new()
+    mover.add_child(puller)
+    call_deferred("add_child", mover)
+
+
+func on_new_mover_ready():
+    puller.reference_path = puller.get_path_to(neck)
 
 
 func pick_new_mover_based_on_current():
-    if kinematic_handler is FreeLookKinematicMover:
+    if mover is FreeLookKinematicMover:
         return FlatWorldPhysicsKinematicMover.new()
     else:
         return FreeLookKinematicMover.new()

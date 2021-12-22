@@ -82,8 +82,8 @@ func get_velocity_input_vector() -> Vector3:
 
 
 func get_forward_velocity_input_vector() -> Vector3:
-    return -orientation_reference_node.global_transform.basis.z * Input.get_axis("movement_back", "movement_forward")
+    return -self.global_transform.basis.z * Input.get_axis("movement_back", "movement_forward")
 
 
 func get_rightward_velocity_input_vector() -> Vector3:
-    return orientation_reference_node.global_transform.basis.x * Input.get_axis("movement_left", "movement_right")
+    return self.global_transform.basis.x * Input.get_axis("movement_left", "movement_right")

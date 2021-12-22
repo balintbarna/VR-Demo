@@ -1,17 +1,12 @@
-extends VrBodyManipulator
+extends KinematicBodyMover
 class_name ReferenceOffsetCompensatingRotator
 
 
 export var ROTATION_SPEED_RPS = 2*PI
-export(NodePath) var reference_path
-onready var reference_node = get_node(reference_path) as Spatial
-func _ready():
-    if not reference_node is Spatial:
-        push_error("Reference node is not Spatial")
 
 
 func _physics_process(delta: float):
-    rotate_base_and_compensate_reference_offset(delta, body, reference_node)
+    rotate_base_and_compensate_reference_offset(delta, kinematic_body, self)
 
 
 func rotate_base_and_compensate_reference_offset(delta: float, base: Spatial, reference: Spatial) -> void:

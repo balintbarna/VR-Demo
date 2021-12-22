@@ -54,7 +54,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/vr-controllers/Joypad.gd"
 }, {
-"base": "Node",
+"base": "Spatial",
 "class": "KinematicBodyMover",
 "language": "GDScript",
 "path": "res://player/vr-head/KinematicBodyMover.gd"
