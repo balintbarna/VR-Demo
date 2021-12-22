@@ -39,6 +39,7 @@ func _physics_process(_delta):
 
 
 func update_reference():
-    reference_node = get_node(reference_path) as Spatial
-    if not reference_node is Spatial:
-        push_error("Node at reference path is not Spatial")
+    if is_inside_tree():
+        reference_node = get_node(reference_path) as Spatial
+        if not reference_node is Spatial:
+            push_error("Node at reference path is not Spatial")
