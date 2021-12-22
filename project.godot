@@ -104,7 +104,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://vr-intergration/OpenXrInputMapping.gd"
 }, {
-"base": "VrBodyManipulator",
+"base": "Node",
+"class": "PullTransform",
+"language": "GDScript",
+"path": "res://general/PullTransform.gd"
+}, {
+"base": "KinematicBodyMover",
 "class": "ReferenceOffsetCompensatingRotator",
 "language": "GDScript",
 "path": "res://player/vr-head/ReferenceOffsetCompensatingRotator.gd"
@@ -169,6 +174,7 @@ _global_script_class_icons={
 "OculusTracker": "",
 "OpenXrConfig": "",
 "OpenXrInputMapping": "",
+"PullTransform": "",
 "ReferenceOffsetCompensatingRotator": "",
 "RigidBodyGrabHandler": "",
 "TouchHandler": "",
