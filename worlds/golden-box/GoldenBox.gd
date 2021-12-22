@@ -5,6 +5,7 @@ onready var reflection_portal = $World/ReflectionPortal
 onready var reflection_probe = $World/ReflectionProbe
 onready var locomotion_swap_portal = $World/LocomotionPortal
 onready var portal_room_portal = $World/PortalRoomPortal
+onready var player = $StartingPosition/Player
 
 
 func _ready() -> void:
@@ -16,7 +17,7 @@ func _ready() -> void:
 func _reflection_portal_activated(body: Node):
     if body is KinematicBody:
         reflection_probe.update_mode = ReflectionProbe.UPDATE_ONCE
-        Globals.origin.reset_to_parent()
+        player.reset_to_parent()
 
 
 func _locomotion_swap_portal_activated(body: Node):
@@ -24,7 +25,7 @@ func _locomotion_swap_portal_activated(body: Node):
         if body.has_method("swap_mover"):
             # warning-ignore:UNSAFE_METHOD_ACCESS
             body.swap_mover()
-            Globals.origin.reset_to_parent()
+            player.reset_to_parent()
         else:
             push_error("method_not_found")
 
