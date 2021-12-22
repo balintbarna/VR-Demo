@@ -25,6 +25,8 @@ func _ready():
 
 
 func _physics_process(_delta):
+    if not parent or not reference_node:
+        return
     var transform = parent.global_transform if use_global_transform else parent.transform
     var ref_tr = reference_node.global_transform if use_global_transform else reference_node.transform
     if pull_position:
@@ -43,7 +45,7 @@ func _physics_process(_delta):
 
 
 func update_reference():
-    if is_inside_tree():
+    if is_inside_tree() and reference_path:
         reference_node = get_node(reference_path) as Spatial
         if not reference_node is Spatial:
             push_error("Node at reference path is not Spatial")
