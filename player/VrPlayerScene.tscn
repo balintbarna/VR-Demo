@@ -81,7 +81,7 @@ mesh = SubResource( 5 )
 material/0 = SubResource( 6 )
 
 [node name="HeadCamera" type="ARVRCamera" parent="VrOrigin"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, -0.08 )
 script = ExtResource( 5 )
 
 [node name="NeckPointRemote" type="RemoteTransform" parent="VrOrigin/HeadCamera"]
@@ -97,7 +97,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.1, -0.5 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.1, -0.5 )
 
 [node name="NeckPoint" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0.08 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0 )
 script = ExtResource( 12 )
 
 [node name="MeshInstance" type="MeshInstance" parent="NeckPoint"]
@@ -163,7 +163,7 @@ update_rotation = false
 update_scale = false
 
 [node name="PlayerCollision" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.55, 0.08 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.55, 0 )
 shape = SubResource( 7 )
 script = ExtResource( 10 )
 
