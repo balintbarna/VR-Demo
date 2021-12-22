@@ -1,4 +1,4 @@
-extends KinematicVrBodyMover
+extends KinematicBodyMover
 class_name FlatWorldPhysicsKinematicMover
 
 
@@ -10,7 +10,6 @@ const FLOOR_MAX_ANGLE = 0.785398
 const INFINITE_INERTIA = false
 
 
-export var rotator: Resource
 export var GRAVITY_ACCELERATION_MPS2 = 9.81
 export var NORMAL_ACCELERATION_MPS2 = 9
 export var SPRINT_ACCELERATION_MPS2 = 15
@@ -21,33 +20,13 @@ export var DAMPING_COEFFICIENT_GROUND_NSPM = 1
 export var DAMPING_COEFFICIENT_AIR_NSPM = 9
 export var JUMP_SPEED_MPS = 50 # overrides vertical speed
 export var MASS_KG = 70
-
-
 var max_speed = NORMAL_MAX_SPEED_MPS
 var max_acceleration = NORMAL_ACCELERATION_MPS2
 var velocity = Vector3()
 
 
-func _ready():
-    if not rotator:
-        rotator = ReferenceOffsetCompensatingRotator.new()
-
-
 func _physics_process(delta: float):
-    var origin = Globals.origin as VrOrigin
-    rotator.rotate_base_and_compensate_reference_offset(delta, origin, origin.head)
     apply_movement(delta)
-    follow_body_with_origin(origin)
-
-
-func follow_body_with_origin(origin: VrOrigin) -> void:
-    var kinematic_body_parent = kinematic_body.get_parent()
-    if kinematic_body_parent is Spatial:
-        var offset = kinematic_body.global_transform.origin - kinematic_body_parent.global_transform.origin
-        kinematic_body.translation = Vector3()
-        origin.global_translate(offset)
-    else:
-        push_error("kinematic body parent is not Spatial")
 
 
 func apply_movement(dt: float) -> void:
@@ -103,8 +82,8 @@ func get_velocity_input_vector() -> Vector3:
 
 
 func get_forward_velocity_input_vector() -> Vector3:
-    return -kinematic_body.global_transform.basis.z * Input.get_axis("movement_back", "movement_forward")
+    return -orientation_reference_node.global_transform.basis.z * Input.get_axis("movement_back", "movement_forward")
 
 
 func get_rightward_velocity_input_vector() -> Vector3:
-    return kinematic_body.global_transform.basis.x * Input.get_axis("movement_left", "movement_right")
+    return orientation_reference_node.global_transform.basis.x * Input.get_axis("movement_left", "movement_right")

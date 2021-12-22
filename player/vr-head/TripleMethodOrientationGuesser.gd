@@ -45,20 +45,3 @@ func get_hands_displacement_vector(reference_body_global_position: Vector3):
 
 func get_origin_frame():
     return get_origin().global_transform.basis
-
-
-func get_right_hand():
-    return get_origin().right
-
-
-func get_left_hand():
-    return get_origin().left
-
-
-func get_head():
-    return get_origin().head
-
-
-func get_origin():
-    return Globals.origin
-

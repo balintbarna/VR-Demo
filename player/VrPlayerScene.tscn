@@ -1,9 +1,18 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://player/VrOrigin.gd" type="Script" id=1]
-[ext_resource path="res://player/vr-head/HeadCamera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player/vr-head/BodyBall.tres" type="SphereMesh" id=2]
 [ext_resource path="res://player/vr-controllers/RightController.tscn" type="PackedScene" id=3]
 [ext_resource path="res://player/vr-controllers/LeftController.tscn" type="PackedScene" id=4]
+[ext_resource path="res://player/vr-head/HeadCamera.gd" type="Script" id=5]
+[ext_resource path="res://player/vr-head/PlayerBody.gd" type="Script" id=6]
+[ext_resource path="res://player/vr-head/TripleMethodOrientationGuesser.gd" type="Script" id=7]
+[ext_resource path="res://player/vr-head/FlatWorldPhysicsKinematicMover.gd" type="Script" id=8]
+[ext_resource path="res://player/vr-head/ReferenceOffsetCompensatingRotator.gd" type="Script" id=9]
+[ext_resource path="res://player/PlayerCollision.gd" type="Script" id=10]
+[ext_resource path="res://player/vr-head/VrFrameHeightScaler.gd" type="Script" id=11]
+[ext_resource path="res://player/vr-head/NeckPoint.gd" type="Script" id=12]
+[ext_resource path="res://player/WakeUpArea.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CylinderMesh" id=5]
 top_radius = 0.05
@@ -15,17 +24,157 @@ params_diffuse_mode = 4
 params_specular_mode = 3
 albedo_color = Color( 0.533333, 0.211765, 0.305882, 1 )
 
-[node name="VrOrigin" type="ARVROrigin"]
+[sub_resource type="SpatialMaterial" id=11]
+albedo_color = Color( 0.682353, 0.156863, 0.329412, 1 )
+
+[sub_resource type="SpatialMaterial" id=10]
+albedo_color = Color( 1, 0.92549, 0.305882, 1 )
+
+[sub_resource type="CylinderMesh" id=12]
+top_radius = 0.0
+bottom_radius = 0.015
+height = 0.03
+
+[sub_resource type="SpatialMaterial" id=13]
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 0, 0.513726, 0.776471, 1 )
+
+[sub_resource type="SpatialMaterial" id=14]
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 0, 0.670588, 0.25098, 1 )
+
+[sub_resource type="SpatialMaterial" id=15]
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 0.694118, 0.878431, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=16]
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 0.886275, 0.568627, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=17]
+params_diffuse_mode = 4
+params_specular_mode = 4
+albedo_color = Color( 0.898039, 0, 0, 1 )
+
+[sub_resource type="CapsuleShape" id=7]
+radius = 0.15
+height = 1.5
+
+[node name="PlayerBody" type="KinematicBody"]
+collision_layer = 0
+script = ExtResource( 6 )
+
+[node name="ReferenceOffsetCompensatingRotator" type="Node" parent="."]
+script = ExtResource( 9 )
+origin_path = NodePath("../VrOrigin")
+reference_path = NodePath("../VrOrigin/HeadCamera")
+
+[node name="VrOrigin" type="ARVROrigin" parent="."]
 script = ExtResource( 1 )
 
-[node name="HeadCamera" parent="." instance=ExtResource( 2 )]
-
-[node name="LeftController" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.3, -0.5 )
-
-[node name="RightController" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.3, -0.5 )
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="MeshInstance" type="MeshInstance" parent="VrOrigin"]
 mesh = SubResource( 5 )
 material/0 = SubResource( 6 )
+
+[node name="HeadCamera" type="ARVRCamera" parent="VrOrigin"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0 )
+script = ExtResource( 5 )
+
+[node name="NeckPointRemote" type="RemoteTransform" parent="VrOrigin/HeadCamera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.08 )
+remote_path = NodePath("../../../NeckPoint")
+update_rotation = false
+update_scale = false
+
+[node name="LeftController" parent="VrOrigin" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.1, -0.5 )
+
+[node name="RightController" parent="VrOrigin" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.1, -0.5 )
+
+[node name="NeckPoint" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0.08 )
+script = ExtResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="NeckPoint"]
+mesh = ExtResource( 2 )
+material/0 = SubResource( 11 )
+
+[node name="HeadCenterPoint" type="Spatial" parent="NeckPoint"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="NeckPoint/HeadCenterPoint"]
+mesh = ExtResource( 2 )
+material/0 = SubResource( 10 )
+
+[node name="ChestPoint" type="Spatial" parent="NeckPoint"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="NeckPoint/ChestPoint"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 12 )
+skeleton = NodePath("")
+material/0 = SubResource( 13 )
+
+[node name="StomachPoint" type="Spatial" parent="NeckPoint/ChestPoint"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="NeckPoint/ChestPoint/StomachPoint"]
+mesh = ExtResource( 2 )
+material/0 = SubResource( 14 )
+
+[node name="GenitaliaPoint" type="Spatial" parent="NeckPoint/ChestPoint/StomachPoint"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint"]
+mesh = ExtResource( 2 )
+material/0 = SubResource( 15 )
+
+[node name="KneeHeight" type="Spatial" parent="NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint/KneeHeight"]
+mesh = ExtResource( 2 )
+material/0 = SubResource( 16 )
+
+[node name="FeetHeight" type="Spatial" parent="NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint/KneeHeight"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="NeckPoint/ChestPoint/StomachPoint/GenitaliaPoint/KneeHeight/FeetHeight"]
+mesh = ExtResource( 2 )
+material/0 = SubResource( 17 )
+
+[node name="TripleMethodOrientationGuesser" type="Node" parent="NeckPoint"]
+script = ExtResource( 7 )
+origin_path = NodePath("../../VrOrigin")
+
+[node name="VrFrameHeightScaler" type="Node" parent="NeckPoint"]
+script = ExtResource( 11 )
+origin_path = NodePath("../../VrOrigin")
+reference_path = NodePath("../../VrOrigin/HeadCamera/NeckPointRemote")
+
+[node name="RemoteTransform" type="RemoteTransform" parent="NeckPoint"]
+remote_path = NodePath("../../PlayerCollision")
+update_rotation = false
+update_scale = false
+
+[node name="PlayerCollision" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.55, 0.08 )
+shape = SubResource( 7 )
+script = ExtResource( 10 )
+
+[node name="VrFrameHeightScaler" type="Node" parent="PlayerCollision"]
+script = ExtResource( 11 )
+origin_path = NodePath("../../VrOrigin")
+reference_path = NodePath("../../VrOrigin/HeadCamera")
+
+[node name="KinematicHandler" type="Node" parent="."]
+script = ExtResource( 8 )
+orientation_reference_node_path = NodePath("../NeckPoint")
+
+[node name="WakeUpArea" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )

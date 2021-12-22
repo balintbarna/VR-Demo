@@ -1,38 +1,30 @@
-extends KinematicVrBodyMover
+extends KinematicBodyMover
 class_name FreeLookKinematicMover
 
 
-export var rotator: Resource
 export var LINEAR_SPEED_MPS = 3
 
 
-func _ready():
-    if not rotator:
-        rotator = ReferenceOffsetCompensatingRotator.new()
-
-
 func _physics_process(delta: float):
-    var origin = Globals.origin as VrOrigin
-    rotator.rotate_base_and_compensate_reference_offset(delta, origin, origin.head)
-    apply_movement(delta, origin)
+    apply_movement(delta)
 
 
-func apply_movement(dt: float, origin: VrOrigin) -> void:
-    var input_vector = get_velocity_input_vector(origin.head, origin.left)
+func apply_movement(dt: float) -> void:
+    var input_vector = get_velocity_input_vector()
     if input_vector.length() > 1:
         input_vector = input_vector.normalized()
     var target_velocity = input_vector * LINEAR_SPEED_MPS
     var dx = target_velocity * dt
-    origin.global_translate(dx)
+    kinematic_body.global_translate(dx)
 
 
-func get_velocity_input_vector(head, left) -> Vector3:
-    return get_forward_velocity_input_vector(head, left) + get_rightward_velocity_input_vector(head, left)
+func get_velocity_input_vector() -> Vector3:
+    return get_forward_velocity_input_vector() + get_rightward_velocity_input_vector()
 
 
-func get_forward_velocity_input_vector(head, left) -> Vector3:
-    return head.get_forward_direction() * left.get_stick_vector().y
+func get_forward_velocity_input_vector() -> Vector3:
+    return -kinematic_body.global_transform.basis.z * Input.get_axis("movement_back", "movement_forward")
 
 
-func get_rightward_velocity_input_vector(head, left) -> Vector3:
-    return head.get_right_direction() * left.get_stick_vector().x
+func get_rightward_velocity_input_vector() -> Vector3:
+    return kinematic_body.global_transform.basis.x * Input.get_axis("movement_left", "movement_right")
