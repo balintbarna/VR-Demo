@@ -256,6 +256,14 @@ yaw_right={
 "deadzone": 0.1,
 "events": [  ]
 }
+pitch_up={
+"deadzone": 0.5,
+"events": [  ]
+}
+pitch_down={
+"deadzone": 0.5,
+"events": [  ]
+}
 
 [input_devices]
 
