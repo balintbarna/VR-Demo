@@ -36,6 +36,10 @@ func _physics_process(_delta):
             var rotation = Basis(ref_tr.basis.get_rotation_quat()) if pull_orientation else Basis(transform.basis.get_rotation_quat())
             var scale = ref_tr.basis.get_scale() if pull_scale else transform.basis.get_scale()
             transform.basis = rotation.scaled(scale)
+    if use_global_transform:
+        parent.global_transform = transform
+    else:
+        parent.transform = transform
 
 
 func update_reference():
