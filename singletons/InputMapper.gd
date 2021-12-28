@@ -31,6 +31,7 @@ func _init():
 func _physics_process(_delta):
     handle_mouse_capture()
     create_rotation_action()
+    create_move_action()
 
 
 func create_move_action():
