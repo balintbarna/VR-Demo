@@ -84,14 +84,18 @@ func limit_either_axes(v: Vector3, limits: Vector3) -> Vector3:
 
 
 func basify_xyz_rotation(v: Vector3):
-    if euler_sequence_order:
+    if v.length() == 0:
+        return Basis.IDENTITY
+    elif euler_sequence_order:
         return ExtraMath.euler2basis(v, euler_sequence_order)
     else:
         return Basis(v.normalized(), v.length())
 
 
 func vectorify_rotation(b: Basis) -> Vector3:
-    if euler_sequence_order:
+    if b.is_equal_approx(Basis.IDENTITY):
+        return Vector3.ZERO
+    elif euler_sequence_order:
         return ExtraMath.basis2euler(b, euler_sequence_order)
     else:
         return ExtraMath.basis2axis_angle(b)
