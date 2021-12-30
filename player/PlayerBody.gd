@@ -3,7 +3,7 @@ extends KinematicBody
 
 onready var hmd = $VrOrigin/HeadCamera
 onready var neck = $NeckPoint as Spatial
-onready var mover = $KinematicHandler as KinematicBodyMover
+onready var mover = $KinematicHandler
 var puller: PullTransform
 
 

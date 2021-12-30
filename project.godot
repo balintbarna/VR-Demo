@@ -12,22 +12,22 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "BaseMapping",
 "language": "GDScript",
-"path": "res://vr-intergration/BaseMapping.gd"
+"path": "res://addons/xr-helpers/other/BaseMapping.gd"
 }, {
 "base": "Reference",
 "class": "ExtraMath",
 "language": "GDScript",
 "path": "res://addons/extra_math_gd/ExtraMath.gd"
 }, {
-"base": "KinematicBodyMover",
+"base": "KinematicBodyManipulator",
 "class": "FlatWorldPhysicsKinematicMover",
 "language": "GDScript",
-"path": "res://player/helpers/FlatWorldPhysicsKinematicMover.gd"
+"path": "res://addons/xr-helpers/features/FlatWorldPhysicsKinematicMover.gd"
 }, {
-"base": "KinematicBodyMover",
+"base": "SpatialManipulator",
 "class": "FreeLookKinematicMover",
 "language": "GDScript",
-"path": "res://player/helpers/FreeLookKinematicMover.gd"
+"path": "res://addons/xr-helpers/features/FreeLookKinematicMover.gd"
 }, {
 "base": "Spatial",
 "class": "GrabHandler",
@@ -55,9 +55,9 @@ _global_script_classes=[ {
 "path": "res://player/vr-controllers/Joypad.gd"
 }, {
 "base": "Spatial",
-"class": "KinematicBodyMover",
+"class": "KinematicBodyManipulator",
 "language": "GDScript",
-"path": "res://player/helpers/KinematicBodyMover.gd"
+"path": "res://addons/xr-helpers/other/KinematicBodyManipulator.gd"
 }, {
 "base": "Resource",
 "class": "NumericAngularDerivator",
@@ -109,15 +109,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://general/PullTransform.gd"
 }, {
-"base": "KinematicBodyMover",
+"base": "SpatialManipulator",
 "class": "ReferenceOffsetCompensatingRotator",
 "language": "GDScript",
-"path": "res://player/helpers/ReferenceOffsetCompensatingRotator.gd"
+"path": "res://addons/xr-helpers/features/ReferenceOffsetCompensatingRotator.gd"
 }, {
 "base": "GrabHandler",
 "class": "RigidBodyGrabHandler",
 "language": "GDScript",
 "path": "res://general/grabbing/RigidBodyGrabHandler.gd"
+}, {
+"base": "Spatial",
+"class": "SpatialManipulator",
+"language": "GDScript",
+"path": "res://addons/xr-helpers/other/SpatialManipulator.gd"
 }, {
 "base": "Node",
 "class": "TouchHandler",
@@ -164,7 +169,7 @@ _global_script_class_icons={
 "HeadCamera": "",
 "JoyGrabHandler": "",
 "Joypad": "",
-"KinematicBodyMover": "",
+"KinematicBodyManipulator": "",
 "NumericAngularDerivator": "",
 "NumericDerivator": "",
 "OculusHandTracker": "",
@@ -177,6 +182,7 @@ _global_script_class_icons={
 "PullTransform": "",
 "ReferenceOffsetCompensatingRotator": "",
 "RigidBodyGrabHandler": "",
+"SpatialManipulator": "",
 "TouchHandler": "",
 "TouchRipple": "",
 "TripleMethodOrientationGuesser": "",
@@ -197,7 +203,7 @@ config/icon="res://icon.png"
 Globals="*res://general/Globals.gd"
 SceneLibrary="*res://general/SceneLibrary.gd"
 SceneLoader="*res://general/SceneLoader.gd"
-InputMapper="*res://singletons/InputMapper.gd"
+InputMapper="*res://addons/xr-helpers/autoload/InputMapper.gd"
 
 [debug]
 
