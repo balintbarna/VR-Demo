@@ -1,9 +1,10 @@
 extends KinematicBody
 
 
-onready var hmd = $VrOrigin/HeadCamera
-onready var neck = $NeckPoint as Spatial
-onready var mover = $KinematicHandler
+export(NodePath) var neck_point_path
+onready var vr_origin = NodeUtilities.get_child_of_type(self, ArvrOriginWithReferences)
+onready var neck = get_node(neck_point_path) as Spatial
+onready var mover = $Mover
 var puller: PullTransform
 
 
@@ -33,14 +34,14 @@ func swap_mover():
 
 
 func on_new_mover_ready():
-    if mover is FreeLookKinematicMover:
-        puller.reference_path = puller.get_path_to(hmd)
+    if mover is FreeLookMover:
+        puller.reference_path = puller.get_path_to(vr_origin.hmd)
     else:
         puller.reference_path = puller.get_path_to(neck)
 
 
 func pick_new_mover_based_on_current():
-    if mover is FreeLookKinematicMover:
+    if mover is FreeLookMover:
         return FlatWorldPhysicsKinematicMover.new()
     else:
-        return FreeLookKinematicMover.new()
+        return FreeLookMover.new()

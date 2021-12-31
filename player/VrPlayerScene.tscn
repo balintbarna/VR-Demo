@@ -68,6 +68,7 @@ height = 1.5
 [node name="Player" type="KinematicBody"]
 collision_layer = 0
 script = ExtResource( 6 )
+neck_point_path = NodePath("NeckPoint")
 
 [node name="VrOrigin" type="ARVROrigin" parent="."]
 script = ExtResource( 1 )
@@ -177,10 +178,10 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -4.3
 script = ExtResource( 11 )
 origin_path = NodePath("../../VrOrigin")
 
-[node name="KinematicHandler" type="Spatial" parent="."]
+[node name="Mover" type="Spatial" parent="."]
 script = ExtResource( 8 )
 
-[node name="PullTransform" type="Spatial" parent="KinematicHandler"]
+[node name="PullTransform" type="Spatial" parent="Mover"]
 script = ExtResource( 14 )
 reference_path = NodePath("../../NeckPoint")
 pull_position = false

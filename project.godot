@@ -35,9 +35,9 @@ _global_script_classes=[ {
 "path": "res://addons/xr-helpers/features/FlatWorldPhysicsKinematicMover.gd"
 }, {
 "base": "SpatialManipulator",
-"class": "FreeLookKinematicMover",
+"class": "FreeLookMover",
 "language": "GDScript",
-"path": "res://addons/xr-helpers/features/FreeLookKinematicMover.gd"
+"path": "res://addons/xr-helpers/features/FreeLookMover.gd"
 }, {
 "base": "Spatial",
 "class": "GrabHandler",
@@ -64,7 +64,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/vr-controllers/Joypad.gd"
 }, {
-"base": "Spatial",
+"base": "SpatialManipulator",
 "class": "KinematicBodyManipulator",
 "language": "GDScript",
 "path": "res://addons/xr-helpers/other/KinematicBodyManipulator.gd"
@@ -170,7 +170,7 @@ _global_script_class_icons={
 "BaseMapping": "",
 "ExtraMath": "",
 "FlatWorldPhysicsKinematicMover": "",
-"FreeLookKinematicMover": "",
+"FreeLookMover": "",
 "GrabHandler": "",
 "GrabPointsGenerator": "",
 "HeadCamera": "",
