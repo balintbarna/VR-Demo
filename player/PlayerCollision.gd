@@ -1,7 +1,10 @@
 extends CollisionShape
 
 
+var height setget set_height, get_height
+
 func set_height(value):
+    height = value
     if shape is CapsuleShape:
         # Value equals the physical world height of the HMD
         # and the shape total height should be value + radius
@@ -18,5 +21,13 @@ func set_height(value):
         # warning-ignore:UNSAFE_PROPERTY_ACCESS
         # warning-ignore:UNSAFE_PROPERTY_ACCESS
         translation.y = shape.height / 2.0 + shape.radius
+    else:
+        push_error("WRONG SHAPE")
+
+func get_height():
+    if shape is CapsuleShape:
+        # warning-ignore:UNSAFE_PROPERTY_ACCESS
+        # warning-ignore:UNSAFE_PROPERTY_ACCESS
+        return shape.height + shape.radius
     else:
         push_error("WRONG SHAPE")
