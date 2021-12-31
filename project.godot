@@ -69,6 +69,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/xr-helpers/other/KinematicBodyManipulator.gd"
 }, {
+"base": "Object",
+"class": "NodeUtilities",
+"language": "GDScript",
+"path": "res://general/NodeUtilities.gd"
+}, {
 "base": "Resource",
 "class": "NumericAngularDerivator",
 "language": "GDScript",
@@ -172,6 +177,7 @@ _global_script_class_icons={
 "JoyGrabHandler": "",
 "Joypad": "",
 "KinematicBodyManipulator": "",
+"NodeUtilities": "",
 "NumericAngularDerivator": "",
 "NumericDerivator": "",
 "OculusHandTracker": "",
@@ -279,6 +285,8 @@ pointing/emulate_mouse_from_touch=false
 
 common/physics_fps=120
 common/enable_pause_aware_picking=true
+3d/physics_engine="GodotPhysics"
+3d/active_soft_world=false
 
 [rendering]
 
