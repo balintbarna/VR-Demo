@@ -152,7 +152,7 @@ _global_script_classes=[ {
 "base": "ArvrBodyManipulator",
 "class": "TripleMethodOrientationGuesser",
 "language": "GDScript",
-"path": "res://player/helpers/TripleMethodOrientationGuesser.gd"
+"path": "res://addons/xr-helpers/features/TripleMethodOrientationGuesser.gd"
 }, {
 "base": "ARVRController",
 "class": "VrController",
@@ -162,7 +162,7 @@ _global_script_classes=[ {
 "base": "ArvrBodyManipulator",
 "class": "VrFrameHeightScaler",
 "language": "GDScript",
-"path": "res://player/helpers/VrFrameHeightScaler.gd"
+"path": "res://addons/xr-helpers/features/VrFrameHeightScaler.gd"
 } ]
 _global_script_class_icons={
 "ArvrBodyManipulator": "",
