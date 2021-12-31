@@ -167,10 +167,6 @@ material/0 = SubResource( 17 )
 script = ExtResource( 7 )
 origin_path = NodePath("../../VrOrigin")
 
-[node name="VrFrameHeightScaler" type="Spatial" parent="NeckPoint"]
-script = ExtResource( 11 )
-origin_path = NodePath("../../VrOrigin")
-
 [node name="PlayerCollision" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.6, 0 )
 shape = SubResource( 7 )
