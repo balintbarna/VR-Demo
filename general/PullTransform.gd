@@ -1,4 +1,4 @@
-extends Node
+extends SpatialManipulator
 class_name PullTransform
 
 
@@ -8,7 +8,6 @@ export var pull_position = true
 export var pull_orientation = true
 export var pull_scale = true
 var reference_node: Spatial
-onready var parent = get_parent() as Spatial
 
 
 func set_ref(value):
@@ -20,14 +19,16 @@ func get_ref():
 
 func _ready():
     update_reference()
-    if not parent is Spatial:
-        push_error("Parent is not Spatial")
 
 
 func _physics_process(_delta):
-    if not parent or not reference_node:
+    if not spatial_parent or not reference_node:
         return
-    var transform = parent.global_transform if use_global_transform else parent.transform
+    apply_transform(spatial_parent)
+
+
+func apply_transform(target: Spatial):
+    var transform = target.global_transform if use_global_transform else target.transform
     var ref_tr = reference_node.global_transform if use_global_transform else reference_node.transform
     if pull_position:
         transform.origin = ref_tr.origin
@@ -39,9 +40,9 @@ func _physics_process(_delta):
             var scale = ref_tr.basis.get_scale() if pull_scale else transform.basis.get_scale()
             transform.basis = rotation.scaled(scale)
     if use_global_transform:
-        parent.global_transform = transform
+        target.global_transform = transform
     else:
-        parent.transform = transform
+        target.transform = transform
 
 
 func update_reference():

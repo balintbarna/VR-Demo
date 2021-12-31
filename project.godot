@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "SpatialManipulator",
+"class": "ArvrBodyManipulator",
+"language": "GDScript",
+"path": "res://addons/xr-helpers/other/ArvrManipulator.gd"
+}, {
+"base": "ARVROrigin",
+"class": "ArvrOriginWithReferences",
+"language": "GDScript",
+"path": "res://addons/xr-helpers/other/ArvrOriginWithReferences.gd"
+}, {
 "base": "Resource",
 "class": "BaseMapping",
 "language": "GDScript",
@@ -104,7 +114,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://vr-intergration/OpenXrInputMapping.gd"
 }, {
-"base": "Node",
+"base": "SpatialManipulator",
 "class": "PullTransform",
 "language": "GDScript",
 "path": "res://general/PullTransform.gd"
@@ -134,32 +144,24 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://general/touch/TouchRipple.gd"
 }, {
-"base": "VrBodyManipulator",
+"base": "ArvrBodyManipulator",
 "class": "TripleMethodOrientationGuesser",
 "language": "GDScript",
 "path": "res://player/helpers/TripleMethodOrientationGuesser.gd"
-}, {
-"base": "Node",
-"class": "VrBodyManipulator",
-"language": "GDScript",
-"path": "res://player/helpers/VrBodyManipulator.gd"
 }, {
 "base": "ARVRController",
 "class": "VrController",
 "language": "GDScript",
 "path": "res://player/vr-controllers/VrController.gd"
 }, {
-"base": "VrBodyManipulator",
+"base": "ArvrBodyManipulator",
 "class": "VrFrameHeightScaler",
 "language": "GDScript",
 "path": "res://player/helpers/VrFrameHeightScaler.gd"
-}, {
-"base": "ARVROrigin",
-"class": "VrOrigin",
-"language": "GDScript",
-"path": "res://player/vr-origin/VrOrigin.gd"
 } ]
 _global_script_class_icons={
+"ArvrBodyManipulator": "",
+"ArvrOriginWithReferences": "",
 "BaseMapping": "",
 "ExtraMath": "",
 "FlatWorldPhysicsKinematicMover": "",
@@ -186,10 +188,8 @@ _global_script_class_icons={
 "TouchHandler": "",
 "TouchRipple": "",
 "TripleMethodOrientationGuesser": "",
-"VrBodyManipulator": "",
 "VrController": "",
-"VrFrameHeightScaler": "",
-"VrOrigin": ""
+"VrFrameHeightScaler": ""
 }
 
 [application]
