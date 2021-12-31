@@ -19,21 +19,24 @@ onready var button_event_label = $LeftContainer/ButtonEvent as Label
 var mesh_counter = 0
 
 
-func _ready():
-    subscribe_to_controller_signals()
-    var __ = Globals.connect("new_origin_set", self, "subscribe_to_controller_signals")
-
-
+var controller = null
 func _process(_delta: float) -> void:
-    var controller = get_controller() as VrController
+    save_controller()
     if controller:
-        display_basics(controller)
-        display_all_button_states(controller)
-        display_all_axes_states(controller)
-        display_transform(controller)
+        display_basics()
+        display_all_button_states()
+        display_all_axes_states()
+        display_transform()
 
 
-func display_transform(controller):
+func save_controller():
+    var c = get_controller() as ARVRController
+    if not controller == c:
+        controller = c
+        subscribe_to_controller_signals()
+
+
+func display_transform():
     var tr = controller.translation
     var rd = controller.rotation_degrees
     var posarr = ["%2.3f" % tr.x, "%2.3f" % tr.y, "%2.3f" % tr.z]
@@ -42,21 +45,21 @@ func display_transform(controller):
     rotation_label.text = "Rotation\nX:  {}\nY:  {}\nZ: {}".format(rotarr, "{}")
 
 
-func display_all_button_states(controller: VrController):
+func display_all_button_states():
     var text = "All buttons:\n"
     for i in JOY_BUTTON_MAX:
         text = text + "button {}    |{}|\n".format(["%2d" % i, "X" if controller.is_button_pressed(i) else "  "], "{}")
     buttons_label.text = text
 
 
-func display_all_axes_states(controller: VrController):
+func display_all_axes_states():
     var text = "All axes:\n"
     for i in JOY_AXIS_MAX:
         text = text + "axis {}    {}\n".format(["%3d" % i, "%0.2f" % controller.get_joystick_axis(i)], "{}")
     axes_label.text = text
 
 
-func display_basics(controller: VrController):
+func display_basics():
     name_label.text = "Name: {}".format([controller.get_name()], "{}")
     hand_label.text = "Hand: {}".format([controller.get_hand()], "{}")
     active_label.text = "Active: {}".format([controller.get_is_active()], "{}")
@@ -65,15 +68,14 @@ func display_basics(controller: VrController):
 
 
 func subscribe_to_controller_signals() -> void:
-    var controller = get_controller() as VrController
     if controller:
         controller.connect("mesh_updated", self, "_on_mesh_updated")
         controller.connect("button_pressed", self, "_on_button_pressed")
         controller.connect("button_release", self, "_on_button_released")
 
 
-func get_controller() -> VrController:
-    var origin = Globals.origin
+func get_controller() -> ARVRController:
+    var origin = InputMapper.vr_origin
     if origin:
         return (origin.left if controller_id == 1 else origin.right if controller_id == 2 else null)
     return null

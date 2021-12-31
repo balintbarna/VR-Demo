@@ -7,7 +7,7 @@ onready var rotation_label = $TransformContainer/Rotation as Label
 
 
 func _process(_delta: float) -> void:
-    var origin = Globals.origin as VrOrigin
+    var origin = InputMapper.vr_origin
     if origin:
         display_scale(origin)
         display_transform(origin)

@@ -6,7 +6,7 @@ onready var rl = $TransformContainer/Rotation as Label
 
 
 func _process(_delta: float) -> void:
-    var head = get_hmd() as HeadCamera
+    var head = get_hmd()
     if head:
         display_transform(head)
 
@@ -20,8 +20,8 @@ func display_transform(head):
     rl.text = "Rotation\nX:  {}\nY:  {}\nZ: {}".format(rotarr, "{}")
 
 
-func get_hmd() -> HeadCamera:
-    var origin = Globals.origin
+func get_hmd() -> ARVRCamera:
+    var origin = InputMapper.vr_origin
     if origin:
-        return origin.head
+        return origin.hmd
     return null
