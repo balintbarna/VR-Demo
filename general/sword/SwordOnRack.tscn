@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
+[ext_resource path="res://general/sword/ToonWood.tres" type="Material" id=1]
 [ext_resource path="res://general/sword/Sword.tscn" type="PackedScene" id=2]
-[ext_resource path="res://general/sword/Wood.tres" type="Material" id=3]
 
 [node name="SwordPlacement" type="Spatial"]
 
@@ -9,24 +9,24 @@
 transform = Transform( 1, 0, -1.86265e-09, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 use_collision = true
 
-[node name="CSGPolygon" type="CSGPolygon" parent="SwordRack"]
+[node name="Top" type="CSGPolygon" parent="SwordRack"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, -0.015, 0 )
 polygon = PoolVector2Array( 0.02, 0, 0, 0.1, 0.03, 0.1, 0.05, 0.03, 0.15, 0.03, 0.17, 0.1, 0.2, 0.1, 0.18, 0 )
 depth = 0.04
-material = ExtResource( 3 )
+material = ExtResource( 1 )
 
-[node name="CSGPolygon2" type="CSGPolygon" parent="SwordRack"]
+[node name="Bottom" type="CSGPolygon" parent="SwordRack"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, -0.015, 0.84 )
 polygon = PoolVector2Array( 0.02, 0, 0, 0.1, 0.03, 0.1, 0.05, 0.03, 0.15, 0.03, 0.17, 0.1, 0.2, 0.1, 0.18, 0 )
 depth = 0.04
-material = ExtResource( 3 )
+material = ExtResource( 1 )
 
-[node name="CSGBox" type="CSGBox" parent="SwordRack"]
+[node name="Long" type="CSGBox" parent="SwordRack"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4 )
 width = 0.03
 height = 0.03
 depth = 0.8
-material = ExtResource( 3 )
+material = ExtResource( 1 )
 
 [node name="Sword" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.0609103, 0.111373 )
