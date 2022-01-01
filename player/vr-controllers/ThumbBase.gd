@@ -16,10 +16,12 @@ func _on_thumb_rest():
 
 func _on_touching_area(area):
     if controller.is_thumb_up():
-        if "touch_handler" in area:
-            area.touch_handler.on_touch(self, thumb_area)
+        var feature = NodeUtilities.get_child_of_type(area, TouchHandler)
+        if feature:
+            feature.on_touch(self, thumb_area)
 
 
 func _on_leaving_area(area):
-    if "touch_handler" in area:
-        area.touch_handler.on_leave(self, thumb_area)
+    var feature = NodeUtilities.get_child_of_type(area, TouchHandler)
+    if feature:
+        feature.on_leave(self, thumb_area)

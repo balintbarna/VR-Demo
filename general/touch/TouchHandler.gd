@@ -3,8 +3,8 @@ class_name TouchHandler
 
 
 var touchers = {}
-onready var viewport = get_node("../Viewport") as Viewport
-onready var sprite = get_node("../Sprite3D") as Sprite3D
+onready var viewport = NodeUtilities.get_child_of_type(get_parent(), Viewport)
+onready var sprite = NodeUtilities.get_child_of_type(get_parent(), Sprite3D)
 
 
 func _ready():

@@ -16,10 +16,12 @@ func _on_index_rest():
 
 func _on_touching_area(area):
     if controller.is_pointing():
-        if "touch_handler" in area:
-            area.touch_handler.on_touch(self, index_area)
+        var feature = NodeUtilities.get_child_of_type(area, TouchHandler)
+        if feature:
+            feature.on_touch(self, index_area)
 
 
 func _on_leaving_area(area):
-    if "touch_handler" in area:
-        area.touch_handler.on_leave(self, index_area)
+    var feature = NodeUtilities.get_child_of_type(area, TouchHandler)
+    if feature:
+        feature.on_leave(self, index_area)
