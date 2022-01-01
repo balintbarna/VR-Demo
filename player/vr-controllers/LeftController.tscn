@@ -37,8 +37,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024, 0.006 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, -0.055 )
 
 [connection signal="gripping" from="." to="GrabArea" method="try_grab"]
-[connection signal="loose" from="." to="GrabArea" method="release"]
 [connection signal="index_pointing" from="." to="IndexBase" method="_on_index_pointing"]
 [connection signal="index_rest" from="." to="IndexBase" method="_on_index_rest"]
+[connection signal="loose" from="." to="GrabArea" method="release"]
 [connection signal="thumb_rest" from="." to="ThumbBase" method="_on_thumb_rest"]
 [connection signal="thumb_up" from="." to="ThumbBase" method="_on_thumb_up"]

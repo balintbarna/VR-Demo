@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://general/joys/JoyGrabHandler.gd" type="Script" id=1]
-[ext_resource path="res://general/joys/JoyBody.gd" type="Script" id=2]
 [ext_resource path="res://general/joys/Dial.gd" type="Script" id=3]
 
 [sub_resource type="CylinderMesh" id=3]
@@ -40,7 +39,6 @@ material = SubResource( 8 )
 script = ExtResource( 3 )
 
 [node name="JoyBody" type="StaticBody" parent="."]
-script = ExtResource( 2 )
 
 [node name="Knob" type="MeshInstance" parent="JoyBody"]
 mesh = SubResource( 3 )

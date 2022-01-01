@@ -4,7 +4,7 @@ extends Spatial
 
 export var value = 0.0 setget set_value, get_value
 onready var joy_body = $JoyBody
-onready var handler = $JoyBody/JoyGrabHandler
+onready var handler = NodeUtilities.get_child_of_type(joy_body, GrabHandler)
 
 
 func set_value(v):

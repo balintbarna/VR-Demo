@@ -31,6 +31,7 @@ albedo_color = Color( 0.109804, 0.0980392, 0.0980392, 1 )
 [node name="AudioBall" type="RigidBody"]
 script = ExtResource( 1 )
 sphere_color = Color( 1, 1, 1, 1 )
+audio_stream = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 12 )

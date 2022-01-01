@@ -1,6 +1,7 @@
 extends Spatial
 
 onready var joy = $JoyBody
+onready var grab_feature = NodeUtilities.get_child_of_type(joy, GrabHandler)
 onready var red = $Base/Red
 onready var green = $Base/Green
 onready var blue = $Base/Blue
@@ -14,16 +15,16 @@ func _physics_process(_delta):
 
 func get_joy_displacement():
     return Vector3(
-        joy.transform.origin.x / joy.grab_handler.linear_limit.x,
-        joy.transform.origin.y / joy.grab_handler.linear_limit.y,
-        joy.transform.origin.z / joy.grab_handler.linear_limit.z
+        joy.transform.origin.x / grab_feature.linear_limit.x,
+        joy.transform.origin.y / grab_feature.linear_limit.y,
+        joy.transform.origin.z / grab_feature.linear_limit.z
     )
 
 
 func get_joy_rotation():
-    var euler = joy.grab_handler.vectorify_rotation(joy.transform.basis)
+    var euler = grab_feature.vectorify_rotation(joy.transform.basis)
     return Vector3(
-        euler.x / joy.grab_handler.angular_limit.x,
-        euler.y / joy.grab_handler.angular_limit.y,
-        euler.z / joy.grab_handler.angular_limit.z
+        euler.x / grab_feature.angular_limit.x,
+        euler.y / grab_feature.angular_limit.y,
+        euler.z / grab_feature.angular_limit.z
     )

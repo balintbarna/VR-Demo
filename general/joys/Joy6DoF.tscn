@@ -1,8 +1,7 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://general/joys/JoyGrabHandler.gd" type="Script" id=1]
 [ext_resource path="res://general/joys/Joy6DoF.gd" type="Script" id=2]
-[ext_resource path="res://general/joys/JoyBody.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape" id=8]
 radius = 0.03
@@ -78,7 +77,6 @@ albedo_color = Color( 0, 0, 1, 1 )
 script = ExtResource( 2 )
 
 [node name="JoyBody" type="StaticBody" parent="."]
-script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="JoyBody"]
 transform = Transform( 1, 0, 0, 0, -0.173648, 0.984808, 0, -0.984808, -0.173648, 0, 0.1184, -0.0173571 )
