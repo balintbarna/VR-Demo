@@ -293,4 +293,5 @@ quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 quality/shading/force_vertex_shading.mobile=false
 quality/shading/use_physical_light_attenuation=true
+quality/depth/hdr.mobile=true
 environment/default_environment="res://general/default_env.tres"
