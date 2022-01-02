@@ -25,7 +25,7 @@ func get_sphere_color():
 
 func update_sphere_color():
     if mesh_node:
-        mesh_node.get_active_material(0).albedo_color = sphere_color
+        mesh_node.get_active_material(0).set_shader_param("albedo_color", sphere_color)
 
 
 func set_audio_stream(new_stream: AudioStream):
