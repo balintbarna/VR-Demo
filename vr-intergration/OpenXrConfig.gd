@@ -18,5 +18,6 @@ func config(viewport: Viewport) -> bool:
         viewport.keep_3d_linear = true
         OS.vsync_enabled = false
         InputMapper.mapping = OpenXrInputMapping.new()
+        print("OpenXR runtime configured")
         return true
     return false

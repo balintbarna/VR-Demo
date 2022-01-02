@@ -27,5 +27,6 @@ func config(viewport: Viewport) -> bool:
         viewport.arvr = true
         OS.vsync_enabled = false
         InputMapper.mapping = OculusMobileInputMapping.new()
+        print("OculusMobile runtime configured")
         return true
     return false
