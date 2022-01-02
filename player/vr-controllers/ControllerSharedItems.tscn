@@ -35,7 +35,6 @@ radius = 0.1
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0.135 )
 mesh = ExtResource( 2 )
-skeleton = NodePath("../../LeftController")
 material/0 = SubResource( 1 )
 
 [node name="WakeUpArea" type="Area" parent="."]
