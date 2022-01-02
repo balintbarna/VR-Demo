@@ -125,40 +125,49 @@ material/0 = SubResource( 4 )
 [node name="CollisionShape" type="CollisionShape" parent="World/Warehouse/Ceiling"]
 shape = SubResource( 5 )
 
-[node name="SpotLight" type="SpotLight" parent="World/Warehouse/Ceiling"]
-transform = Transform( 1, 0, 0, 0, 0.00881382, 0.999961, 0, -0.999961, 0.00881382, 0, -0.186159, 0 )
+[node name="Lights" type="Spatial" parent="World/Warehouse/Ceiling"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.62379, 0 )
+
+[node name="SpotLight" type="SpotLight" parent="World/Warehouse/Ceiling/Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.3143, 2.38419e-07 )
 light_color = Color( 0.741176, 1, 1, 1 )
 light_bake_mode = 2
+shadow_enabled = true
 
-[node name="SpotLight2" type="SpotLight" parent="World/Warehouse/Ceiling"]
-transform = Transform( 1, 0, 0, 0, 0.00881382, 0.999961, 0, -0.999961, 0.00881382, 3.51981, -0.186159, 0 )
+[node name="SpotLight2" type="SpotLight" parent="World/Warehouse/Ceiling/Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.15664, 0, 0 )
 light_color = Color( 0.741176, 1, 1, 1 )
 light_bake_mode = 2
+shadow_enabled = true
 
-[node name="SpotLight3" type="SpotLight" parent="World/Warehouse/Ceiling"]
-transform = Transform( 1, 0, 0, 0, 0.00881382, 0.999961, 0, -0.999961, 0.00881382, -5.33117, -0.186159, 0 )
+[node name="SpotLight3" type="SpotLight" parent="World/Warehouse/Ceiling/Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.57363, 0, 0 )
 light_color = Color( 0.741176, 1, 1, 1 )
 light_bake_mode = 2
+shadow_enabled = true
 
-[node name="SpotLight4" type="SpotLight" parent="World/Warehouse/Ceiling"]
-transform = Transform( 1, 0, 0, 0, 0.00881382, 0.999961, 0, -0.999961, 0.00881382, 0, -0.186159, -4.00961 )
+[node name="SpotLight4" type="SpotLight" parent="World/Warehouse/Ceiling/Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.397251, -4.67627, -2.38419e-07 )
 light_color = Color( 0.741176, 1, 1, 1 )
 light_bake_mode = 2
+shadow_enabled = true
 
-[node name="SpotLight5" type="SpotLight" parent="World/Warehouse/Ceiling"]
-transform = Transform( 1, 0, 0, 0, 0.00881382, 0.999961, 0, -0.999961, 0.00881382, 0, -0.186159, 5.04913 )
+[node name="SpotLight5" type="SpotLight" parent="World/Warehouse/Ceiling/Lights"]
 light_color = Color( 0.741176, 1, 1, 1 )
 light_bake_mode = 2
+shadow_enabled = true
 
-[node name="SpotLight6" type="SpotLight" parent="World/Warehouse/Ceiling"]
-transform = Transform( 1, 0, 0, 0, 0.00881382, 0.999961, 0, -0.999961, 0.00881382, 5.25701, -0.186159, -4.78519 )
+[node name="SpotLight6" type="SpotLight" parent="World/Warehouse/Ceiling/Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.33758, 4.67722, 2.38419e-07 )
 light_color = Color( 1, 0.329412, 0.909804, 1 )
 light_bake_mode = 2
+shadow_enabled = true
 
-[node name="SpotLight7" type="SpotLight" parent="World/Warehouse/Ceiling"]
-transform = Transform( 1, 0, 0, 0, 0.00881382, 0.999961, 0, -0.999961, 0.00881382, -4.32651, -0.186159, -4.46318 )
+[node name="SpotLight7" type="SpotLight" parent="World/Warehouse/Ceiling/Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.44825, 4.64002, 2.38419e-07 )
 light_color = Color( 0, 0.623529, 1, 1 )
 light_bake_mode = 2
+shadow_enabled = true
 
 [node name="SwordOnRack" parent="World/Warehouse" instance=ExtResource( 6 )]
 transform = Transform( -0.339296, -0.909948, -0.238483, 0, 0.253522, -0.96733, 0.94068, -0.328211, -0.086019, 5.24486, 1.0701, 8.50803 )
