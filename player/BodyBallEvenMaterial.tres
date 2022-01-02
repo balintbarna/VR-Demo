@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://general/toon-shader/toon.gdshader" type="Shader" id=1]
+[ext_resource path="res://general/toon-shader/MinimumOutline.tres" type="Material" id=2]
+
+[resource]
+next_pass = ExtResource( 2 )
+shader = ExtResource( 1 )
+shader_param/shaded = true
+shader_param/shadows = true
+shader_param/lighting_color = true
+shader_param/specular_reflection = true
+shader_param/rim_light = true
+shader_param/albedo_color = Color( 0.682353, 0.156863, 0.329412, 1 )
+shader_param/specular_tint = Color( 0.75, 0.75, 0.75, 0.75 )
+shader_param/rim_tint = Color( 0.75, 0.75, 0.75, 0.75 )
+shader_param/shade_softness = 0.01
+shader_param/shadow_softness = 0.1
+shader_param/shadowed_energy = 0.0
+shader_param/specular_glossiness = 15.0
+shader_param/specular_threshold = 0.5
+shader_param/specular_softness = 0.1
+shader_param/rim_threshold = 0.25
+shader_param/rim_softness = 0.05
+shader_param/rim_spread = 0.5
+shader_param/light_contribution = 1.0
