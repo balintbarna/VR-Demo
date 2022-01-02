@@ -82,13 +82,3 @@ func is_thumb_up():
 
 func is_ax_by_touching():
     return is_button_pressed(mapping.AX_TOUCHING) or is_button_pressed(mapping.BY_TOUCHING)
-
-
-func get_stick_vector() -> Vector2:
-    return Joypad.apply_deadzone(get_stick_vector_raw(), CONTROLLER_DEADZONE)
-
-
-func get_stick_vector_raw() -> Vector2:
-    var leftright = get_joystick_axis(mapping.STICK_X) # [-1; 1]
-    var backforward = get_joystick_axis(mapping.STICK_Y) # [-1; 1]
-    return Vector2(leftright, backforward) # (X, Y)
