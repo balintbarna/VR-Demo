@@ -1,6 +1,11 @@
 extends "res://addons/gut/test.gd"
 
 
+func test_vector_length():
+    var v = Vector3.ONE
+    assert_almost_eq(v.length(), sqrt(3), ExtraMath.EPSILON)
+
+
 func test_types():
     var node_type = ArvrOriginWithReferences
     var node = ArvrOriginWithReferences.new()
