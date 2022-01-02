@@ -4,19 +4,22 @@ shader_type spatial;
 //render_mode unshaded;
 //render_mode ambient_light_disabled;
 
-uniform bool use_shade = true;
-uniform bool use_specular = true;
-uniform bool use_rim = true;
-uniform bool use_light = true;
-uniform bool use_shadow = true;
+uniform bool shaded = true;
+uniform bool shadows = true;
+uniform bool lighting_color = true;
+uniform bool specular_reflection = true;
+uniform bool rim_light = true;
 
 uniform vec4 albedo_color : hint_color = vec4(1.0);
 uniform vec4 specular_tint : hint_color = vec4(0.75);
 uniform vec4 rim_tint : hint_color = vec4(0.75);
 
-uniform float shaded_energy : hint_range(0.0, 1.0) = 0.2;
-uniform float shade_threshold : hint_range(-1.0, 1.0, 0.001) = 0.0;
+const float shade_threshold = 0.0;
 uniform float shade_softness : hint_range(0.0, 1.0, 0.001) = 0.01;
+
+const float shadow_threshold = 0.3;
+uniform float shadow_softness : hint_range(0.0, 1.0, 0.001) = 0.1;
+uniform float shadowed_energy : hint_range(0.0, 1.0) = 0.0;
 
 uniform float specular_glossiness : hint_range(1.0, 100.0, 0.1) = 15.0;
 uniform float specular_threshold : hint_range(0.01, 1.0, 0.001) = 0.5;
@@ -26,9 +29,6 @@ uniform float rim_threshold : hint_range(0.00, 1.0, 0.001) = 0.25;
 uniform float rim_softness : hint_range(0.0, 1.0, 0.001) = 0.05;
 uniform float rim_spread : hint_range(0.0, 1.0, 0.001) = 0.5;
 
-uniform float shadow_threshold : hint_range(0.00, 1.0, 0.001) = 0.7;
-uniform float shadow_softness : hint_range(0.0, 1.0, 0.001) = 0.1;
-
 uniform float light_contribution : hint_range(0.0, 1.0) = 1.0;
 
 uniform sampler2D albedo_texture: hint_albedo;
@@ -37,19 +37,19 @@ void fragment()
 {
 	vec4 albedo = texture(albedo_texture, UV) * albedo_color;
 	ALBEDO = albedo.rgb;
-//	ALPHA = albedo.a;
+	//ALPHA = albedo.a;
 }
 
-float get_shade_lit_ratio(float light_facing_ratio, inout float lit_amount, float attenuation)
+float lit_shadow(float attenuation)
 {
-	// calculate lack_of_light ratio based on how much the surface faces the light
-	lit_amount = smoothstep(shade_threshold - shade_softness, shade_threshold + shade_softness, light_facing_ratio); // fx ratio in [-0.01;0.01]->[0;1] 
-	if (use_shadow)
-	{
-		// decrease litness based on engine calculated light attenuation
-		lit_amount *= smoothstep(shadow_threshold - shadow_softness, shadow_threshold + shadow_softness, attenuation); // [0;1]
-	}
-	return mix(shaded_energy, 1.0, lit_amount); // interpolate
+	// decrease litness based on engine calculated light attenuation and shadow cast
+	return smoothstep(shadow_threshold - shadow_softness, shadow_threshold + shadow_softness, attenuation); // [0;1]
+}
+
+vec3 coloration(vec3 lighting)
+{
+	lighting /= abs(max(max(lighting.r, lighting.g), lighting.b));
+	return mix(vec3(1.0), lighting, light_contribution);
 }
 
 vec4 specular(vec3 view, vec3 light, vec3 normal, float lit_amount)
@@ -77,31 +77,34 @@ vec4 rim(vec3 view, vec3 normal, float light_facing_ratio, float lit_amount)
 
 void light()
 {
-	float light_facing_ratio = dot(NORMAL, LIGHT); // angle -> [-1;1]
-	float lit_amount = step(shade_threshold, light_facing_ratio); // [-1;1] -> 0 or 1
 	DIFFUSE_LIGHT = ALBEDO;
-	
-	if (use_shade)
+	DIFFUSE_LIGHT *= step(0.001, ATTENUATION); // necessary with many lights in the scene because they add up wierdly
+	if (shaded)
 	{
-		DIFFUSE_LIGHT *= get_shade_lit_ratio(light_facing_ratio, lit_amount, ATTENUATION.r); // *[0;1]
-	}
-	
-	if (use_specular)
-	{
-		vec4 s = specular(VIEW, LIGHT, NORMAL, lit_amount);
-		DIFFUSE_LIGHT += s.rgb;
-//		ALPHA += s.a;
-	}
-	
-	if (use_rim)
-	{
-		vec4 r = rim(VIEW, NORMAL, light_facing_ratio, lit_amount);
-		DIFFUSE_LIGHT += r.rgb;
-//		ALPHA += r.a;
-	}
-	
-	if (use_light)
-	{
-		DIFFUSE_LIGHT *= 1.0 - light_contribution + light_contribution*LIGHT_COLOR;
+		float light_facing_ratio = dot(NORMAL, LIGHT); // angle -> [-1;1]
+		vec3 lighting = LIGHT_COLOR * max(ATTENUATION, 0.0); // HDR, real lighting
+		// calculate lack_of_light ratio based on how much the surface faces the light
+		float toon_lit_amount = smoothstep(shade_threshold - shade_softness, shade_threshold + shade_softness, light_facing_ratio); // fx ratio in [-0.01;0.01]->[0;1]
+		if (shadows)
+		{
+			toon_lit_amount *= lit_shadow(length(lighting)); // *[0;1]
+		}
+		DIFFUSE_LIGHT *= mix(shadowed_energy, 1.0, toon_lit_amount); // interpolate
+		if (lighting_color)
+		{
+			DIFFUSE_LIGHT *= coloration(LIGHT_COLOR);
+		}
+		if (specular_reflection)
+		{
+			vec4 s = specular(VIEW, LIGHT, NORMAL, toon_lit_amount);
+			SPECULAR_LIGHT += s.rgb;
+			//ALPHA += s.a;
+		}
+		if (rim_light)
+		{
+			vec4 r = rim(VIEW, NORMAL, light_facing_ratio, toon_lit_amount);
+			DIFFUSE_LIGHT += r.rgb;
+			//ALPHA += r.a;
+		}
 	}
 }
