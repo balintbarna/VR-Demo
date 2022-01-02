@@ -260,6 +260,3 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00043, 0.695141, 4.47559 )
 stream = ExtResource( 9 )
 volume_db = -15.0
 autoplay = true
-
-[node name="ReflectionProbe" type="ReflectionProbe" parent="World"]
-extents = Vector3( 10.5108, 4.59984, 11.2066 )
