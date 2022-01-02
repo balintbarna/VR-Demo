@@ -3,6 +3,8 @@ class_name PullTransform
 
 
 export(NodePath) var reference_path setget set_ref, get_ref
+export var normal_process = false
+export var physics_process = true
 export var use_global_transform = true
 export var pull_position = true
 export var pull_orientation = true
@@ -21,7 +23,17 @@ func _ready():
     update_reference()
 
 
+func _process(_delta):
+    if normal_process:
+        update_transform()
+
+
 func _physics_process(_delta):
+    if physics_process:
+        update_transform()
+
+
+func update_transform():
     if not spatial_parent or not reference_node:
         return
     apply_transform(spatial_parent)
